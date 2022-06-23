@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+ margin: 0;
+  padding: 0;
+}
+ul {
+    list-style-type: none;
+    display: inline;
+}
+li {
+  cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+.wrapper {
+  max-width: 1920px;
+  margin: 0 auto;
+}
+.container {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
