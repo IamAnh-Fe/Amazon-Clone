@@ -1,10 +1,10 @@
 import NavBar from "./components/Navbar";
-import { Login } from "./components/Login/Login";
+import LoginForm from "./pages/LoginForm";
 function App() {
   return (
     <>
       <NavBar />
-      <Login/>
+      <LoginForm/>
     </>
     
   );
