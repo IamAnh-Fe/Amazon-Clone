@@ -1,0 +1,83 @@
+.navbar {
+  height: 60px;
+    color: white;
+  background-color: #131921;
+   position: sticky;
+  top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    cursor: pointer;
+    &-left {
+        display: flex;
+        align-items: center;      
+    }
+    &-logo {
+      width: 100px;
+  object-fit: contain;
+  margin: 0 20px;
+  margin-top: 5px;
+  padding: 8px 5px 2px 6px;
+    }
+    &-location {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px 8px 2px 6px;
+        margin-right: 20px;
+        
+    }
+    &-selectall {
+      background-color: #f3f3f3;
+    }
+    &-search {
+     display: flex;
+     flex: 1;
+     align-items: center;
+     border-radius: 24px;
+     height: 38px;
+     margin: 0 2px;
+    }
+    &-search > select {
+        height: 38px;
+        border-radius: 5px 0 0 5px;
+    }
+    &-search > button {
+      height: 40px;
+      width: 45px;
+      background-color: #fcba03;
+       border-radius: 0 5px 5px 0;
+    }
+    &-language {
+      margin-left: 10px;
+        padding: 10px 12px 10px 15px;
+
+    }
+    &-searchInput{
+  padding: 10px;
+  border: none;
+  width: 100%;
+    }
+    &-right {
+         display: flex;
+         align-items: center;
+  justify-content: space-evenly;
+    }
+    &-option {
+    padding: 2px 3px 3px 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
+//   color: white;
+    }
+    &-cart {
+       margin: 0 10px;
+      padding: 8px 8px 8px 10px;
+
+    }
+    &-iconcart {
+      width: 35px;
+    }
+
+}

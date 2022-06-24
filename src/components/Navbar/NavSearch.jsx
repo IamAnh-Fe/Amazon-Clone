@@ -1,15 +1,18 @@
 import React from 'react'
-
-export const HeaderSearch = () => {
+import { BiSearchAlt2 } from "react-icons/bi";
+export const NavSearch = () => {
   return (
-<div class="header">
-			<div class="header-search">
-				<form className="nav-search-bar-form">
-					<div class="nav-left">
-						<a href="">ALL</a>
-					</div>
-					<div class="nav-fill">
-						<input type="text">
-					</div>
-  )
+    <>
+    <div className="navbar-search">
+      
+        <select>
+          <option>All</option>
+
+        </select>
+
+      <input className="navbar-searchInput" type="text" />
+      <button type="submit"><BiSearchAlt2/></button>
+      </div>
+  </>
+  );
 }

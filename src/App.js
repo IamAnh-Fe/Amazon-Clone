@@ -1,8 +1,10 @@
-import Header from "./components/Header";
+import NavBar from "./components/Navbar";
+import { Login } from "./components/Login/Login";
 function App() {
   return (
     <>
-  <Header />
+      <NavBar />
+      <Login/>
     </>
     
   );

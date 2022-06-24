@@ -3,20 +3,16 @@ import NavLeft from './NavLeft'
 import { NavRight } from './NavRight'
 import { NavSearch } from './NavSearch'
 
-const Header = () => {
+const NavBar = () => {
   return (
-<div className='wrapper'>
-  <div className="container">
-    <div className="navbar">
-
-<NavLeft />  
-<NavSearch/>
-<NavRight />
-    </div>
-  </div>
-</div>
-)
-}
+        <div className="navbar">
+          <NavLeft />
+          <NavSearch />
+          <NavRight />
+        </div>
+  
+  );
+};
 
 
-export default Header;
+export default NavBar;
