@@ -34,15 +34,21 @@ const Login = (props) => {
             <div className="login-title">Sign In</div>
             <form onSubmit={handleSubmit(handleSubmitValues)}>
               <div className="login-input">
-         <input {...register("email")} type="text" placeholder="Email or Phone"/>
-          <ErrorMessage errors={errors} name="email" />
-      
-      <ErrorMessage
-        errors={errors}
-        name="email"
-        render={({ message }) => <p>{message}</p>}
-      />
-      
+                <input
+                  {...register("email")}
+                  type="text"
+                  placeholder="Email"
+                />
+                <p className="error">
+                  <ErrorMessage errors={errors} name="email" />
+                {/* <ErrorMessage
+                  errors={errors}
+                  name="email"
+                  render={({ message }) => <p>{message}</p>}
+                /> */}
+                </p>
+
+
                 <div className="login-icon">
                   <i>
                     <BsFillPersonFill />
@@ -55,18 +61,30 @@ const Login = (props) => {
                     <BsFillFileLockFill />
                   </i>
                 </div>
-                <input {...register("password")} type="password" placeholder="Password"  />
-                <ErrorMessage errors={errors} name="password" />
+                <input
+                  {...register("password")}
+                  type="password"
+                  placeholder="Password"
+                />
+                <p className="error">
+                <ErrorMessage errors={errors} name="password" />  
+                  </p>
               </div>
 
-                <div className="login-input">
+              <div className="login-input">
                 <div className="login-icon">
                   <i>
                     <BsFillFileLockFill />
                   </i>
                 </div>
-                <input {...register("retypePassword")} type="password" placeholder="Re-Type Password"  />
+                <input
+                  {...register("retypePassword")}
+                  type="password"
+                  placeholder="Re-Type Password"
+                />
+                <p className="error">
                 <ErrorMessage errors={errors} name="retypePassword" />
+                </p>
               </div>
               <div className="login-option">
                 <div className="login-remember">
