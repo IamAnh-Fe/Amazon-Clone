@@ -1,6 +1,7 @@
 import React from 'react'
 import cart from "../../assets/logo/cart.png";
 import america from "../../assets/logo/america.png";
+import { Link } from "react-router-dom";
 
 import { BiChevronDown } from "react-icons/bi";
 export const NavRight = () => {
@@ -12,7 +13,7 @@ export const NavRight = () => {
 
       </div>
       <div className="navbar-option hover">
-        <span className="header-optionLineOne">Hello, Sign in</span>
+        <span className="header-optionLineOne" ><Link to="user/sign-in">Hello, Sign in</Link></span>
         <span className="header-optionLineTwo">Account & Lists</span>
       </div>
       <div className="navbar-option hover">

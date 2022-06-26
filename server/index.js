@@ -3,7 +3,9 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 require('dotenv').config()
+
 const authRouter = require('./routers/auth')
+const postRouter = require('./routers/post')
 
 
 const connectDB = async () => {
@@ -30,7 +32,9 @@ connectDB()
 const app = express()
 app.use(express.json())
 app.use(cors())
+
 app.use('/api/auth', authRouter)
+app.use('/api/posts', postRouter)
 
 
 const PORT = process.env.PORT || 7000

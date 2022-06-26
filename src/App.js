@@ -1,10 +1,12 @@
 import NavBar from "./components/Navbar";
-import LoginForm from "./pages/LoginForm";
+import { Outlet } from 'react-router-dom';
 function App() {
   return (
     <>
-      <NavBar />
-      <LoginForm/>
+      <nav>
+      <NavBar />       
+      </nav>
+      <Outlet />
     </>
     
   );

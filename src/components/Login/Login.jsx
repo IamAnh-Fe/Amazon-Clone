@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
+import { Link } from "react-router-dom";
 import { BsFillPersonFill, BsFillFileLockFill } from "react-icons/bs";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -82,7 +82,7 @@ const Login = (props) => {
                 <input type="submit" value="Login" />
               </div>
               <div className="login-signup">
-                Not a member? <a href="#">Sign up now</a>
+                Not a member?<a><Link to="sign-up">Sign up now</Link></a>
               </div>
             </form>
             <div className="login-social">
