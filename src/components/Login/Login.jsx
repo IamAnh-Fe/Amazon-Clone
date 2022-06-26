@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import { BsFillPersonFill, BsFillFileLockFill } from "react-icons/bs";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -8,13 +9,11 @@ import { ErrorMessage } from '@hookform/error-message';
 
 const Login = (props) => {
    const schema = yup.object({
-     email: yup.string().required('Please enter Email.').email('Please enter a valid email address.'),
+     email: yup.string().required('Email is required').email('Please enter a valid email address.'),
      password: yup.string()
-     .required('Please enter your Password.')
+     .required('Password is required')
     .min(6, 'Password must be at least 6 characters'),
-    retypePassword: yup.string()
-    .required('Please retype your Password.')
-    .oneOf([yup.ref('password')], 'Password does not match')
+   
    });
     const { register, handleSubmit, formState: {errors}} = useForm({
           resolver: yupResolver(schema)
@@ -69,22 +68,6 @@ const Login = (props) => {
                 <p className="error">
                 <ErrorMessage errors={errors} name="password" />  
                   </p>
-              </div>
-
-              <div className="login-input">
-                <div className="login-icon">
-                  <i>
-                    <BsFillFileLockFill />
-                  </i>
-                </div>
-                <input
-                  {...register("retypePassword")}
-                  type="password"
-                  placeholder="Re-Type Password"
-                />
-                <p className="error">
-                <ErrorMessage errors={errors} name="retypePassword" />
-                </p>
               </div>
               <div className="login-option">
                 <div className="login-remember">

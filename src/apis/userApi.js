@@ -1,9 +1,9 @@
 // api/userApi.js
 import axiosClient from "./axiosClient";
 const userApi = {
-    get: (userId) => {
-    const url = `/user/${userId}`;
-    return axiosClient.get(url);
+  register (data) {
+    const url = `/users`;
+    return axiosClient.post(url,data);
   },
 };
 export default userApi;
