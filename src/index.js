@@ -5,8 +5,8 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Login from './components/Login/Login';
-import Register from './components/Login/Register'
+import SignIn from './components/Auth/SignIn';
+import SignUp from './components/Auth/SignUp';
 import App from './App'
 import { store } from './app/store'
 import { Provider } from 'react-redux'
@@ -17,13 +17,8 @@ ReactDOM.render(
       <Provider store={store}>
         <Routes>
           <Route path="/" element={<App />}></Route>
-          <Route path="/user" element={<Login />}>
-             <Route path="sign-in" element={<Login />}>
-             <Route path="sign-up" element={<Register />}></Route>
-          </Route>
-
-             
-          </Route>
+          <Route path="user/sign-in" element={<SignIn/>}></Route>
+          <Route path="user/sign-in/sign-up" element={<SignUp />}></Route>
         </Routes>
       </Provider>
     </BrowserRouter>

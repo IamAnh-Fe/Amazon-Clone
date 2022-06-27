@@ -1,0 +1,137 @@
+.auth {
+       display: flex;
+	justify-content: center;
+	align-items: center;
+    height: 100vh;
+    &-box {
+        max-width: 350px;
+	width: 100%;
+	height: auto;
+    }
+    &-logo {
+        cursor: pointer;
+      display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+    }
+    &-info,
+    &-signup {
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 1px;
+    padding: 40px 40px 20px;;
+    }
+    &-field {
+         margin: 10px 0;
+  position: relative;
+  font-size: 14px;
+  width: 100%;
+  text-overflow: ellipsis;
+    }
+    input {
+  padding: 9px 0px 7px 9px;
+  font-size: 12px;
+  width: 268px;
+  height: 2.2rem;
+  outline: none;
+  background: #fafafa;
+  border-radius: 3px;
+  border: 1px solid #efefef;
+  margin-bottom: 10px;
+}
+
+/* label intial position*/
+
+label {
+  position: absolute;
+  pointer-events: none;
+  left: 10px;
+  padding-bottom: 15px;
+  transform: translateY(10px);
+  line-height: 6px;
+  transition: all ease-out 0.1s;
+  font-size: 14px;
+  color: #999;
+  padding-top: 6px;
+}
+
+/* hiding placeholder in all browsers */
+
+input::placeholder {
+  visibility: hidden;
+}
+/* label final position */
+input:not(:placeholder-shown) + label {
+  transform: translateY(0);
+  font-size: 11px;
+}
+
+/* input padding increases if placeholder is not shown */
+&-field input:not(:placeholder-shown) {
+  padding-top: 14px;
+  padding-bottom: 2px;
+}
+&-button {
+     margin-top: 10px;
+    width: 100%;
+    background-color: #ffc107;
+    border-color: #ffc107;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s linear;
+    padding: 5px;
+}
+
+&-button:hover {
+       background: #f0c14b;
+         transition: all 0.5s linear;
+}
+&-or {
+        display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 15px;
+	margin: 15px 0 20px;
+    }
+    &-line {
+        width: 105px;
+	height: 2px;
+	background: #efefef
+    }
+    &-fb ,
+    &-gg {
+        display: flex;
+	justify-content: center;
+	align-items: center;
+    margin-bottom: 10px;
+    gap: 5px;
+    cursor: pointer;
+    }
+    &-fb p {
+        color: #385185;
+    }
+    &-gg p {
+       color: red;
+    }
+      &-fb:hover ,
+    &-gg:hover {
+        opacity: 0.6;
+    }
+     &-forgot {
+       	font-size: 12px;
+	text-align: center;
+	margin-top: 20px;
+    }
+    &-forgot a {
+        color: #003569;
+    }
+    &-signup {
+        	margin: 10px 0 20px;
+	padding: 25px 40px;
+	text-align: center;
+	color: #262626;
+    }
+
+}
