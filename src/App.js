@@ -4,11 +4,11 @@ function App() {
   return (
     <>
       <nav>
-      <NavBar />       
+        <NavBar />
       </nav>
       <Outlet />
+      
     </>
-    
   );
 }
 

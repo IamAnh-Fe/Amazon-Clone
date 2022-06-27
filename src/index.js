@@ -5,8 +5,8 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import SignIn from './components/Auth/SignIn';
-import SignUp from './components/Auth/SignUp';
+import SignIn from './features/Auth/pages/SignIn';
+import SignUp from './features/Auth/pages/SignUp';
 import App from './App'
 import { store } from './app/store'
 import { Provider } from 'react-redux'
