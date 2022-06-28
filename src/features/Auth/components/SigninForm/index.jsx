@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ErrorMessage } from "@hookform/error-message";
-
+import Loading from "../../../../components/Loading";
 const SigninForm = (props) => {
   const schema = yup.object({
     email: yup
@@ -21,8 +21,9 @@ const SigninForm = (props) => {
   });
   const {
     register,
+    reset,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -33,12 +34,15 @@ const SigninForm = (props) => {
     if (onSubmit) {
       onSubmit(values);
     }
+    reset()
   };
   return (
     <div className="auth">
       <div className="auth-box">
         <div className="auth-info">
           <div>
+                  {isSubmitting ? <Loading/> : ''}
+
           <Link to="/"><img className="auth-logo" src={logo} alt="" /></Link>
           </div>
           <form onSubmit={handleSubmit(handleSignInSubmit)}>

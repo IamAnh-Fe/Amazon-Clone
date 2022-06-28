@@ -17,7 +17,7 @@ router.get('/', verifyToken, async (req, res) => {
 		res.json({ success: true, user })
 	} catch (error) {
 		console.log(error)
-		res.status(500).json({ success: false, message: 'Internal server error' })
+		res.status(500).json({ success: false, message: 'Internal server error1' })
 	}
 })
 
@@ -25,26 +25,26 @@ router.get('/', verifyToken, async (req, res) => {
 // @desc Register user
 // @access Public
 router.post('/register', async (req, res) => {
-	const { username, password,repassword } = req.body
+	const { email, password} = req.body
 
 	// Simple validation
-	if (!username || !password || !repassword)
+	if (!email || !password )
 		return res
 			.status(400)
-			.json({ success: false, message: 'Missing username or password' })
+			.json({ success: false, message: 'Missing email or password' })
 
 	try {
 		// Check for existing user
-		const user = await User.findOne({ username })
+		const user = await User.findOne({ email })
 
 		if (user)
 			return res
 				.status(400)
-				.json({ success: false, message: 'Username already taken' })
+				.json({ success: false, message: 'Email already taken' })
 
 		// All good
 		const hashedPassword = await argon2.hash(password)
-		const newUser = new User({ username, password: hashedPassword })
+		const newUser = new User({ email, password: hashedPassword })
 		await newUser.save()
 
 		// Return token
@@ -68,28 +68,28 @@ router.post('/register', async (req, res) => {
 // @desc Login user
 // @access Public
 router.post('/login', async (req, res) => {
-	const { username, password } = req.body
+	const { email, password } = req.body
 
 	// Simple validation
-	if (!username || !password)
+	if (!email || !password)
 		return res
 			.status(400)
-			.json({ success: false, message: 'Missing username and/or password' })
+			.json({ success: false, message: 'Missing email and/or password' })
 
 	try {
 		// Check for existing user
-		const user = await User.findOne({ username })
+		const user = await User.findOne({ email })
 		if (!user)
 			return res
 				.status(400)
-				.json({ success: false, message: 'Incorrect username or password' })
+				.json({ success: false, message: 'Incorrect email or password' })
 
-		// Username found
+		//email found
 		const passwordValid = await argon2.verify(user.password, password)
 		if (!passwordValid)
 			return res
 				.status(400)
-				.json({ success: false, message: 'Incorrect username or password' })
+				.json({ success: false, message: 'Incorrect email or password' })
 
 		// All good
 		// Return token

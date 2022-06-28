@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ErrorMessage } from "@hookform/error-message";
+import Loading from "../../../../components/Loading";
 
 const SignupForm = (props) => {
   const navigate = useNavigate();
@@ -28,23 +29,26 @@ const SignupForm = (props) => {
   });
   const {
     register,
+    reset,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const handleSubmitValues = (values) => {
+  const handleSubmitValues = async (values) => {
     const { onSubmit } = props;
     if (onSubmit) {
-      onSubmit(values);
+      await onSubmit(values);
     }
+    reset()
   };
   return (
     <div className="auth">
       <div className="auth-box">
         <div className="auth-info">
           <div>
+      {isSubmitting ? <Loading/> : ''}
             <Link to="/">
               <img className="auth-logo" src={logo} alt="" />
             </Link>
@@ -73,7 +77,7 @@ const SignupForm = (props) => {
               <div className="auth-field">
                 <input
                   {...register("email")}
-                  type="email"
+                  type="text"
                   placeholder="Email"
                 />
                 <label>Email</label>
@@ -103,7 +107,7 @@ const SignupForm = (props) => {
                   <ErrorMessage errors={errors} name="retypePassword" />
                 </p>
               </div>
-              <button className="auth-button" variant="success" type="submit">
+              <button className="auth-button" disabled={isSubmitting} type="submit">
                 Sign Up
               </button>
             </div>

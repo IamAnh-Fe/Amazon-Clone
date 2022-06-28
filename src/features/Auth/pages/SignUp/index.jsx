@@ -7,7 +7,6 @@ const SignUp = (props) => {
   const dispatch = useDispatch()
   const handleSubmit = async (values) => {
     try {
-      values.ussername = values.email
       const action = register(values)
       const resultAction = await dispatch(action)
       const user = unwrapResult(resultAction)

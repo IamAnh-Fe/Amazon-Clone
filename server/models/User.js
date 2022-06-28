@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const UserSchema = new Schema({
-  username: {
+  email: {
     type: String,
     required: true,
     unique: true,
@@ -11,9 +11,9 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  repassword: {
+  retypepassword: {
     type: String,
-    required: true,
+    required: false,
   },
   createdAt: {
     type: Date,

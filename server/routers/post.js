@@ -10,7 +10,7 @@ const Post = require('../models/Post')
 router.get('/', verifyToken, async (req, res) => {
 	try {
 		const posts = await Post.find({ user: req.userId }).populate('user', [
-			'username'
+			'email'
 		])
 		res.json({ success: true, posts })
 	} catch (error) {
