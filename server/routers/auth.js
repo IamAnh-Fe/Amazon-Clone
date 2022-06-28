@@ -56,6 +56,7 @@ router.post('/register', async (req, res) => {
 		res.json({
 			success: true,
 			message: 'User created successfully',
+			user,
 			accessToken
 		})
 	} catch (error) {
@@ -101,6 +102,7 @@ router.post('/login', async (req, res) => {
 		res.json({
 			success: true,
 			message: 'User logged in successfully',
+			user,
 			accessToken
 		})
 	} catch (error) {

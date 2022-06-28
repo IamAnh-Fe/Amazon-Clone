@@ -1,6 +1,6 @@
 import React from 'react'
-import cart from "../../assets/logo/cart.png";
-import america from "../../assets/logo/america.png";
+import cart from "~/assets/logo/cart.png";
+import america from "~/assets/logo/america.png";
 import { Link } from "react-router-dom";
 
 import { BiChevronDown } from "react-icons/bi";

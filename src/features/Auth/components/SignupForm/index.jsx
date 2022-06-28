@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import logo from "../../../../assets/logo/auth.png";
+import logo from "~/assets/logo/auth.png";
 import { useNavigate } from "react-router-dom";
 import { AiFillFacebook, AiFillGoogleSquare } from "react-icons/ai";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ErrorMessage } from "@hookform/error-message";
-import Loading from "../../../../components/Loading";
+import Loading from "~/components/Loading";
 
 const SignupForm = (props) => {
   const navigate = useNavigate();
