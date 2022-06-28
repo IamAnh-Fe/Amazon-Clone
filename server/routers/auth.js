@@ -25,13 +25,13 @@ router.get('/', verifyToken, async (req, res) => {
 // @desc Register user
 // @access Public
 router.post('/register', async (req, res) => {
-	const { username, password } = req.body
+	const { username, password,repassword } = req.body
 
 	// Simple validation
-	if (!username || !password)
+	if (!username || !password || !repassword)
 		return res
 			.status(400)
-			.json({ success: false, message: 'Missing username and/or password' })
+			.json({ success: false, message: 'Missing username or password' })
 
 	try {
 		// Check for existing user

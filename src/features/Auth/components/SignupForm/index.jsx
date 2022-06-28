@@ -86,7 +86,6 @@ const SignupForm = (props) => {
                   {...register("password")}
                   type="password"
                   placeholder="Password"
-                  autocomplete="current-password"
                 />
                 <label>Password</label>
                 <p className="error">
@@ -98,8 +97,7 @@ const SignupForm = (props) => {
                   {...register("retypePassword")}
                   type="password"
                   placeholder="Re-enter password"
-                  autocomplete="current-password"
-                />
+                  />
                 <label>Re-enter password</label>
                 <p className="error">
                   <ErrorMessage errors={errors} name="retypePassword" />
@@ -109,7 +107,7 @@ const SignupForm = (props) => {
                 Sign Up
               </button>
             </div>
-          </form>
+                  </form>
         </div>
         <div className="auth-signup">
           <p>

@@ -1,8 +1,21 @@
 import React from "react";
 import SignupForm from "../../../Auth/components/SignupForm";
+import {register} from '../../userSlice'
+import { useDispatch } from "react-redux";
+import { unwrapResult } from "@reduxjs/toolkit";
 const SignUp = (props) => {
-  const handleSubmit = (values) => {
-    console.log("check:", values);
+  const dispatch = useDispatch()
+  const handleSubmit = async (values) => {
+    try {
+      values.ussername = values.email
+      const action = register(values)
+      const resultAction = await dispatch(action)
+      const user = unwrapResult(resultAction)
+      console.log("new user:", user);
+    } catch (error) {
+      console.log('Failed to register:', error)
+    }
+    
   };
   return (
     <>

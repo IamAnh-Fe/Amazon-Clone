@@ -2,8 +2,8 @@ POST http://localhost:7000/api/auth/register
 Content-Type: application/json
 
 {
-  "username": "Anh",
-  "password": "Anh"
+  "username": "anh@gmail.com",
+  "password": "tienanh123"
 }
 
 ###
@@ -12,8 +12,8 @@ POST http://localhost:7000/api/auth/login
 Content-Type: application/json
 
 {
-  "username": "Anh",
-  "password": "Anh"
+  "username": "anh@gmail.com",
+  "password": "tienanh123"
 }
 
 ###
