@@ -1,19 +1,13 @@
 import React from 'react'
 import SigninForm from '../../components/SigninForm'
-import {login} from '../../userSlice'
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-import { unwrapResult } from "@reduxjs/toolkit";
+import { loginUser } from '~/apis/authApi';
 const SignIn = () => {
-   const dispatch = useDispatch()
+const dispatch = useDispatch()
+  const navigate = useNavigate()  
   const handleSubmit = async (values) => {
-    try {
-      const action = login(values)
-      const resultAction = await dispatch(action)
-      const user = unwrapResult(resultAction)
-      console.log("current user:", user);
-    } catch (error) {
-      console.log('Failed to login:', error)
-    }
+    loginUser(values, dispatch, navigate)
     
   };
   return (

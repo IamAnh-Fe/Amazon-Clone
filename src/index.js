@@ -8,7 +8,7 @@ import {
 import SignIn from './features/Auth/pages/SignIn';
 import SignUp from './features/Auth/pages/SignUp';
 import App from './App'
-import { store } from './app/store'
+import { store } from './redux/store'
 import { Provider } from 'react-redux'
 import './sass/index.scss'
 ReactDOM.render(

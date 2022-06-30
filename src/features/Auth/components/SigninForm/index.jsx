@@ -10,10 +10,9 @@ import { ErrorMessage } from "@hookform/error-message";
 import Loading from "~/components/Loading";
 const SigninForm = (props) => {
   const schema = yup.object({
-    email: yup
+    username: yup
       .string()
-      .required("Email is required")
-      .email("Please enter a valid email address."),
+      .required("Username is required"),
     password: yup
       .string()
       .required("Password is required")
@@ -36,6 +35,8 @@ const SigninForm = (props) => {
     }
     reset()
   };
+
+
   return (
     <main className="background">
 
@@ -51,13 +52,13 @@ const SigninForm = (props) => {
             <div className="auth-form">
               <div className="auth-field">
                 <input
-                  {...register("email")}
-                  type="email"
-                  placeholder="Email"
+                  {...register("username")}
+                  type="text"
+                  placeholder="Username"
                 />
-                <label>Email</label>
+                <label>Username</label>
                 <p className="error">
-                  <ErrorMessage errors={errors} name="email" />
+                  <ErrorMessage errors={errors} name="username" />
                 </p>
               </div>
               <div className="auth-field">
@@ -102,7 +103,7 @@ const SigninForm = (props) => {
         <div className="auth-signup">
           <p>
             Don't have an account?{" "}
-            <a>
+            <a className="link">
               <Link to="sign-up">Sign up</Link>
             </a>
           </p>

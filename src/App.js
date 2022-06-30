@@ -1,5 +1,6 @@
 import NavBar from "./components/Navbar";
 import { Outlet } from 'react-router-dom';
+import Banner from "./components/Banner";
 function App() {
   return (
     <>
@@ -7,6 +8,7 @@ function App() {
         <NavBar />
       </nav>
       <Outlet />
+      <Banner />
     </>
   );
 }

@@ -131,7 +131,7 @@ const SignupForm = (props) => {
         </div>
         <div className="auth-signup">
           <p>
-            Have an account?<a onClick={() => navigate(-1)}>Sign in</a>
+            Have an account?<a className="link" onClick={() => navigate(-1)}> Sign in</a>
           </p>
         </div>
       </div>

@@ -53,14 +53,14 @@ const authController = {
     try {
       const user = await User.findOne({ username: req.body.username });
       if (!user) {
-        res.status(404).json("Incorrect username");
+     return   res.status(404).json("Incorrect username");
       }
       const validPassword = await bcrypt.compare(
         req.body.password,
         user.password
       );
       if (!validPassword) {
-        res.status(404).json("Incorrect password");
+       return   res.status(404).json("Incorrect password");
       }
       if (user && validPassword) {
         //Generate access token

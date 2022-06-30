@@ -51,18 +51,26 @@
     }
     &-language {
       margin-left: 10px;
-        padding: 10px 12px 10px 15px;
-
+      padding: 10px 12px 10px 15px;
+    }
+    &-optionOne {
+      color: #FFFFFF;
+      font-size: 12px;
+    }
+     &-optionTwo {
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
     }
     &-searchInput{
-  padding: 10px;
-  border: none;
-  width: 100%;
+    padding: 10px;
+    border: none;
+    width: 100%;
     }
     &-right {
-         display: flex;
-         align-items: center;
-  justify-content: space-evenly;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
     }
     &-option {
     padding: 2px 3px 3px 10px;
