@@ -14,14 +14,21 @@ const SignupForm = (props) => {
   const navigate = useNavigate();
 
   const schema = yup.object({
+    username: yup
+      .string()
+      .required("Username is required")
+      .max(8, "Username must be less than 8 characters"),
     email: yup
       .string()
       .required("Email is required")
       .email("Please enter a valid email address."),
+
     password: yup
       .string()
       .required("Password is required")
-      .min(6, "Password must be at least 6 characters"),
+      .min(6, "Password must be at least 6 characters")
+      .max(20, "Password must be less than 8 characters"),
+
     retypePassword: yup
       .string()
       .required("Please retype your Password.")
@@ -44,11 +51,13 @@ const SignupForm = (props) => {
     reset()
   };
   return (
+        <main className="background">
+
     <div className="auth">
       <div className="auth-box">
         <div className="auth-info">
           <div>
-      {isSubmitting ? <Loading/> : ''}
+            {isSubmitting ? <Loading /> : ""}
             <Link to="/">
               <img className="auth-logo" src={logo} alt="" />
             </Link>
@@ -75,11 +84,14 @@ const SignupForm = (props) => {
           <form onSubmit={handleSubmit(handleSubmitValues)}>
             <div className="auth-form">
               <div className="auth-field">
-                <input
-                  {...register("email")}
-                  type="text"
-                  placeholder="Email"
-                />
+                <input {...register("username")} type="text" placeholder="Username" />
+                <label>Username</label>
+                <p className="error">
+                  <ErrorMessage errors={errors} name="username" />
+                </p>
+              </div>
+              <div className="auth-field">
+                <input {...register("email")} type="text" placeholder="Email" />
                 <label>Email</label>
                 <p className="error">
                   <ErrorMessage errors={errors} name="email" />
@@ -101,17 +113,21 @@ const SignupForm = (props) => {
                   {...register("retypePassword")}
                   type="password"
                   placeholder="Re-enter password"
-                  />
+                />
                 <label>Re-enter password</label>
                 <p className="error">
                   <ErrorMessage errors={errors} name="retypePassword" />
                 </p>
               </div>
-              <button className="auth-button" disabled={isSubmitting} type="submit">
+              <button
+                className="auth-button"
+                disabled={isSubmitting}
+                type="submit"
+              >
                 Sign Up
               </button>
             </div>
-                  </form>
+          </form>
         </div>
         <div className="auth-signup">
           <p>
@@ -119,7 +135,8 @@ const SignupForm = (props) => {
           </p>
         </div>
       </div>
-    </div>
+      </div>
+      </main>
   );
 };
 SignupForm.propTypes = {

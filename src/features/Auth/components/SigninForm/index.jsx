@@ -37,6 +37,8 @@ const SigninForm = (props) => {
     reset()
   };
   return (
+    <main className="background">
+
     <div className="auth">
       <div className="auth-box">
         <div className="auth-info">
@@ -107,6 +109,7 @@ const SigninForm = (props) => {
         </div>
       </div>
     </div>
+    </main>
   );
 };
 SigninForm.propTypes = {
