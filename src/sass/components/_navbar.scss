@@ -1,7 +1,7 @@
 .navbar {
   height: 60px;
     color: white;
-  background-color: #131921;
+    background-color: #000000;;
    position: sticky;
   top: 0;
     display: flex;
@@ -43,12 +43,12 @@
         height: 38px;
         border-radius: 5px 0 0 5px;
     }
-    &-search > button {
-      height: 40px;
-      width: 45px;
-      background-color: #fcba03;
-       border-radius: 0 5px 5px 0;
-    }
+    // &-search > button {
+    //   height: 40px;
+    //   width: 45px;
+    //   background-color: #fcba03;
+    //    border-radius: 0 5px 5px 0;
+    // }
     &-language {
       margin-left: 10px;
       padding: 10px 12px 10px 15px;
@@ -66,7 +66,18 @@
     padding: 10px;
     border: none;
     width: 100%;
+    outline: none;
     }
+  
+    &-iconsearch {
+      color: rgb(51,51,51);
+      padding: 6px 15px;
+      font-size: 20px;
+      background-color: #febd69;
+      border-radius: 0 5px 5px 0;
+
+    }
+
     &-right {
     display: flex;
     align-items: center;

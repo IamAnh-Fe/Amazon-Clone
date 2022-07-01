@@ -22,7 +22,7 @@ a {
   margin: 0 auto;
 }
 .container {
-  max-width: 1170px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 0 15px;
 }
@@ -30,7 +30,7 @@ a {
   &:hover{
     border: 1px solid white;
      transition: ease 0.3s;
-     border-radius: 2px;
+     border-radius: 3px;
 
   }
 }

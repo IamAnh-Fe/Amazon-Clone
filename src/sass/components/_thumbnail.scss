@@ -1,0 +1,27 @@
+.thumbnail {
+    &-card1 {
+    position: absolute;
+    top: 0px ;
+    }
+   &-content {
+       padding: 20px 0 15px;
+       background-color: #FFFFFF;
+       width: 315px;
+       height: 420px;
+       background-color: linear-gradient( t0 bottom, transparent ,#eaeded, 30% );;
+     
+   }
+   &-products {
+  display: grid;
+       grid-template-columns: 1fr 1fr;
+    }
+    &-image {
+        width: 160px;
+   }
+   &-product span {
+       margin-left: 20px;
+   }
+   &-text {
+margin-top: 15px;
+   }
+}

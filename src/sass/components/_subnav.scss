@@ -1,0 +1,24 @@
+.subnav {
+display: flex;
+align-items: center;
+background-color: #131921;
+border: 1px solid transparent;
+border-radius: 3px;
+font-size: 14px;
+height: 50px;
+&-bars {
+   padding: 8px 9px;
+    margin: 5px 0px 6px;
+    color: #FFFFFF;
+
+}
+&-content {
+    display: flex;
+    gap: 10px;
+    color: #FFFFFF;
+}
+&-content li {
+       padding: 8px 9px;
+    margin: 5px 0px 6px;
+}
+}
