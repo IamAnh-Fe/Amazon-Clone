@@ -2,7 +2,7 @@ import NavBar from './components/Navbar';
 import { Outlet } from 'react-router-dom';
 import Banner from "./components/Banner";
 import SubNav from "./components/Subnav";
-import ThumbNail from "./components/Thumbnail"
+import ProductFeed from "./components/ProductFeed"
 function App() {
   return (
     <>
@@ -12,7 +12,7 @@ function App() {
       </nav>
       <Outlet />
       <Banner />
-      <ThumbNail />
+      <ProductFeed />
     </>
   );
 }
