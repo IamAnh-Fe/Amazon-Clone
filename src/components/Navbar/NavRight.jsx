@@ -9,11 +9,14 @@ export const NavRight = () => {
 const user = useSelector((state) => state.auth.login.currentUser)
   return (
     <div className="navbar-right">
+        
+      <Link to="admin">
       <div className="navbar-language hover">
         <img src={america} alt="" />
         <i><BiChevronDown/></i>
-
       </div>
+        </Link>
+
       <div className="navbar-option hover">
           <Link to="user/sign-in">
         <span className="navbar-optionOne" >

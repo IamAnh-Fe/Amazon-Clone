@@ -1,0 +1,19 @@
+.addProduct {
+    margin-top: 50px;
+    &-list {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+       
+    
+    }
+    &-list input:first-child {
+        margin-top: 105px;
+
+    }
+    &-list input {
+        margin-top: 40px;
+        padding: 10px 20px;
+        border-radius: 10px;
+    }
+}

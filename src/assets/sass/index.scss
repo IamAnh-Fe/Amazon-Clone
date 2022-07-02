@@ -1,7 +1,17 @@
 @import "./base";
+
 @import "../../components/Navbar/navbar";
 @import "../../components/Banner/banner";
 @import "../../components/ProductFeed/productfeed";
-@import "../../features/Auth/auth";
 @import "../../components/Loading/loading";
 @import "../../components/Subnav/subnav";
+
+@import "../../features/Auth/auth";
+@import "../../features/Admin/components/SideBar/sidebar.scss";
+@import "../../features/Admin/components/DashBoard/dashboard";
+@import "../../features/Admin/components/AdminProduct/AddNewProduct/addnewproduct";
+
+
+@import "../../features/Admin/admin.scss";
+
+

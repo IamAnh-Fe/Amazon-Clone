@@ -1,28 +1,31 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import App from './App'
+import "./assets/sass/index.scss"
 import {
   BrowserRouter,
   Routes,
   Route,
 } from "react-router-dom";
-import SignIn from './features/Auth/pages/SignIn';
-import SignUp from './features/Auth/pages/SignUp';
-import App from './App'
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
-import "./assets/sass/index.scss"
+import SignIn from './features/Auth/pages/SignIn';
+import SignUp from './features/Auth/pages/SignUp';
+import Admin from './features/Admin/pages'
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
         <Routes>
           <Route path="/" element={<App />}></Route>
-          <Route path="user/sign-in" element={<SignIn/>}></Route>
+          <Route path="user/sign-in" element={<SignIn />}></Route>
           <Route path="user/sign-in/sign-up" element={<SignUp />}></Route>
+          <Route path="/admin" element={<Admin />}></Route>
         </Routes>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById('root')
-)
+  document.getElementById("root")
+);
 

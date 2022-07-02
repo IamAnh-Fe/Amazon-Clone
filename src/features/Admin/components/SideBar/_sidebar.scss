@@ -1,0 +1,35 @@
+.sidebar {
+   &-list {
+       width: 300px;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         padding: 50px;
+   }
+   &-logo img{
+    width: 150px;   
+   }
+   &-content{
+       margin-top: 30px;
+    }
+   
+   &-title {
+         color: #6b6b6b;
+       margin-top: 50px;
+       cursor: pointer;
+       padding: 5px 10px;
+        transition: color 0.3s ease 0s;
+        background: #1890ff;
+        border-radius: 10px;
+        color: white;
+    //    &:active {
+    
+    //    }
+    //    &:hover {
+    //         background: #1890ff;
+    // color: white;
+    // transition: .3s;
+    //    }
+   }
+}
