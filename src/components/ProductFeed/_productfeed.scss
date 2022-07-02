@@ -26,12 +26,22 @@
        margin-top: -250px;
    }
    &-login {
+    cursor: pointer;
   margin-top: 20px;
   text-align: center;
   padding: 5px 10px;
   border-radius: 10px;
   background-color: #FFD814;
-   }
+  box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+  &:hover {
+    opacity: 0.6;
+    transition: ease-in 0.3;
+  }
+  &:active {
+    outline: none;
+    background-color: #FFEB3B;   }
+
+  }
    &-products {
   display: grid;
        grid-template-columns: 1fr 1fr;
@@ -48,6 +58,7 @@
     position: relative;
    }
    &-img {
+    object-fit: contain;
     margin-top: 13px;
     width: 310px;
     z-index: 100;

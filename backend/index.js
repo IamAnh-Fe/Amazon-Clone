@@ -4,9 +4,10 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
+
 const authRouter = require("./routers/auth");
 const userRouter = require("./routers/user");
-
+const productRouter = require("./routers/product")
 
 const connectDB = async () => {
   try {
@@ -34,9 +35,7 @@ app.use(cors());
 //ROUTES
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
+app.use("/api/product", productRouter);
 
-
-
-const PORT = process.env.PORT || 3000;
-
+const PORT = process.env.PORT || 6000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

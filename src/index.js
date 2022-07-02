@@ -10,7 +10,7 @@ import SignUp from './features/Auth/pages/SignUp';
 import App from './App'
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
-import './sass/index.scss'
+import "./assets/sass/index.scss"
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
