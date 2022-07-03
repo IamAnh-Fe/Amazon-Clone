@@ -4,28 +4,34 @@ const productSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      require: true,
+      require: [true, "Please Enter title"],
       unique: true,
     },
-     category: {
+    category: {
       type: String,
-      require: true,
+    required: [true, "Please Enter Product Category"],
     },
     price: {
       type: Number,
-      require: true,
+    required: [true, "Please Enter product Price"],
+        maxLength: [8, "Price cannot exceed 8 characters"],
+
     },
     discount: {
-      type: Number
+      type: Number,
+      default: 0,
+
     },
     rating: {
       type: Number,
       require: true,
     },
-    image: {
-      type: String,
-      default: false,
+    images: {
+      type: String
     },
+     cloudinary_id: { type: String }
+
+
   },
   { timestamps: true }
 );

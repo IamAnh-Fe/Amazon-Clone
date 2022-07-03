@@ -25,14 +25,14 @@ DELETE  http://localhost:6000/api/user/62bd341e83837ef16ab55167
 Content-Type: application/json
 
 ###
-POST http://localhost:6000/api/product/
+POST http://localhost:6000/api/products/save
 Content-Type: application/json
 
 {
   "title": "Razer Kraken Gaming Headset: Lightweight Aluminum Frame, Retractable Noise Isolating Microphone, For PC, PS4, PS5, Switch, Xbox One, Xbox Series X & S, Mobile, 3.5 mm Audio Jack Green",
   "category": "Headsets",
-  "price": 39.99,
-  "rating": 4,
-  "discout": 50,
-   "image": "https://m.media-amazon.com/images/I/71BKQhFzDmL._AC_UY327_FMwebp_QL65_.jpg"
+  "price": "39.99",
+  "rating": "4",
+  "discout": "50",
+  "image": "https://res.cloudinary.com/dxk9kfxk1/image/upload/v1656836790/samples/ecommerce/71fnjHyInhL._AC_UY327_FMwebp_QL65__wy5k5p.webp"
 }
