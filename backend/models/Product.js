@@ -1,37 +1,20 @@
 const mongoose = require("mongoose");
+const { string } = require("yup/lib/locale");
 
 const productSchema = new mongoose.Schema(
   {
-    title: {
-      type: String,
-      require: [true, "Please Enter title"],
-      unique: true,
-    },
-    category: {
-      type: String,
-    required: [true, "Please Enter Product Category"],
-    },
-    price: {
-      type: Number,
-    required: [true, "Please Enter product Price"],
-        maxLength: [8, "Price cannot exceed 8 characters"],
-
-    },
-    discount: {
-      type: Number,
-      default: 0,
-
-    },
-    rating: {
-      type: Number,
-      require: true,
-    },
-    images: {
-      type: String
-    },
-     cloudinary_id: { type: String }
-
-
+    name: { type: String, required: true },
+    originalPrice: { type: Number, required: true },
+    salePrice: { type: Number },
+    subPrice: {type:Number, default: 99},
+    discount: { type: Number, required: true },
+    category: { type: String, required: true },
+    brand: { type: string, require: true },
+    image: { type: String, require: true },
+    cloudinary_id: { type: String },
+    isFreeShip: { type: Boolean, default: false },
+    isShipVN: {type: Boolean, default: false},
+    rating: { type: Number },
   },
   { timestamps: true }
 );

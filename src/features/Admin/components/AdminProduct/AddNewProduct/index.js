@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ErrorMessage } from "@hookform/error-message";
 const AddNewProduct = () => {
+   const [image, setImage] = useState("");
   const schema = yup.object({
+    image: yup.string().required("Title is required"),
     title: yup.string().required("Title is required"),
     price: yup.string().required("Price is required"),
     rating: yup.string(),
@@ -15,10 +17,13 @@ const AddNewProduct = () => {
     register,
     reset,
     handleSubmit,
-    formState: { errors},
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   });
+  const handleFileImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
 
   const handleNewProductSubmit = (values) => {
     console.log(values);
@@ -68,11 +73,15 @@ const AddNewProduct = () => {
         <p className="error">
           <ErrorMessage errors={errors} name="rating" />
         </p>{" "}
-        <input type="file" placeholder="Image" />
+        <input
+          {...register("image")}
+          type="file"
+          onChange={handleFileImageChange}
+        />
         <button type="submit">Add new product</button>
       </form>
     </div>
   );
-}
+};
 
-export default AddNewProduct
+export default AddNewProduct;

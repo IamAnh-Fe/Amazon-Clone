@@ -1,28 +1,36 @@
 const Product = require("../models/Product")
-
+const cloudinary = require('../config/cloudinary/cloudinary')
+const asyncHandler = require("express-async-handler");
 const productController = {
   //create product - admin
-   postProduct : async (req,res) => {
-      const result = await cloudinary.uploader.upload(req.file.path, {
+  postProduct: asyncHandler(async(req, res) => {
+  const result = await cloudinary.uploader.upload(req.file.path, {
     folder: "amazon",
   });
-     try {
-         const newProduct = new Product({
-          title: res.body.title,
-          discount: res.body.discount,
-          category: res.body.category,
-          price: res.body.price,
-          image: result.secure_url,
-          cloudinary_id: result.public_id,
-          rating: res.body.rating,
-         });
-         const saveProduct = await newProduct.save()
-
-            res.status(200).json(saveProduct);
-        } catch (err) {
-            res.status(500).json(err)
-        }
-   },
+  const newProduct = new Product({
+    name: req.body.title,
+    originalPrice: req.body.originalPrice,
+    salePrice: req.body.salePrice,
+    subPrice: req.body.subPrice,
+    discount: req.body.discount,
+    category: req.body.category,
+    brand: req.body.brand,
+    image: result.secure_url,
+    cloudinary_id: result.public_id,
+    rating: req.body.rating,
+    isFreeShip: req.body.isFreeShip,
+    isShipVN: req.body.isShipVN
+  });
+  const saveProduct = await newProduct.save()
+  if (saveProduct) {
+    return res
+      .status(200)
+      .send({ message: "New Product Created", saveProduct });
+  } else {
+    res.send("error add product");
+  }
+      
+}),
    //get all product
    getAllProduct : async (req, res) => {
      try {

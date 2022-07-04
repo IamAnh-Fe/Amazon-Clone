@@ -13,12 +13,13 @@ const ProductFeed = () => {
            <div className='productfeed-card1'>
                <ProductFeedFour />
         </div>
-           <div className='productfeed-card1'>
+          <div className='productfeed-card1'>
                <ProductFeedOne />
-        </div>
+        </div> 
            <div className='productfeed-card1'>
                <ProductFeedAuth />
-        </div>
+            </div>
+            
         </div>
       </div>            
       </div>

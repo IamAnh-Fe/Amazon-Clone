@@ -10,25 +10,25 @@ import { BsChatDots } from "react-icons/bs";
 
 const SideBar = () => {
   return (
-    <div className="sidebar">
-      <div className="sidebar-list">
-        <div className="sidebar-logo">
+    <div className="sidebarAdmin">
+      <div className="sidebarAdmin-list">
+        <div className="sidebarAdmin-logo">
           <img src={logo} alt="logo-amazon" />
         </div>
-        <div className="sidebar-content">
-          <h3 className="sidebar-title">
+        <div className="sidebarAdmin-content">
+          <h3 className="sidebarAdmin-title">
             <AiOutlineHome /> Dashboard
           </h3>
-          <h3 className="sidebar-title">
+          <h3 className="sidebarAdmin-title">
             <AiOutlineCustomerService /> Customer
           </h3>
-          <h3 className="sidebar-title">
+          <h3 className="sidebarAdmin-title">
             <AiOutlineCodeSandbox /> Product
           </h3>
-          <h3 className="sidebar-title">
+          <h3 className="sidebarAdmin-title">
             <AiOutlineDollar /> Order
           </h3>
-          <h3 className="sidebar-title">
+          <h3 className="sidebarAdmin-title">
             <BsChatDots /> Chat
           </h3>
         </div>
