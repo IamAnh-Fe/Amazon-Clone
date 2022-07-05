@@ -2,6 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5001/api",
   "dependencies": {
     "@hookform/error-message": "^2.0.0",
     "@hookform/resolvers": "^2.9.2",
@@ -20,6 +21,7 @@
     "mongoose": "^6.4.1",
     "npm": "^8.13.1",
     "query": "^0.2.0",
+    "query-string": "^7.1.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-hook-form": "^7.33.0",
@@ -28,8 +30,10 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-star-ratings": "^2.3.0",
     "sass": "^1.53.0",
     "string": "^3.3.3",
+    "uuid": "^8.3.2",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },

@@ -13,7 +13,8 @@ const Banner = () => {
         showStatus={false}
         showIndicators={false}
         showThumbs={false}
-        interval={4000}
+          interval={4000}
+          
         >
             <div>
                 <img loading='lazy' src='https://m.media-amazon.com/images/I/61jovjd+f9L._SX3000_.jpg' alt='banner' />

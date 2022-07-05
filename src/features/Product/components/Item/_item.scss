@@ -1,0 +1,41 @@
+.item {
+    
+    &-content {
+        color: #0F1111;
+        background-color: #FFFFFF;
+        display: flex;
+        justify-content: space-between;
+
+        gap: 10px;
+        margin-top: 10px;
+        border: 1px solid #eaeded;
+
+    }
+    &-price {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+    &-original {
+        text-decoration: line-through;
+    }
+    &-saleprice {
+        font-size: 35px;
+        font-weight: 500;
+
+    }
+
+    &-saleprice sup {
+        font-size: 1rem;
+    }
+    &-discount {
+        font-size: 32px;
+        color: #CC0C39;
+        font-weight: 300;
+    }
+    &-thumb img {
+        width: 267px;
+        height: 150px;
+
+    }
+}

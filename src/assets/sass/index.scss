@@ -1,5 +1,6 @@
 @import "./base";
 
+@import "../../components/Rating/rating";
 @import "../../components/Navbar/navbar";
 @import "../../components/Banner/banner";
 @import "../../components/ProductFeed/productfeed";
@@ -12,8 +13,8 @@
 @import "../../features/Admin/components/AdminProduct/AddNewProduct/addnewproduct";
 @import "../../features/Admin/admin.scss";
 
-@import "../../features/Product/page/products.scss";
-@import "../../features/Product/components/Product/product.scss";
+@import "../../features/Product/page/product.scss";
+@import "../../features/Product/components/Item/item.scss";
 @import "../../features/Product/components/SideBar/sidebar.scss";
 
 
