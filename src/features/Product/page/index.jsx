@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import SideBar from '~/features/Product/components/SideBar'
 import productApi from '~/apis/productApi'
+import ItemSort from '~/components/ItemSort'
 import Item from '../components/Item'
 const Product = () => {
     const [categoryList, setCategpryList] = useState([])
@@ -17,8 +18,16 @@ const Product = () => {
         }
         fetchCategoryList()
     }, [])
+  
+  // const handleSortChange = (newSoftValue) => {
+  //   setFillters((prevFilters) => ({
+  //     ...prevFilters,
+
+  //   }))
+  // }
   return (
     <div className="container">
+      <ItemSort />
       <div className="product">
         <div className="product-list">
           <div className="product-sidebar">
