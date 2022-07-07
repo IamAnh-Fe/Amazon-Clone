@@ -10,7 +10,7 @@ const cloudinary = require("./config/cloudinary/cloudinary.js")
 const authRouter = require("./routers/auth");
 const userRouter = require("./routers/user");
 const productRouter = require("./routers/product")
-
+const CategoryRouter = require("./routers/category")
 
 //conect database
 connectDB();
@@ -24,6 +24,8 @@ app.use(cors());
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/products", productRouter);
+app.use("/api/category",  CategoryRouter);
+
 
 app.post("/api/upload", async (req, res) => {
   try {

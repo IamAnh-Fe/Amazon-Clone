@@ -4,32 +4,32 @@ const Item = ({data}) => {
   return (
     <div className="item">
       <div className="item-list">
-        {data.map((category) => (
-          <div className="item-content">
+        {data.map((product) => (
+          <div key={product._id} className="item-content">
             <div className="item-thumb">
-              <img src={category.image} alt="product" />
+              <img src={product.image} alt="product" />
             </div>
             <div className="item-info">
-              <h3 className="product-title">{category.name}</h3>
+              <h3 className="product-title">{product.name}</h3>
               <div>
-                <Rating value={category.rating} />
+                <Rating value={product.rating} />
               </div>
               <div className="item-price">
                 <p className="item-discount">
-                  {category.discount ? <span>-{category.discount}% </span> : ""}{" "}
+                  {product.discount ? <span>-{product.discount}% </span> : ""}{" "}
                 </p>
                 <p>
                   <span className="item-saleprice">
-                    <sup className="item-symbol">{category.sympol}</sup>
-                    {category.salePrice}
-                    <sup className="item-subprice">{category.subPrice}</sup>
+                    <sup className="item-symbol">{product.sympol}</sup>
+                    {product.salePrice}
+                    <sup className="item-subprice">{product.subPrice}</sup>
                   </span>
                 </p>
                 <p>
-                  {category.originalPrice ? (
+                  {product.originalPrice ? (
                     <span className="item-original">
-                      {category.sympol}
-                      {category.originalPrice}.{category.subPrice}
+                      {product.sympol}
+                      {product.originalPrice}.{product.subPrice}
                     </span>
                   ) : (
                     ""
