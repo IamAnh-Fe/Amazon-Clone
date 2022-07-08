@@ -26,7 +26,8 @@ const SideBar = ({filters, onChange}) => {
      };
      onChange(newFilters);
    };
-   console.log("onchange: ",onchange);
+
+   
    const handlePriceChange = (values) => {
      console.log(values);
      if (onChange) {

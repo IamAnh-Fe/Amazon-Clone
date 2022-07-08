@@ -1,19 +1,22 @@
 import React from 'react'
 import PropTypes from "prop-types";
-const ItemSort = ({ currentSoft, onchange }) => {
-  // const handleSoftChange = (event, newValue) => {
-  //   if(onChange) onchange(newValue)
-  // }
+const ItemSort = ({ currentSoft, onChange }) => {
+
+  const handleSoftChange = (event, newValue) => {
+    if(onChange){
+        onchange(newValue)
+    } 
+  }
   return (
     <div className="itemsort">
       <div className="itemsort-content">
         <p>1-16 of over 10,000 results for ""</p>
         <div className="itemsort-price">
-          <form value={currentSoft}>
+          <form value={currentSoft} onChange={handleSoftChange}>
             <select>
               <option>Sort by: Featured</option>
-              <option value="salePrice:ASC">Price: Low to High</option>
-              <option value="salePrice:DESC">Price: High to Low</option>
+              <option value='sort=price'>Price: Low to High</option>
+              <option value='sort=-price'>Price: High to Low</option>
             </select>
           </form>
         </div>
