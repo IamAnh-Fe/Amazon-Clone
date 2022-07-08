@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { string } = require("yup/lib/locale");
 const productSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, unique: true },

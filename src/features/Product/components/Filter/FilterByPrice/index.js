@@ -1,6 +1,7 @@
 import React from 'react'
 
-const FilterByPrice = ({data}) => {
+const FilterByPrice = ({ data }) => {
+  
   return (
     <div>
       <h3>Price</h3>

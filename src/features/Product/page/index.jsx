@@ -6,7 +6,7 @@ import Item from '../components/Item'
 const Product = () => {
     const [productList, setProductList] = useState([])
     const [filters, setFilters] = useState({
-    title_like: ''
+    brand: ''
   });
     useEffect(() => {
       const  fetchProductList = async () => {

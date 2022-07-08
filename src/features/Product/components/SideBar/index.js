@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import PropTypes from "prop-types";
 import categoryApi from '~/apis/categoryApi';
 import FilterByBrand from '../Filter/FilterByBrand';
 import FilterByPrice from '../Filter/FilterByPrice';
@@ -17,23 +18,40 @@ const SideBar = ({filters, onChange}) => {
         }
         fetchCategoryList()
     }, [])
+  
+   const handleBrandChange = (newCategoryId) => {
+     const newFilters = {
+       ...filters,
+       "category.id": newCategoryId,
+     };
+     onChange(newFilters);
+   };
+   console.log("onchange: ",onchange);
+   const handlePriceChange = (values) => {
+     console.log(values);
+     if (onChange) {
+       onChange(values);
+     }
+   };
   return (
-
     <div className="sidebar">
       <div className="sidebar-list">
         <div className="sidebar-rating">
           <h3>Customer Review</h3>
         </div>
         <div className="sidebar-brand">
-          <FilterByBrand data={categoryList} />
+          <FilterByBrand onChange={handleBrandChange} data={categoryList} />
         </div>
         <div className="sidebar-price">
-          <FilterByPrice data={categoryList} />
+          <FilterByPrice onChange={handlePriceChange} data={categoryList} />
         </div>
         <div className="sidebar-searchprice"></div>
       </div>
     </div>
   );
 }
-
+SideBar.propTypes = {
+  filters: PropTypes.object.isRequired,
+  onChange: PropTypes.func,
+};
 export default SideBar

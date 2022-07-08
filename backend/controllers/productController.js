@@ -1,8 +1,64 @@
 const Product = require("../models/Product")
 const cloudinary = require('../config/cloudinary/cloudinary')
 const asyncHandler = require("express-async-handler");
+
+// Filter, sorting and paginating
+
+class APIfeatures {
+    constructor(query, queryString){
+        this.query = query;
+        this.queryString = queryString;
+    }
+    filtering(){
+       const queryObj = {...this.queryString} //queryString = req.query
+
+       const excludedFields = ['page', 'sort', 'limit']
+       excludedFields.forEach(el => delete(queryObj[el]))
+       
+       let queryStr = JSON.stringify(queryObj)
+       queryStr = queryStr.replace(/\b(gte|gt|lt|lte|regex)\b/g, match => '$' + match)
+
+    //    gte = greater than or equal
+    //    lte = lesser than or equal
+    //    lt = lesser than
+    //    gt = greater than
+       this.query.find(JSON.parse(queryStr))
+         
+       return this;
+    }
+
+    sorting(){
+        if(this.queryString.sort){
+            const sortBy = this.queryString.sort.split(',').join(' ')
+            this.query = this.query.sort(sortBy)
+        }else{
+            this.query = this.query.sort('-createdAt')
+        }
+
+        return this;
+    }
+
+    paginating(){
+        const page = this.queryString.page * 1 || 1
+        const limit = this.queryString.limit * 1 || 9
+        const skip = (page - 1) * limit;
+        this.query = this.query.skip(skip).limit(limit)
+        return this;
+    }
+}
+
+
 const productController = {
-  //create product - admin
+  //get all product
+  getAllCategory: asyncHandler(async (req, res) => {
+    const features = new APIfeatures(Product.find(), req.query)
+      .paginating()
+      .sorting()
+      .filtering();
+    const product = await features.query
+       res.send(product)
+      }),
+  //CREATE PRODUCT - ADMIN
   postProduct: asyncHandler(async (req, res) => {
     const result = await cloudinary.uploader.upload(req.file.path, {
       folder: "amazon",
@@ -30,21 +86,8 @@ const productController = {
       res.send("error add product");
     }
   }),
-  //get all product
-  getAllProduct: async (req, res) => {
-    try {
-      const product = await Product.find();
-      res.status(200).json(product);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  },
-  //get all product
-  getAllCategory: asyncHandler(async (req, res) => {
-    const getCategory = await Product.find({"Product.category" : "keyboard"} )
-    res.send(getCategory);
-  }),
-  //delete product
+
+  //DELETE PRODUCT
   deleteProduct: async (req, res) => {
     try {
       await Product.findByIdAndDelete(req.params.id);
