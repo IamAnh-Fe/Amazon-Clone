@@ -8,12 +8,12 @@ const Product = () => {
     const [count, setCount] = useState(0)
 
     const [filters, setFilters] = useState({
-      sort: 'sort=-rating'
+      sort: 'sort= -rating'
   });
     useEffect(() => {
       const  fetchProductList = async () => {
           try {
-                const res = await productApi.getAllCategory()
+                const res = await productApi.getAllCategory(filters)
                 setProductList(res.product)
                 setCount(res.count)
             } catch (error) {
@@ -24,13 +24,15 @@ const Product = () => {
         fetchProductList()
     }, [filters])
   
-  const handleSortChange = (newSoftValue) => {
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      sort: newSoftValue
-    }))
-  }
-console.log("product: ", productList)
+    const handleSortChange = (newSortValue) => {
+      console.log('ff',newSortValue);
+      setFilters((prevFilters) => ({
+        ...prevFilters,
+        sort: newSortValue,
+      }));
+    };
+
+  
   const handleFiltersChange = (newFilters) => {
   console.log("check new cate: ", newFilters);
   setFilters((prevFilters)=> ({
@@ -40,7 +42,7 @@ console.log("product: ", productList)
 }
   return (
     <div className="container">
-      <ItemSort currentSoft={filters.sort} onchange={handleSortChange} />
+      <ItemSort currentSort={filters.sort} onChange={handleSortChange} />
       <div className="product">
         <div className="product-list">
           <div className="product-sidebar">
