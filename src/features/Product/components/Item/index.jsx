@@ -8,7 +8,9 @@ const Item = ({ product }) => {
       {product.map((product) => (
         <div className="item-list" key={product._id}>
          
-          <div className="item-content">
+      <Link to={ `/product/${product._id}`}>
+         <div className="item-content">
+         
             <div className="item-thumb">
               
               <img src={product.image} alt="product" />
@@ -43,6 +45,7 @@ const Item = ({ product }) => {
               </div>
             </div>
           </div>
+            </Link> 
         </div>
       ))}
     </div>

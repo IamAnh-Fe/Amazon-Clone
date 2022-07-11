@@ -21,14 +21,15 @@ const productController = {
 
     return res.status(200).json({ product, count });
   }),
+//GET ID PRODUCT
   findProductId: asyncHandler(async (req, res) => {
     const getProductId = await Product.findById(req.params.id);
     if (getProductId) {
       return res
         .status(200)
-        .send({ message: "New Product Created", getProductId });
+        .send(getProductId);
     } else {
-      res.send("error add product");
+      res.send("error get ID product");
     }
   }),
 

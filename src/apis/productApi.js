@@ -4,7 +4,10 @@ const productApi = {
   getAllCategory: (params) => {
     const url = "/products/getAllProduct";
     return axiosClient.get(url, {params});
-  }
- 
+  },
+getProductId: (id) => {
+    const url = `/products/${id}`;
+    return axiosClient.get(url)
+}
 };
 export default productApi;
