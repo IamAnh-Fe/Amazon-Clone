@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const FilterByBrand = ({data, onChange}) => {
     const handleBrandClick = (category) => {
       if (onChange) {
-        onChange(category._id);
+        onChange(category.brand);
       }
     };
   return (
@@ -14,7 +14,8 @@ const FilterByBrand = ({data, onChange}) => {
       {data.map((category) => (
         <li key={category._id}
           onClick={() => handleBrandClick(category)}>
-          {category.brand}
+          <input type="checkbox" />
+          <label>{category.brand}</label>
         </li>
       ))}
       </ul>

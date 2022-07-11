@@ -1,0 +1,35 @@
+.filterPrice {
+
+    &-input {
+    padding-left: 18px;
+    width: 65px;
+    margin-top: 6px;
+    background-color: #fff;
+    height: 31px;
+    padding: 3px 17px;
+    margin-right: 4px;
+    line-height: normal;
+    border: 1px solid #888C8C;
+    border-radius: 3px;
+    outline: 0;
+    }
+    &-submit {
+    padding: 5px 8px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px 0rgba(213,217,217,.5);        
+    background-color: #FFFFFF;
+    border-color: #D5D9D9;
+    border-style: solid;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-left: 3px;
+
+    }
+    &-dollar {
+    position: absolute;
+    margin-top: 6.5px;
+    line-height: 30px;
+    font-size: 100%;
+    padding-left: 8px;
+    }
+}

@@ -8,8 +8,10 @@
 @import "../../components/Subnav/subnav";
 
 @import "../../features/Auth/auth";
+
 @import "../../features/Admin/admin.scss";
 @import "../../features/Product/page/product.scss";
+@import "../../features/Product/components/Filter/FilterByPrice/filterPrice.scss";
 @import "../../features/Product/components/ItemSort/itemsort";
 @import "../../features/Admin/components/SideBar/sidebar.scss";
 @import "../../features/Admin/components/DashBoard/dashboard";

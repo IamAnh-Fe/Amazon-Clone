@@ -8,7 +8,8 @@ const Product = () => {
     const [count, setCount] = useState(0)
 
     const [filters, setFilters] = useState({
-      sort: 'sort= -rating'
+      sort: 'sort= -rating',
+      
   });
     useEffect(() => {
       const  fetchProductList = async () => {
@@ -37,7 +38,7 @@ const Product = () => {
   console.log("check new cate: ", newFilters);
   setFilters((prevFilters)=> ({
     ...prevFilters,
-    ...newFilters
+    ...newFilters,
   }))
 }
   return (

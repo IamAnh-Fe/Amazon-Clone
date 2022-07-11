@@ -19,10 +19,10 @@ const SideBar = ({filters, onChange}) => {
         fetchCategoryList()
     }, [])
   
-   const handleBrandChange = (newCategoryId) => {
+   const handleBrandChange = (newbrand) => {
      const newFilters = {
        ...filters,
-       "category.id": newCategoryId,
+       "brand": newbrand,
      };
      onChange(newFilters);
    };

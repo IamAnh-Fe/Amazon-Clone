@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 const APIfeatures  = require("../lib/features")
 const productController = {
   //get all product
-  getAllCategory: asyncHandler(async (req, res) => {
+  getAllProduct: asyncHandler(async (req, res) => {
     
       const features = new APIfeatures(Product.find(), req.query)
       .paginating().sorting().searching().filtering()
@@ -18,9 +18,16 @@ const productController = {
       const count = result[1].status === 'fulfilled' ? result[1].value : 0;
 
       return res.status(200).json({product, count})
-  
-    
   }),
+  findProductById: asyncHandler(async(req, res) => {
+       const product = await Product.findById(req.params.id)
+    
+    if(product){
+        res.send(product)
+    }else{
+        res.send({message: 'product not found'})
+    }
+}),
   //CREATE PRODUCT - ADMIN
   postProduct: asyncHandler(async (req, res) => {
     const result = await cloudinary.uploader.upload(req.file.path, {

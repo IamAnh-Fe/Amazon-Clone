@@ -2,24 +2,25 @@ import React, { useState } from 'react'
 import PropTypes from "prop-types";
 const ItemSort = ({ currentSort, onChange }) => {
 
-const [sort, setSort] = useState("")
+  console.log(
+     currentSort)
+  const handleSortChange = (e) => {
+    const newSortValue = e.target.value;
+    if (onChange) onChange(newSortValue);
 
-console.log("curent",currentSort);
-console.log(sort)
-  const handleSortChange = (sort) => {
-    if (onChange) onChange(sort);
-    
   };
   return (
     <div className="itemsort">
       <div className="itemsort-content">
         <p>1-16 of over 10,000 results for ""</p>
         <div className="itemsort-price">
-            <select value={currentSort} onChange={e => setSort(e.target.value)}>
-              <option>Sort by: Featured</option>
-              <option value="sort= salePrice">Price: Low to High</option>
-              <option value="sort= -salePrice">Price: High to Low</option>
+          <form value={currentSort}  onChange={handleSortChange}>
+            <select>
+              <option value="-rating">Sort by: Featured</option>
+              <option value="salePrice">Price: Low to High</option>
+              <option value="-salePrice">Price: High to Low</option>
             </select>
+          </form>
         </div>
       </div>
     </div>
