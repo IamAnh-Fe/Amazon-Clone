@@ -1,16 +1,21 @@
 import React from 'react'
 import Rating from '~/components/Rating';
-const Item = ({data}) => {
+import { Link } from "react-router-dom";
+
+const Item = ({ product }) => {
   return (
     <div className="item">
-      <div className="item-list">
-        {data.map((product) => (
-          <div key={product._id} className="item-content">
+      {product.map((product) => (
+        <div className="item-list" key={product._id}>
+         
+          <div className="item-content">
             <div className="item-thumb">
+              
               <img src={product.image} alt="product" />
             </div>
             <div className="item-info">
               <h3 className="product-title">{product.name}</h3>
+
               <div>
                 <Rating value={product.rating} />
               </div>
@@ -38,8 +43,8 @@ const Item = ({data}) => {
               </div>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 }

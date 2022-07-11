@@ -12,7 +12,8 @@ import { Provider } from 'react-redux'
 import SignIn from './features/Auth/pages/SignIn';
 import SignUp from './features/Auth/pages/SignUp';
 import Admin from './features/Admin/pages'
-import Product from './features/Product/page'
+import Product from "./features/Product/page";
+import DetailProduct from "./features/DetailProduct/page";
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
@@ -23,6 +24,8 @@ ReactDOM.render(
           <Route path="user/sign-in/sign-up" element={<SignUp />}></Route>
           <Route path="/admin" element={<Admin />}></Route>
           <Route path="/product" element={<Product />}></Route>
+          <Route path="/product/:id" element={<DetailProduct />}></Route>
+          
         </Routes>
       </Provider>
     </BrowserRouter>

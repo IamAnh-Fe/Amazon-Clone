@@ -5,29 +5,33 @@ const APIfeatures  = require("../lib/features")
 const productController = {
   //get all product
   getAllProduct: asyncHandler(async (req, res) => {
-    
-      const features = new APIfeatures(Product.find(), req.query)
-      .paginating().sorting().searching().filtering()
+    const features = new APIfeatures(Product.find(), req.query)
+      .paginating()
+      .sorting()
+      .searching()
+      .filtering();
 
-      const result = await Promise.allSettled([
-        features.query,
-        Product.countDocuments() //count number of product.
-      ])
-      
-      const product = result[0].status === 'fulfilled' ? result[0].value : [];
-      const count = result[1].status === 'fulfilled' ? result[1].value : 0;
+    const result = await Promise.allSettled([
+      features.query,
+      Product.countDocuments(), //count number of product.
+    ]);
 
-      return res.status(200).json({product, count})
+    const product = result[0].status === "fulfilled" ? result[0].value : [];
+    const count = result[1].status === "fulfilled" ? result[1].value : 0;
+
+    return res.status(200).json({ product, count });
   }),
-  findProductById: asyncHandler(async(req, res) => {
-       const product = await Product.findById(req.params.id)
-    
-    if(product){
-        res.send(product)
-    }else{
-        res.send({message: 'product not found'})
+  findProductId: asyncHandler(async (req, res) => {
+    const getProductId = await Product.findById(req.params.id);
+    if (getProductId) {
+      return res
+        .status(200)
+        .send({ message: "New Product Created", getProductId });
+    } else {
+      res.send("error add product");
     }
-}),
+  }),
+
   //CREATE PRODUCT - ADMIN
   postProduct: asyncHandler(async (req, res) => {
     const result = await cloudinary.uploader.upload(req.file.path, {

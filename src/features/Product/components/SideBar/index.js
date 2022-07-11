@@ -27,7 +27,7 @@ const SideBar = ({filters, onChange}) => {
      onChange(newFilters);
    };
 
-   
+  
    const handlePriceChange = (values) => {
      console.log(values);
      if (onChange) {
@@ -44,7 +44,7 @@ const SideBar = ({filters, onChange}) => {
           <FilterByBrand onChange={handleBrandChange} data={categoryList} />
         </div>
         <div className="sidebar-price">
-          <FilterByPrice onChange={handlePriceChange} data={categoryList} />
+          <FilterByPrice onChange={handlePriceChange}/>
         </div>
         <div className="sidebar-searchprice"></div>
       </div>
