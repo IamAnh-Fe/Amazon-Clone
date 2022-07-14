@@ -1,0 +1,8 @@
+.cart {
+    &-box {
+        display: grid;
+        grid-template-columns: 80% 20%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}

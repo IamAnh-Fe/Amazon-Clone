@@ -1,0 +1,19 @@
+.cartCheckout {
+    &-box {
+        padding: 20px 20px 40px 20px;
+        background-color: rgb(255, 255, 255);
+    }
+    &-checkout {
+   width: 100%;
+//    text-align: center;
+padding: 7px 0px;
+border-radius: 20px;
+margin-top: 10px;
+border: none;
+background-color: #ffd814;
+&:hover {
+    background-color: #F7CA00;
+}
+    }
+
+}

@@ -1,0 +1,40 @@
+.shoppingCart {
+    &-list {
+         background-color: rgb(255, 255, 255);
+        padding: 20px 20px 15px 20px;
+        margin-right: 20px; 
+    }
+    &-top {
+        border-bottom: 1px solid #DDD;
+    }
+    &-price {
+    text-align: right;
+    }
+    &-subtotal {
+        text-align: right;  
+    }
+    &-quantity {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 75px;
+        height: 30px;
+        background-color: #e3e6e6;
+        border-radius: 5px;
+    }
+    &-quantity span {
+        width: 100%;
+        text-align: center;
+    }
+    &-btn {
+        cursor: pointer;
+    }
+    &-number {
+        border-right: 2px solid rgba(0,0,0,0.2) ;
+        border-left: 2px solid rgba(0,0,0,0.2) ;
+
+    }
+    &-delete {
+        cursor: pointer;
+    }
+}

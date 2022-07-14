@@ -1,0 +1,25 @@
+.cartItem {
+    &-content {
+        display: flex;
+        gap: 10px;
+        border-bottom: 1px solid #DDD;
+        padding: 10px 0;
+
+    }
+     &-title {
+        display: flex;
+        gap: 30px;
+    }
+    &-image {
+        object-fit: cover;
+        width: 180px;
+    }
+    &-image img {
+      width: 100%;
+  height: auto;
+    }
+      &-subtotal {
+        margin-top: 10px;
+        text-align: right;
+    }
+}

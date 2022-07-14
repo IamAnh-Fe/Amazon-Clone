@@ -95,8 +95,21 @@
       padding: 8px 8px 8px 10px;
 
     }
-    &-iconcart {
+    &-iconCart {
       width: 35px;
+    }
+    &-badge {
+      color: #dc7e07;
+    height: 20px;
+    right: 54px;
+    top: 5px;
+    display: inline-block;
+    text-align: center;
+    line-height: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    position: absolute;
+    padding: 0px 7px;
     }
 
 }

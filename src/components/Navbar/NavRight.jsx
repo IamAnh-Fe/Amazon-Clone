@@ -4,8 +4,10 @@ import america from "~/assets/logo/america.png";
 import { Link } from "react-router-dom";
 import { BiChevronDown } from "react-icons/bi";
 import { useSelector } from 'react-redux';
+import { cartItemsCountSelector } from "~/redux/selectors";
 
 export const NavRight = () => {
+    const badge = useSelector(cartItemsCountSelector)
 const user = useSelector((state) => state.auth.login.currentUser)
   return (
     <div className="navbar-right">
@@ -31,10 +33,13 @@ const user = useSelector((state) => state.auth.login.currentUser)
         </Link>
         <span className="navbar-optionTwo">& Order</span>
       </div>
+      <Link to="product/Cart" >
       <div className="navbar-cart hover">
-        <img className="navbar-iconcart" src={cart} alt="cart" />
+        <img className="navbar-iconCart" src={cart} alt="cart" />
+        <span className='navbar-badge'>{badge}</span>
         <span>Cart</span>
       </div>
+      </Link>
     </div>
   );
 }
