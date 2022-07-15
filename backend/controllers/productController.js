@@ -1,7 +1,8 @@
 const Product = require("../models/Product")
 const cloudinary = require('../config/cloudinary/cloudinary')
 const asyncHandler = require("express-async-handler");
-const APIfeatures  = require("../lib/features")
+const APIfeatures = require("../lib/features")
+const PinComment = require("../utils/pinComment")
 const productController = {
   //get all product
   getAllProduct: asyncHandler(async (req, res) => {
@@ -21,13 +22,11 @@ const productController = {
 
     return res.status(200).json({ product, count });
   }),
-//GET ID PRODUCT
+  //GET ID PRODUCT
   findProductId: asyncHandler(async (req, res) => {
     const getProductId = await Product.findById(req.params.id);
     if (getProductId) {
-      return res
-        .status(200)
-        .send(getProductId);
+      return res.status(200).send(getProductId);
     } else {
       res.send("error get ID product");
     }
@@ -71,5 +70,75 @@ const productController = {
       res.status(500).json(err);
     }
   },
+
+  //Rating
+  RatingProduct: asyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      product.comments.push(req.body);
+      const updateCommentProduct = await product.save();
+      res.send(updateCommentProduct);
+    } else {
+      res.status(400).send({ message: "product not found" });
+    }
+  }),
+  //Comment
+  CommentProduct: asyncHandler(async (req, res) => {
+     const product = await Product.findById(req.params.id);
+     if (product) {
+       product.comments.push(req.body);
+       const updateCommentProduct = await product.save();
+       res.send(updateCommentProduct);
+     } else {
+       res.status(400).send({ message: "product not found" });
+     }
+  }),
+
+  //Reply Comment
+  RepCommentProduct: asyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      const indexComment = product.comments.findIndex(
+        (item) => item._id == req.body.idComment
+      );
+      product.comments[indexComment].replies.push(req.body);
+
+      await product.save();
+      res.send(product);
+    } else {
+      res.status(400).send({ message: "product not found" });
+    }
+  }),
+
+  //Pin Comment
+  PinCommentProduct: asyncHandler(async (req, res) => {
+      const product = await Product.findById(req.params.id);
+      if (product) {
+        const indexComment = product.comments.findIndex(
+          (item) => item._id == req.body.idComment
+        );
+        product.comments[indexComment] = req.body;
+        PinComment(product.comments, indexComment, 0);
+
+        await product.save();
+        res.send(product);
+      } else {
+        res.status(400).send({ message: "product not found" });
+      }
+  }),
+  // Blog Product 
+  BlogProduct: asyncHandler(async (req, res) => {
+     const product = await Product.findById({ _id: req.params.id });
+
+     if (product) {
+       product.blog = req.body.blogContent;
+       await product.save();
+       res.send(product);
+     } else {
+       res.send({ message: "product not found" });
+     }
+   })
 };
+
+
 module.exports = productController;

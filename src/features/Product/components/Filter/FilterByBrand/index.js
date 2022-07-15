@@ -11,13 +11,16 @@ const FilterByBrand = ({data, onChange}) => {
     <div>
       <h3>Brand</h3>
       <ul>
-      {data.map((category) => (
-        <li key={category._id}
-          onClick={() => handleBrandClick(category)}>
-          <input type="checkbox" />
-          <label>{category.brand}</label>
-        </li>
-      ))}
+        {data.map((category) => (
+          <li key={category._id} >
+            <input
+              type="radio"
+              name="checkbox1"
+              onClick={() => handleBrandClick(category)}
+            />
+            <label>{category.brand}</label>
+          </li>
+        ))}
       </ul>
     </div>
   );

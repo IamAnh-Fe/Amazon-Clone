@@ -7,6 +7,11 @@ router.get("/getAllProduct", productController.getAllProduct);
 router.get("/:id", productController.findProductId)
 router.post("/", upload.single("image"), productController.postProduct);
 
+router.post("/rate/:id", productController.RatingProduct)
+router.post("/comment/:id", productController.CommentProduct);
+router.post("/pin/comment/:id", productController.PinCommentProduct);
+router.post("/rep/comment/:id", productController.RepCommentProduct);
+
 router.delete("/delete/:id", productController.deleteProduct)
 
 
