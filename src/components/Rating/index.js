@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import StarRatings from "react-star-ratings";
 const Rating = ({ value}) => {
+ 
   return (
     <StarRatings
       rating={value}

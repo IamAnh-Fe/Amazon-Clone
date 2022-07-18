@@ -75,11 +75,17 @@ const productController = {
   RatingProduct: asyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (product) {
-      product.comments.push(req.body);
-      const updateCommentProduct = await product.save();
-      res.send(updateCommentProduct);
-    } else {
-      res.status(400).send({ message: "product not found" });
+      const username = product.reviews.find(x => x.name === req.body.name)
+       if(username){
+            res.send({message: 'new review'})
+        }else{
+            product.reviews.push(req.body)
+            const updateProduct = await product.save()
+            res.send(updateProduct)
+        }
+        
+    }else{
+        res.status(400).send({message: 'product not found'})
     }
   }),
   //Comment

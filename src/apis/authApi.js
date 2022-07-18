@@ -1,5 +1,4 @@
 // api/userApi.js
-import axios from "axios";
 import { 
   loginFailed,
   loginStart,
@@ -7,11 +6,14 @@ import {
   registerFailed,
   registerStart,
   registerSuccess, } from "~/features/Auth/authSlice";
+  import axiosClient from "./axiosClient";
+
 export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginStart())
     try {
-      const res = await axios.post("/api/auth/login", user)
-      dispatch(loginSuccess(res.data));
+      const url = "/auth/login";
+      const res = await axiosClient.post(url, user)
+      dispatch(loginSuccess(res));
       navigate("/")
 
     } catch (err){
@@ -21,7 +23,8 @@ export const loginUser = async (user, dispatch, navigate) => {
 export const registerUser = async (user, dispatch, navigate) => {
   dispatch(registerStart());
   try {
-    await axios.post("/api/auth/register", user);
+    const url = "/auth/register";
+    await axiosClient.post(url, user);
     dispatch(registerSuccess());
     navigate("/");
   } catch (err) {

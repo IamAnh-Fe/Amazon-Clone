@@ -8,6 +8,12 @@ const productApi = {
 getProductId: (id) => {
     const url = `/products/${id}`;
     return axiosClient.get(url)
+},
+
+postReviewRating: (id) => {
+  const url = `/rate/${id}`;
+  return axiosClient.post(url,id)
+
 }
 };
 export default productApi;

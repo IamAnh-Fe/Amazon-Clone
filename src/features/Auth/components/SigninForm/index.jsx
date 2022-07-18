@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import logo from "~/assets/logo/auth.png";
+import logo from "~/assets/logo/adminlogo.png";
 import { Link } from "react-router-dom";
 import { AiFillFacebook, AiFillGoogleSquare } from "react-icons/ai";
 import { useForm } from "react-hook-form";

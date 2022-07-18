@@ -4,7 +4,7 @@
  margin: 0;
 padding: 0;
 }
-body {
+.background {
   background-color: rgb(234, 237, 237);
 }
 ul {
@@ -55,4 +55,18 @@ a {
   }
 button {
   cursor: pointer;
+}
+progress {
+  -webkit-appearance: none;
+}
+
+::-webkit-progress-value {
+  background-color: #FFA41C;
+  box-shadow: inset -2px 0 0 -1px #f5961d, inset 0 0 0 1px #de7921;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+::-webkit-progress-bar {
+  background-color: #F0F2F2;
 }

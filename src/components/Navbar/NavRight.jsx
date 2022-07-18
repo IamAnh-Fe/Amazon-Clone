@@ -9,6 +9,7 @@ import { cartItemsCountSelector } from "~/redux/selectors";
 export const NavRight = () => {
     const badge = useSelector(cartItemsCountSelector)
 const user = useSelector((state) => state.auth.login.currentUser)
+console.log("user",user)
   return (
     <div className="navbar-right">
         

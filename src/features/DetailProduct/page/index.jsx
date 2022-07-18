@@ -6,6 +6,7 @@ import InfoProduct from '../components/InfoProduct';
 import CartProduct from '../components/CartProduct';
 import useProductDetail from '~/hooks/useProductDetail';
 import { addToCart } from '~/features/Cart/CartSlice';
+import Review from '../components/Review';
 const DetailPage = () => {
   let  productId  = useParams();
     const dispatch = useDispatch()
@@ -35,6 +36,9 @@ const DetailPage = () => {
               <CartProduct onSubmit={handleAđdToCartSubmit} />
             </div>
           </div>
+            <div>
+             <Review product={product} />
+            </div>
         </div>
       </div>
     );
