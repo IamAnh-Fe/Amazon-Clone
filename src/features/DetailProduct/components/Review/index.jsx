@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import StarRatings from "react-star-ratings";
 import { useSelector } from 'react-redux';
+import { useParams } from "react-router-dom";
+import { reviewDetail } from '~/apis/detailApi';
 
-const Review = ({product}) => {
+const Review = ({ product }) => {
+      const { id } = useParams();
+
 const [star, setStar] = useState(0)
 const [showRate, setShowRate] = useState(false)
 const [showEvaluate, setShowEvalute] = useState(false)
@@ -21,14 +25,15 @@ let averageRate = average.toFixed(1);
     const user = useSelector((state) => state.auth.login.currentUser)
    const username = user.username
    console.log("user",username)
-       const onFinish = (e) => {
+  const onSubmit = async (e) => {
         const review ={
             name: username,
             star: star,
             comment: evaluate,
-        }
-        console.log("hi",review)
-      
+    }
+    
+    reviewDetail( id, review )
+         
       // dispatch(reviewProduct(id, review))  
         setEvaluate('')
         setShowEvalute(false)
@@ -73,7 +78,7 @@ let averageRate = average.toFixed(1);
         </div>
         <span className='review-write'>Write a review</span>
     </div>
-    <div className='review-comment'>
+    <div className='review-rate'>
       <div>
     <h3>Vui lòng chọn đánh giá </h3>
         <StarRatings 
@@ -89,13 +94,21 @@ let averageRate = average.toFixed(1);
       { showEvaluate ? (
       <div>
      <textarea className='review-textarea' placeholder='Write your review' onChange={(e) => setEvaluate(e.target.value)} />
-    <button className='review-send' type='submit' onClick={() => onFinish()}>Send </button>
+    <button className='review-send' type='submit' onClick={() => onSubmit()}>Send </button>
 
       </div> 
       ) : ''
       }
-    </div>
+        </div>
          </div>
+      <div className="review-comment">
+        {product.reviews.map(item => (
+          <div>
+            <p>{item.name}</p>
+            <p>{item.comment}</p>
+          </div>
+        ))}
+        </div>
     </div>
   )
 }

@@ -74,19 +74,22 @@ const productController = {
   //Rating
   RatingProduct: asyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
-    if (product) {
-      const username = product.reviews.find(x => x.name === req.body.name)
-       if(username){
-            res.send({message: 'new review'})
-        }else{
-            product.reviews.push(req.body)
-            const updateProduct = await product.save()
-            res.send(updateProduct)
-        }
-        
-    }else{
-        res.status(400).send({message: 'product not found'})
-    }
+    console.log(req.params.id)
+   if (product) {
+     const existsUser = product.reviews.find((x) => x.name === req.body.name);
+     console.log(existsUser);
+     if (existsUser) {
+       res.send({ message: "ban da danh gia san pham nay" });
+     } else {
+       product.reviews.push(req.body);
+    console.log(req.body);
+
+       const updateProduct = await product.save();
+       res.send(updateProduct);
+     }
+   } else {
+     res.status(400).send({ message: "product not found" });
+   }
   }),
   //Comment
   CommentProduct: asyncHandler(async (req, res) => {

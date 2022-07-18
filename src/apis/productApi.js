@@ -10,9 +10,9 @@ getProductId: (id) => {
     return axiosClient.get(url)
 },
 
-postReviewRating: (id) => {
-  const url = `/rate/${id}`;
-  return axiosClient.post(url,id)
+postReviewRating: (id, review) => {
+  const url = `/products/rate/${id}`;
+  return axiosClient.post(url, review)
 
 }
 };
