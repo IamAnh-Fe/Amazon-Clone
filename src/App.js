@@ -5,6 +5,8 @@ import { Outlet } from 'react-router-dom';
 import Banner from "./components/Banner";
 import SubNav from "./components/Subnav";
 import ProductFeed from "./components/ProductFeed"
+
+
 function App() {
   return (
     <>

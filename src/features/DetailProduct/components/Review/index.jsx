@@ -4,14 +4,15 @@ import { useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { reviewDetail } from '~/apis/detailApi';
 
+import io from "socket.io-client";
+const socket = io.connect("http://localhost:5001");
 const Review = ({ product }) => {
-      const { id } = useParams();
-
-const [star, setStar] = useState(0)
-const [showRate, setShowRate] = useState(false)
-const [showEvaluate, setShowEvalute] = useState(false)
-const [evaluate, setEvaluate] = useState('')
-
+  const [star, setStar] = useState(0)
+  const [showRate, setShowRate] = useState(false)
+  const [showEvaluate, setShowEvalute] = useState(false)
+  const [evaluate, setEvaluate] = useState('')
+  
+  const { id } = useParams();
 const reviews = product.reviews || []
 const countReview = reviews.length
 let average = reviews.reduce((a,c) => a + c.star, 0) / countReview
@@ -26,15 +27,16 @@ let averageRate = average.toFixed(1);
    const username = user.username
    console.log("user",username)
   const onSubmit = async (e) => {
-        const review ={
+    const review = {
+          id,
             name: username,
             star: star,
             comment: evaluate,
     }
     
-    reviewDetail( id, review )
-         
-      // dispatch(reviewProduct(id, review))  
+    // reviewDetail( id, review )
+      socket.emit("createReview", review);
+  
         setEvaluate('')
         setShowEvalute(false)
         setShowRate(false)
@@ -102,12 +104,7 @@ let averageRate = average.toFixed(1);
         </div>
          </div>
       <div className="review-comment">
-        {product.reviews.map(item => (
-          <div>
-            <p>{item.name}</p>
-            <p>{item.comment}</p>
-          </div>
-        ))}
+       
         </div>
     </div>
   )
