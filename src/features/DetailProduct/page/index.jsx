@@ -12,6 +12,7 @@ const DetailPage = () => {
     const dispatch = useDispatch()
 
   const { product, loading } = useProductDetail(productId.id)
+
    if (loading) {
     return <h2>Loading</h2>
   }

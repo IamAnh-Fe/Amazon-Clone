@@ -15,7 +15,7 @@ const productRouter = require("./routers/product")
 const CategoryRouter = require("./routers/category")
 const commentRouter = require("./routers/comment")
 
-const Comment = require("./models/Comment");
+const Comment = require("./models/comment");
 
 //conect database
 connectDB();
@@ -30,9 +30,32 @@ const io = new Server(server, {
 });
 
 // Soketio
+let users = [];
 io.on('connection', socket => {
   console.log(socket.id + ' connected.')
+  socket.on("joinRoom", (id) => {
+    const user = { userId: socket.id, room: id };
 
+    const check = users.every((user) => user.userId !== socket.id);
+
+    if (check) {
+      users.push(user);
+      socket.join(user.room);
+    } else {
+      users.map((user) => {
+        if (user.userId === socket.id) {
+          if (user.room !== id) {
+            socket.leave(user.room);
+            socket.join(id);
+            user.room = id;
+          }
+        }
+      });
+    }
+
+    console.log(users)
+    console.log(socket.adapter.rooms)
+  });
 
   socket.on('createReview', async msg => {
     const {id, star, comment, name} = msg
@@ -42,8 +65,13 @@ io.on('connection', socket => {
           comment,
           name,
     });
-    console.log(newComment)
+    console.log(newComment.id)
     await newComment.save()
+    io.to(newComment.id).emit(
+    "sendCommentToClient",
+    newComment
+    );
+
   })
 
 
@@ -64,7 +92,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/category",  CategoryRouter);
-app.use("/api/review", commentRouter)
+app.use("/api", commentRouter)
 
 app.post("/api/upload", async (req, res) => {
   try {
