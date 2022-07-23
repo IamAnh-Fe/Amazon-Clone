@@ -1,18 +1,30 @@
-import React, { useState, useEffect }  from "react";
+import React, { useState, useEffect, useRef }  from "react";
+import ListComment from '../listComment'
+import { useSelector } from 'react-redux';
+
 let showComments = [];
 
 const RepComment = ({comment, socket}) => {
-     const [reply, setReply] = useState(false);
-     const [name, setName] = useState("");
-
-     const [replyComment, setReplyComment] = useState([]);
-     const [hideReplyComment, setHideReplyComment] = useState([]);
+    const [reply, setReply] = useState(false);
+    const [name, setName] = useState("");
+    const [evaluate, setEvaluate] = useState("");
+    const [replyComment, setReplyComment] = useState([]);
+    const [hideReplyComment, setHideReplyComment] = useState([]);
     const [next, setNext] = useState(3);
-    
+        const contentRef = useRef()
+       const send = "replyComment"
+       const user = useSelector((state) => state.auth.login.currentUser);
+  const username = user.username;
     const loadMore = () => {
       setNext(next + 3);
     };
 
+        useEffect(() => {
+        if(name){
+         contentRef.current.textContent = `${name}:`
+        }
+    },[name])
+    console.log("rep", replyComment)
        useEffect(() => {
          const loopWithSlice = () => {
            let start =
@@ -36,8 +48,66 @@ const RepComment = ({comment, socket}) => {
          setReply(false);
          setNext(3);
        };
+        const onSubmit = async (e) => {
+    const review = {
+      id: comment._id,
+      name: name,
+      comment: evaluate,
+      send
+    };
+
+    socket.emit("createReview", review);
+
+    setEvaluate("");
+    if(setReply) setReply(false)
+  };
   return (
-    <div>RepComment</div>
+                <ListComment comment={comment} >
+
+    <div>
+      <div>
+         <span onClick={() => handleReply(comment.name)}>Reply</span>
+                    {
+                        hideReplyComment > 0 && 
+                        <span onClick={loadMore}>Load more {hideReplyComment} comments</span>
+                    }
+                    
+                    <span onClick={hideReply}>Hide Reply</span>
+      </div>
+        <div>
+                    {
+                        replyComment.map(rep => (
+                            <ListComment comment={rep} key={rep._id}>
+                                <div>
+                                    <p onClick={() => handleReply(username)}>Reply</p>
+                                </div>
+                            </ListComment>
+                        ))
+                    }
+                 
+
+                </div>
+                   {
+                    reply && 
+                 <div>
+              <textarea
+                ref={contentRef} 
+                className="review-textarea"
+                placeholder="Write your review"
+                onChange={(e) => setEvaluate(e.target.value)}
+              />
+              <button
+                className="review-send"
+                type="submit"
+                onClick={() => onSubmit()}
+              >
+                Send
+              </button>
+            </div>
+                }
+    </div>
+                </ListComment>
+
   )
 }
 

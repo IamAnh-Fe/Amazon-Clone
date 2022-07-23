@@ -58,19 +58,31 @@ io.on('connection', socket => {
   });
 
   socket.on('createReview', async msg => {
-    const {id, star, comment, name} = msg
+    const {id, star, comment, createdAt, name, send} = msg
     const newComment = new Comment({
           id,
           star,
           comment,
           name,
+          createdAt
     });
-    console.log(newComment.id)
-    await newComment.save()
-    io.to(newComment.id).emit(
-    "sendCommentToClient",
-    newComment
-    );
+    if(send === 'replyComment'){
+      const {_id, id, comment, name, createdAt} = newComment
+      console.log( newComment)
+      
+      const comments = await Comment.findById(id)
+      
+      if(comments){
+        comments.reply.push({_id, comment, name, createdAt})
+        console.log( "oh",comments.reply)
+        
+                await comments.save()
+                io.to(comments.id).emit('sendReplyCommentToClient', comments)
+            }
+        }else{
+            await newComment.save()
+            io.to(newComment.id).emit('sendCommentToClient', newComment)
+        }
 
   })
 

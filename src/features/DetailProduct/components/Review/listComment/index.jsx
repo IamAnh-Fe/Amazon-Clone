@@ -3,7 +3,7 @@ import moment from "moment";
 import purify from "dompurify";
 import Rating from '~/components/Rating';
 import RepComment from '../repComment';
-const ListComment = ({ comment, socket }) => {
+const ListComment = ({children, comment, socket }) => {
   console.log('review:', comment)
   return (
     <div className="listComment">
@@ -18,8 +18,8 @@ const ListComment = ({ comment, socket }) => {
 
         <p dangerouslySetInnerHTML={{ __html:purify.sanitize(comment.comment) }} />
         </div>
-        <RepComment comment={comment} socket={socket}  />
-      </div>
+     {children}      
+  </div>
     </div>
   );
 }

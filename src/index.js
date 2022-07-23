@@ -7,7 +7,8 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { store } from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react'
+import { store, persistor } from './redux/store';
 import { Provider } from 'react-redux';
 import SignIn from './features/Auth/pages/SignIn';
 import SignUp from './features/Auth/pages/SignUp';
@@ -19,6 +20,8 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+
         <Routes>
           <Route path="user/sign-in" element={<SignIn />}></Route>
           <Route path="user/sign-in/sign-up" element={<SignUp />}></Route>
@@ -29,8 +32,8 @@ ReactDOM.render(
           <Route path="product/cart" element={<Cart />}></Route>
 
           </Route>
-          
         </Routes>
+            </PersistGate>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,

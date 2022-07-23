@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import io from "socket.io-client";
 import ListComment from './listComment';
 import commentApi from '~/apis/commentApi';
+import RepComment from './repComment';
 const socket = io.connect("http://localhost:5001");
 
 
@@ -68,6 +69,25 @@ const Review = ({ product }) => {
 
     observer.observe(pageEnd.current);
   }, []);
+
+     // Reply Comments
+    useEffect(() => {
+        if(socket){
+            socket.on('sendReplyCommentToClient', msg => {
+                const newArr = [...comment]
+                
+                newArr.forEach(cm => {
+                    if(cm.id === msg.id){
+                        cm.reply = msg.reply
+                    }
+                })
+
+                setComment(newArr)
+            })
+
+            return () => socket.off('sendReplyCommentToClient')
+        } 
+    },[socket, comment])
 
   const reviews = product.reviews || [];
   const countReview = reviews.length;
@@ -200,7 +220,7 @@ const Review = ({ product }) => {
       </div>
       {comment.map((comment) => (
         <div className="review-comment">
-          <ListComment key={comment._id} comment={comment} socket={socket} />
+          <RepComment key={comment.id} comment={comment} socket={socket} />
         </div>
       ))}
       {loading && <Loading />}
