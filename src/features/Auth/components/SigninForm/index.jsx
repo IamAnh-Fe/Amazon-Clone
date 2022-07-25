@@ -96,7 +96,9 @@ const SigninForm = (props) => {
               <p>Log in with Facebook</p>
             </div>
             <div className="auth-forgot">
-              <a>Forgot password?</a>
+                <Link to='forgot-password'>
+                Forgot password?
+                </Link>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { yupResolver } from '@hookform/resolvers/yup'
 import QuantityField from "./QuantityField";
-    import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import * as yup from 'yup';
 const AddToCartForm = ({onSubmit = null}) => {

@@ -31,3 +31,19 @@ export const registerUser = async (user, dispatch, navigate) => {
     dispatch(registerFailed());
   }
 };
+
+const authApi = {
+  postForgotPassword: (email) => {
+    const url = "/auth/forgot";
+    return axiosClient.post(url, email);
+  },
+  postResetPassword: (password) => {
+    const url = "/auth/reset";
+    return axiosClient.post(url, { password });
+  },
+  postActivationEmail: (activation_token) => {
+    const url = "/auth/activation";
+    return axiosClient.post(url, { activation_token });
+  },
+};
+export default authApi;
