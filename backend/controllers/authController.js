@@ -1,30 +1,68 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const sendMail = require('./sendMailController')
 
 let refreshTokens = [];
+const {CLIENT_URL} = process.env
 
 const authController = {
   //REGISTER
   registerUser: async (req, res) => {
-    try {
-      const salt = await bcrypt.genSalt(10);
-      const hashed = await bcrypt.hash(req.body.password, salt);
+  try {
+            const { username, email, password} = req.body
+            
+            if(!username || !email || !password)
+                return res.status(400).json({msg: "Please fill in all fields."})
 
-      //Create new user
-      const newUser = await new User({
-        username: req.body.username,
-        email: req.body.email,
-        password: hashed,
-      });
+            if(!validateEmail(email))
+                return res.status(400).json({msg: "Invalid emails."})
 
-      //Save user to DB
-      const user = await newUser.save();
-      res.status(200).json(user);
-    } catch (err) {
-      res.status(500).json(err);
-    }
+            const user = await User.findOne({email})
+            if(user) return res.status(400).json({msg: "This email already exists."})
+
+            if(password.length < 6)
+                return res.status(400).json({msg: "Password must be at least 6 characters."})
+
+            const passwordHash = await bcrypt.hash(password, 12)
+
+            const newUser = {
+                 username, email, password: passwordHash
+            }
+
+            const activation_token = createActivationToken(newUser)
+
+            const url = `${CLIENT_URL}/user/activate/${activation_token}`
+            sendMail(email, url, "Verify your email address")
+
+
+            res.json({msg: "Register Success! Please activate your email to start."})
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
   },
+    activateEmail: async (req, res) => {
+        try {
+            const {activation_token} = req.body
+            const user = jwt.verify(activation_token, process.env.ACTIVATION_TOKEN_SECRET)
+
+            const {username, email, password} = user
+
+            const check = await User.findOne({email})
+            if(check) return res.status(400).json({msg:"This email already exists."})
+
+            const newUser = new User({
+                username, email, password
+            })
+
+            await newUser.save()
+
+            res.json({msg: "Account has been activated!"})
+
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
 
   generateAccessToken: (user) => {
     return jwt.sign(
@@ -51,16 +89,17 @@ const authController = {
   //LOGIN
   loginUser: async (req, res) => {
     try {
+      
       const user = await User.findOne({ username: req.body.username });
       if (!user) {
-     return   res.status(404).json("Incorrect username");
+     return   res.status(404).json("Incorrect username or password");
       }
       const validPassword = await bcrypt.compare(
         req.body.password,
         user.password
       );
       if (!validPassword) {
-       return   res.status(404).json("Incorrect password");
+       return   res.status(404).json("Incorrect username or password");
       }
       if (user && validPassword) {
         //Generate access token
@@ -76,10 +115,10 @@ const authController = {
           sameSite: "strict",
         });
         const { password, ...others } = user._doc;
-        res.status(200).json({ ...others, accessToken, refreshToken });
+        res.status(200).json({ ...others, accessToken});
       }
     } catch (err) {
-      res.status(500).json(err);
+      return res.status(500).json({msg: err.message})
     }
   },
 
@@ -108,10 +147,40 @@ const authController = {
       });
       res.status(200).json({
         accessToken: newAccessToken,
-        refreshToken: newRefreshToken,
       });
     });
   },
+
+   forgotPassword: async (req, res) => {
+        try {
+            const {email} = req.body
+            const user = await User.findOne({email})
+            if(!user) return res.status(400).json({msg: "This email does not exist."})
+
+            const access_token = createAccessToken({id: user._id})
+            const url = `${CLIENT_URL}/user/reset/${access_token}`
+
+            sendMail(email, url, "Reset your password")
+            res.json({msg: "Re-send the password, please check your email."})
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
+     resetPassword: async (req, res) => {
+        try {
+            const {password} = req.body
+            console.log(password)
+            const passwordHash = await bcrypt.hash(password, 12)
+
+            await Users.findOneAndUpdate({_id: req.user.id}, {
+                password: passwordHash
+            })
+
+            res.json({msg: "Password successfully changed!"})
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
 
   //LOG OUT
   logOut: async (req, res) => {
@@ -121,5 +190,13 @@ const authController = {
     res.status(200).json("Logged out successfully!");
   },
 };
+
+  function validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+const createActivationToken = (payload) => {
+    return jwt.sign(payload, process.env.ACTIVATION_TOKEN_SECRET, {expiresIn: '10m'})
+}
 
 module.exports = authController;
