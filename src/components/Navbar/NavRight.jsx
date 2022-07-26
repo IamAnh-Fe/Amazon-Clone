@@ -21,7 +21,7 @@ console.log("user",user)
         </Link>
 
       <div className="navbar-option hover">
-          <Link to="user/sign-in">
+          <Link to="auth/sign-in">
         <span className="navbar-optionOne" >
             Hello, <span>{user ? (user.username) : "Sign in"}</span></span>
             </Link>

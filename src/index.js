@@ -13,6 +13,7 @@ import { Provider } from 'react-redux';
 import SignIn from './features/Auth/pages/SignIn';
 import ForgotPassword from './features/Auth/pages/ForgotPassword';
 import SignUp from './features/Auth/pages/SignUp';
+import ActivationEmail from './features/Auth/pages/ActivationEmail';
 import Admin from './features/Admin/pages';
 import Product from "./features/Product/page";
 import DetailProduct from "./features/DetailProduct/page";
@@ -23,9 +24,17 @@ ReactDOM.render(
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <Routes>
-            <Route path="user/sign-in" element={<SignIn />}></Route>
-            <Route path="user/sign-in/sign-up" element={<SignUp />}></Route>
-            <Route path="user/sign-in/forgot-password" element={<ForgotPassword />}></Route>
+            <Route path="auth/sign-in" element={<SignIn />}></Route>
+            <Route path="auth/sign-in/sign-up" element={<SignUp />}></Route>
+            <Route
+              path="auth/sign-in/forgot-password"
+              element={<ForgotPassword />}
+            ></Route>
+            <Route
+              path="auth/activate/:activation_token"
+              element={<ActivationEmail />}
+            ></Route>
+
             <Route path="/" element={<App />}>
               <Route path="admin" element={<Admin />}></Route>
               <Route path="product" element={<Product />}></Route>

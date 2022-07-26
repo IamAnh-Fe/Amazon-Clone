@@ -20,13 +20,12 @@ export const loginUser = async (user, dispatch, navigate) => {
       console.log(loginFailed())
     }
   }
-export const registerUser = async (user, dispatch, navigate) => {
+export const registerUser = async (user, dispatch) => {
   dispatch(registerStart());
   try {
     const url = "/auth/register";
     await axiosClient.post(url, user);
     dispatch(registerSuccess());
-    navigate("/");
   } catch (err) {
     dispatch(registerFailed());
   }
@@ -41,9 +40,13 @@ const authApi = {
     const url = "/auth/reset";
     return axiosClient.post(url, { password });
   },
-  postActivationEmail: (activation_token) => {
+  postActivationEmail: (params) => {
     const url = "/auth/activation";
-    return axiosClient.post(url, { activation_token });
+    return axiosClient.post(url, params);
   },
+  loginWithGoogle: (params) => {
+       const url = "/auth/google_login";
+       return axiosClient.post(url, params);
+  }
 };
 export default authApi;

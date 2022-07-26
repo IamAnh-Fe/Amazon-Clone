@@ -3,6 +3,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const sendMail = require('./sendMailController')
 
+const { google } = require("googleapis");
+const { OAuth2 } = google.auth;
+
 let refreshTokens = [];
 const {CLIENT_URL} = process.env
 
@@ -32,7 +35,7 @@ const authController = {
 
             const activation_token = createActivationToken(newUser)
 
-            const url = `${CLIENT_URL}/user/activate/${activation_token}`
+            const url = `${CLIENT_URL}/auth/activate/${activation_token}`
             sendMail(email, url, "Verify your email address")
 
 
@@ -189,6 +192,111 @@ const authController = {
     res.clearCookie("refreshToken");
     res.status(200).json("Logged out successfully!");
   },
+
+//Social
+   googleLogin: async (req, res) => {
+        try {
+            const {tokenId} = req.body
+
+            const verify = await client.verifyIdToken({idToken: tokenId, audience: process.env.MAILING_SERVICE_CLIENT_ID})
+            
+            const {email_verified, email, name, picture} = verify.payload
+
+            const password = email + process.env.GOOGLE_SECRET
+
+            const passwordHash = await bcrypt.hash(password, 12)
+
+            if(!email_verified) return res.status(400).json({msg: "Email verification failed."})
+
+            const user = await User.findOne({email})
+
+            if(user){
+                const isMatch = await bcrypt.compare(password, user.password)
+                if(!isMatch) return res.status(400).json({msg: "Password is incorrect."})
+
+                const refresh_token = authController.generateRefreshToken(user);
+                res.cookie('refreshtoken', refresh_token, {
+                    httpOnly: true,
+                    path: '/auth/refresh_token',
+                    maxAge: 7*24*60*60*1000 // 7 days
+                })
+
+                res.json({msg: "Login success!"})
+            }else{
+                const newUser = new User({
+                    name, email, password: passwordHash, avatar: picture
+                })
+
+                await newUser.save()
+                
+                const refresh_token = createRefreshToken({id: newUser._id})
+                res.cookie('refreshtoken', refresh_token, {
+                    httpOnly: true,
+                    path: '/user/refresh_token',
+                    maxAge: 7*24*60*60*1000 // 7 days
+                })
+
+                res.json({msg: "Login success!"})
+            }
+
+
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
+    facebookLogin: async (req, res) => {
+        try {
+            const {accessToken, userID} = req.body
+
+            const URL = `https://graph.facebook.com/v2.9/${userID}/?fields=id,name,email,picture&access_token=${accessToken}`
+            
+            const data = await fetch(URL).then(res => res.json()).then(res => {return res})
+
+            const {email, name, picture} = data
+
+            const password = email + process.env.FACEBOOK_SECRET
+
+            const passwordHash = await bcrypt.hash(password, 12)
+
+            const user = await User.findOne({email})
+
+            if(user){
+                const isMatch = await bcrypt.compare(password, user.password)
+                if(!isMatch) return res.status(400).json({msg: "Password is incorrect."})
+
+                const refresh_token = createRefreshToken({id: user._id})
+                res.cookie('refreshtoken', refresh_token, {
+                    httpOnly: true,
+                    path: '/user/refresh_token',
+                    maxAge: 7*24*60*60*1000 // 7 days
+                })
+
+                res.json({msg: "Login success!"})
+            }else{
+                const newUser = new Users({
+                    name, email, password: passwordHash, avatar: picture.data.url
+                })
+
+                await newUser.save()
+                
+                const refresh_token = createRefreshToken({id: newUser._id})
+                res.cookie('refreshtoken', refresh_token, {
+                    httpOnly: true,
+                    path: '/user/refresh_token',
+                    maxAge: 7*24*60*60*1000 // 7 days
+                })
+
+                res.json({msg: "Login success!"})
+            }
+
+
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    }
+
+
+
 };
 
   function validateEmail(email) {
@@ -198,5 +306,6 @@ const authController = {
 const createActivationToken = (payload) => {
     return jwt.sign(payload, process.env.ACTIVATION_TOKEN_SECRET, {expiresIn: '10m'})
 }
+
 
 module.exports = authController;

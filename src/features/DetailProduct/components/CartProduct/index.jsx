@@ -18,7 +18,9 @@ const handleSubmit = async (values) => {
     if(onSubmit) {
         await onSubmit(values)
   }
-  toast.success("Added to cart");
+  if (values) {
+    toast.success("Added to cart");
+  }
 }
     return (
       <form onSubmit={form.handleSubmit(handleSubmit)}>

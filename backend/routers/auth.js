@@ -18,4 +18,9 @@ router.post('/reset', authController.resetPassword)
 //LOG OUT
 router.post("/logout", verifyToken, authController.logOut);
 
+// Social Login
+router.post("/google_login", authController.googleLogin);
+
+// router.post('/facebook_login', userCtrl.facebookLogin)
+
 module.exports = router;
