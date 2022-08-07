@@ -1,7 +1,8 @@
 const authController = require("../controllers/authController");
-
+const passport = require("passport");
 const router = require("express").Router();
 const { verifyToken } = require("../controllers/verifyToken");
+const CLIENT_URL = "http://localhost:3000/";
 
 //REGISTER
 router.post("/register", authController.registerUser);
@@ -19,8 +20,10 @@ router.post('/reset', authController.resetPassword)
 router.post("/logout", verifyToken, authController.logOut);
 
 // Social Login
-router.post("/google_login", authController.googleLogin);
 
-// router.post('/facebook_login', userCtrl.facebookLogin)
+
+
+
+
 
 module.exports = router;

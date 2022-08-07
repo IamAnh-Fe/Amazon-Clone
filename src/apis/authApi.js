@@ -47,6 +47,11 @@ const authApi = {
   loginWithGoogle: (params) => {
        const url = "/auth/google_login";
        return axiosClient.post(url, params);
+  },
+  loginSocial: () => {
+        const url = "auth/login/success";
+    return axiosClient.get(url);
+
   }
 };
 export default authApi;

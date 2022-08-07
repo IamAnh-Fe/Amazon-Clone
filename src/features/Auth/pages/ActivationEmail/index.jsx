@@ -12,7 +12,7 @@ const ActivationEmail = () => {
       if (activation_token) {
         const activationEmail = async () => {
           try {
-            const res = await authApi.postActivationEmail({
+            const res = await authApi.loginSocial({
               activation_token,
             });
             if (res) {

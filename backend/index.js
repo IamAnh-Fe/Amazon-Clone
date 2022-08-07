@@ -6,15 +6,16 @@ const cors = require("cors");
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const connectDB = require("./config/database/db")
+
 const bodyparser = require('body-parser')
 const cloudinary = require("./config/cloudinary/cloudinary.js")
 
 const authRouter = require("./routers/auth");
 const userRouter = require("./routers/user");
 const productRouter = require("./routers/product")
-const CategoryRouter = require("./routers/category")
+const categoryRouter = require("./routers/category")
 const commentRouter = require("./routers/comment")
-
+const collectionRouter = require("./routers/collection")
 const Comment = require("./models/comment");
 
 //conect database
@@ -92,8 +93,8 @@ io.on('connection', socket => {
   })
 
 })
-  
-  
+
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(bodyparser.urlencoded({extended: true}))
@@ -103,7 +104,8 @@ app.use(cors());
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/products", productRouter);
-app.use("/api/category",  CategoryRouter);
+app.use("/api/category",  categoryRouter);
+app.use("/api/collection",  collectionRouter);
 app.use("/api", commentRouter)
 
 app.post("/api/upload", async (req, res) => {
