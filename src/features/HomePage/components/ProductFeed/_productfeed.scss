@@ -6,8 +6,6 @@
    &-box {
        position: relative;
        z-index: 100;
-       margin-left: -6px;
-       margin-top: -250px;
        padding: 20px;
        background-color: #FFFFFF;
        width: 350px;
@@ -16,14 +14,20 @@
        overflow: hidden;
        border: 1px solid #eaeded;
    }
+   &-card1 {
+     margin-left: -6px;
+       margin-top: -250px;
+   }
+   &-card2{
+ margin-left: -6px;
+       margin-top: 20px;
+   }
     &-boxauth {
      height: 150px;
         padding: 20px;
        background-color: #FFFFFF;
          position: relative;
        z-index: 100;
-       margin-left: -6px;
-       margin-top: -250px;
    }
    &-login {
     cursor: pointer;
@@ -49,7 +53,9 @@
     }
     &-image {
         width: 160px;
+        height: 100px;
         margin-top: 20px;
+        border: none;
    }
    &-thumbnail {
     margin-top: 20px;

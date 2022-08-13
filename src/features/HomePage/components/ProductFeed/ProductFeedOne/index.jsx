@@ -1,17 +1,20 @@
 import React from 'react'
+import ItemSort from '~/features/Product/components/ItemSort';
 
-const ThumbFeedOne = () => {
+const ThumbFeedOne = ({item, listData}) => {
+
+console.log("itemư",item)
   return (
       <div className="container">
       
       <div className="productfeed">
         <div className="productfeed-box">
-            <h3 className="productfeed-title">Gaming accessories</h3>
-            <div className="productfeed-products">
+            <h3 className="productfeed-title">{listData  ? listData.name  : "" || item ? item.name  : ""}</h3>
+            <div className="productfeedproducts">
               <div className="productfeed-product">
                 <img
                   className="productfeed-thumbnail"
-                  src="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Dashboard/Fuji_Dash_Beauty_1x._SY304_CB432774351_.jpg"
+                  src={listData ? listData.image : "" || item ? item.image  : ""}
                   alt="productfeed"
                 />
               </div>

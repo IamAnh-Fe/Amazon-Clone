@@ -1,45 +1,27 @@
 import React from 'react'
 
-const ThumbFeedFour = () => {
+const ThumbFeedFour = ({data}) => {
+  const thumbnail = data.items
   return (
       <div className="container">
       
       <div className="productfeed">
         <div className="productfeed-box">
-            <h3 className="productfeed-title">Gaming accessories</h3>
+            <h3 className="productfeed-title">{data.title}</h3>
             <div className="productfeed-products">
+                                {thumbnail.map((thumb) => (
+
               <div className="productfeed-product">
                 <img
                   className="productfeed-image"
-                  src="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/June/Fuji_Quad_Headset_1x._SY116_CB667159060_.jpg"
+                  src={thumb.image}
                   alt="productfeed"
                 />
-                <span>Headsets</span>
+                <span className='center'>{thumb.name}</span>
               </div>
-              <div className="productfeed-product">
-                <img
-                  className="productfeed-image"
-                  src="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/June/Fuji_Quad_Headset_1x._SY116_CB667159060_.jpg"
-                  alt="productfeed"
-                />
-                <span>Headsets</span>
-              </div>
-              <div className="productfeed-product">
-                <img
-                  className="productfeed-image"
-                  src="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/June/Fuji_Quad_Headset_1x._SY116_CB667159060_.jpg"
-                  alt="productfeed"
-                />
-                <span>Headsets</span>
-              </div>
-              <div className="productfeed-product">
-                <img
-                  className="productfeed-image"
-                  src="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/June/Fuji_Quad_Headset_1x._SY116_CB667159060_.jpg"
-                  alt="productfeed"
-                />
-                <span>Headsets</span>
-              </div>
+                                     ))}
+
+             
             </div>
             <p className="productfeed-text">See more</p>
           </div>

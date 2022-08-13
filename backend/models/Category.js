@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
 const categorySchema = new mongoose.Schema(
   {
-    category: { type: String, required: true, },
-    rating:  { type: String },
-    price: { type: String},
-    brand: { type: String}
+    category: { type: String, required: true },
+    slug: {type: String},
+    listProduct:  [{
+    type: mongoose.Schema.Types.ObjectId,
+      ref: "Product"
+     }],
   },
   { timestamps: true }
 );

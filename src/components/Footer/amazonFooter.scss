@@ -1,0 +1,36 @@
+.amazonFooter {
+    background-color: #232f3e;
+
+    &-content {
+    max-width: 1000px;   
+    margin: 0 auto;
+    color: #FFFFFF;
+    border: 1px solid red;
+
+}  
+&-footerbox {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+&-footerline {
+    padding-top: 30px;
+    padding-bottom: 45px;
+}
+&-subcol {
+    display: grid;
+    grid-template-columns: repeat(7,110px);
+    gap: 120px 30px;
+
+}
+
+   &-line {
+    border: 1px solid #2e3a48 ;
+   }
+      &-textSubFooter {
+        font-size: 11px;
+   }
+    &-textmini {
+    font-size: 10px;
+   }
+  
+}

@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 import Banner from "./components/Banner";
 import SubNav from "./components/Subnav";
 import HomePage from './features/HomePage/pages';
-
+import AmazonFooter from './components/Footer';
 function App() {
   
   return (
@@ -18,6 +18,7 @@ function App() {
       <Banner />
       {/* <ProductFeed /> */}
       <HomePage />
+      <AmazonFooter />
         <ToastContainer
         position="bottom-right"
         autoClose={5000}

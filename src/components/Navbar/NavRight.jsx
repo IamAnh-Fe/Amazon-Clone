@@ -15,7 +15,7 @@ console.log("user",user)
         
       <Link to="admin">
       <div className="navbar-language hover">
-        <img src={america} alt="" />
+        <img src={america} alt="america" />
         <i><BiChevronDown/></i>
       </div>
         </Link>

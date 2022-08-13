@@ -23,12 +23,12 @@ const Item = ({ product }) => {
               </div>
               <div className="item-price">
                 <p className="item-discount">
-                  {product.discount ? <span>-{product.discount}% </span> : ""}{" "}
+                  {product.discount > 0 ? <span>-{product.discount}% </span> : ""}{" "}
                 </p>
                 <p>
                   <span className="item-saleprice">
                     <sup className="item-symbol">{product.sympol}</sup>
-                    {product.salePrice}
+                    {product.price}
                     <sup className="item-subprice">{product.subPrice}</sup>
                   </span>
                 </p>
@@ -36,7 +36,7 @@ const Item = ({ product }) => {
                   {product.originalPrice ? (
                     <span className="item-original">
                       {product.sympol}
-                      {product.originalPrice}.{product.subPrice}
+                      {product.originalPrice}
                     </span>
                   ) : (
                     ""

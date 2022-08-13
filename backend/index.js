@@ -16,6 +16,7 @@ const productRouter = require("./routers/product")
 const categoryRouter = require("./routers/category")
 const commentRouter = require("./routers/comment")
 const collectionRouter = require("./routers/collection")
+const categoryThumbRouter = require("./routers/categorythumb")
 const Comment = require("./models/comment");
 
 //conect database
@@ -106,6 +107,7 @@ app.use("/api/user", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/category",  categoryRouter);
 app.use("/api/collection",  collectionRouter);
+app.use("/api/categoryThumb",  categoryThumbRouter);
 app.use("/api", commentRouter)
 
 app.post("/api/upload", async (req, res) => {
