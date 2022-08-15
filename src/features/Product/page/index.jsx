@@ -14,7 +14,7 @@ const ProductList = () => {
     useEffect(() => {
       const  fetchProductList = async () => {
           try {
-                const res = await productApi.getAllCategory(filters)
+                const res = await productApi.getAllProduct(filters)
                 setProductList(res.product)
                 setCount(res.count)
                 console.log("all", res)

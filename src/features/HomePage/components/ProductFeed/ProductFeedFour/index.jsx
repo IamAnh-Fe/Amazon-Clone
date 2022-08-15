@@ -9,7 +9,7 @@ const ThumbFeedFour = ({data}) => {
         <div className="productfeed-box">
             <h3 className="productfeed-title">{data.title}</h3>
             <div className="productfeed-products">
-                                {thumbnail.map((thumb) => (
+              {thumbnail.map((thumb) => (
 
               <div className="productfeed-product">
                 <img
@@ -19,7 +19,7 @@ const ThumbFeedFour = ({data}) => {
                 />
                 <span className='center'>{thumb.name}</span>
               </div>
-                                     ))}
+              ))}
 
              
             </div>

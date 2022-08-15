@@ -6,16 +6,13 @@ import {  Outlet } from "react-router-dom";
 
 const Admin = () => {
   return (
-    <div className="admin grid wide">
+    <div className="admin grid ">
       <div className="row">
-      <div className="admin-sidebar col l-3 ">
-      <nav>
+      <div className="admin-sidebar col l-2 ">
       <SideBar />
-        </nav>
         </div>
-        {/* <Outlet /> */}
-        <div className="admin-data col l-9  ">
-          {/* <Outlet /> */}
+        <div className="admin-data col l-10 ">
+          <Outlet />
             {/* <Dashboard />  */}
           {/* <AddNewProduct />  */}
       </div>
