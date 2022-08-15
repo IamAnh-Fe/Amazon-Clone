@@ -1,54 +1,25 @@
 import React from 'react'
-import { BsHandbag} from "react-icons/bs";
-
+import StatusCard from './StatusCard';
+import ChartDashBoard from "./Chart";
 const Dashboard = () => {
   return (
     <div className="dashboard">
       <h3>Dashboard</h3>
-      <div className="dashboard-list">
-        <div className="dashboard-statistic">
-          <div className="dashboard-statistic-box">
-            <i>
-              <BsHandbag />
-            </i>
-            <div>
-              <p>1666</p>
-              <p>Total Sales</p>
-            </div>
-          </div>
-
-          <div className="dashboard-statistic-box">
-            <i>
-              <BsHandbag />
-            </i>
-            <div>
-              <p>1666</p>
-              <p>Total Sales</p>
-            </div>
-          </div>
-
-          <div className="dashboard-statistic-box">
-            <i>
-              <BsHandbag />
-            </i>
-            <div>
-              <p>1666</p>
-              <p>Total Sales</p>
-            </div>
-          </div>
-
-          <div className="dashboard-statistic-box">
-            <i>
-              <BsHandbag />
-            </i>
-            <div>
-              <p>1666</p>
-              <p>Total Sales</p>
-            </div>
-          </div>
+      <div className="grid ">
+        <div className="dashboard-list  row">
+          <StatusCard />
+          <ChartDashBoard />
         </div>
-
-        <div className="dashboard-chair"></div>
+        <div className="row">
+          <div className="dashboard-card l-4">
+            <div className="dashboard-card__header">
+              <h3>Top Customers</h3>
+            </div>
+            <div className="dashboard-card__body"></div>
+            fffff
+          </div>
+          <div className="l-8">fffff</div>
+        </div>
       </div>
     </div>
   );

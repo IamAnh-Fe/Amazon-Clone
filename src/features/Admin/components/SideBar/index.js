@@ -7,6 +7,7 @@ import {
   AiOutlineDollar,
 } from "react-icons/ai";
 import { BsChatDots } from "react-icons/bs";
+import { NavLink, Link } from "react-router-dom";
 
 const SideBar = () => {
   return (
@@ -16,15 +17,18 @@ const SideBar = () => {
           <img src={logo} alt="logo-amazon" />
         </div>
         <div className="sidebarAdmin-content">
-          <h3 className="sidebarAdmin-title">
+          <Link to=""> <h3 className="sidebarAdmin-title">
             <AiOutlineHome /> Dashboard
           </h3>
+          </Link>
           <h3 className="sidebarAdmin-title">
             <AiOutlineCustomerService /> Customer
           </h3>
+          <NavLink to="/admin/add">
           <h3 className="sidebarAdmin-title">
             <AiOutlineCodeSandbox /> Product
           </h3>
+          </NavLink>
           <h3 className="sidebarAdmin-title">
             <AiOutlineDollar /> Order
           </h3>

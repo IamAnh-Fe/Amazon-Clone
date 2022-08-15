@@ -14,10 +14,13 @@ import SignIn from './features/Auth/pages/SignIn';
 import ForgotPassword from './features/Auth/pages/ForgotPassword';
 import SignUp from './features/Auth/pages/SignUp';
 import ActivationEmail from './features/Auth/pages/ActivationEmail';
-import Admin from './features/Admin/pages';
+// import Admin from './features/Admin/pages';
 import Product from "./features/Product/page";
 import DetailProduct from "./features/DetailProduct/page";
 import Cart from "./features/Cart/page";
+import SideBar from "./features/Admin/components/SideBar";
+import DashBoard from "./features/Admin/components/DashBoard"
+import AddNewProduct from "./features/Admin/components/AdminProduct"
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
@@ -36,7 +39,10 @@ ReactDOM.render(
             ></Route>
 
             <Route path="/" element={<App />}>
-              <Route path="admin" element={<Admin />}></Route>
+              <Route path="admin" element={<SideBar />}>
+                <Route index element={DashBoard}></Route>
+               <Route path="admin/add" element={AddNewProduct}></Route> 
+              </Route>
               <Route path="product" element={<Product />}></Route>
               <Route path="product/:id" element={<DetailProduct />}></Route>
               <Route path="product/cart" element={<Cart />}></Route>

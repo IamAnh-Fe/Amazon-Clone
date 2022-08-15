@@ -14,7 +14,9 @@ function App() {
         <NavBar />
         <SubNav />
       </nav>
-      <Outlet />
+      <Outlet
+      
+      />
       <Banner />
       {/* <ProductFeed /> */}
       <HomePage />

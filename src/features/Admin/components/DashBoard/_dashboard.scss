@@ -2,19 +2,24 @@
     margin-top: 50px;
     &-list {
         display: flex;
+        // gap: 50px;
         margin-top: 105px;
     }
     &-statistic {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 40px;
+        gap: 10px;
     }
-    &-statistic-box {
+    &-box {
         border-radius: 20px;
         padding: 30px 30px;
         background-color: blanchedalmond;
         display: flex;
         align-items: center;
-        gap: 70px;
+        gap: 50px;
     }
+    &-chair {
+      background-color: red;
+    }
+
 }
