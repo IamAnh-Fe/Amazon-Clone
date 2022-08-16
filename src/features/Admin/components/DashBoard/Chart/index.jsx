@@ -64,7 +64,7 @@ const ChartDashBoard = () => {
         options={chartOptions.options}
         series={chartOptions.series}
         type="line"
-        width="500"
+        width="100vw"
       />
     </div>
   );

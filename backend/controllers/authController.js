@@ -10,7 +10,8 @@ let refreshTokens = [];
 const {CLIENT_URL} = process.env
 
 const authController = {
-  //REGISTER
+   
+  //Register
   registerUser: async (req, res) => {
   try {
             const { username, email, password} = req.body

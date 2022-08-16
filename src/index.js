@@ -19,8 +19,9 @@ import Product from "./features/Product/page";
 import DetailProduct from "./features/DetailProduct/page";
 import Cart from "./features/Cart/page";
 import DashBoard from "./features/Admin/components/DashBoard"
-import AddNewProduct from "./features/Admin/components/AdminProduct/AddNewProduct"
-import ShowProducts from "./features/Admin/components/AdminProduct/ShowProducts"
+import AddNewProduct from "./features/Admin/components/ManageProduct/AddNewProduct"
+import ShowProducts from "./features/Admin/components/ManageProduct/ShowProducts"
+import ManageUser from "./features/Admin/components/ManageUser"
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
@@ -39,13 +40,14 @@ ReactDOM.render(
             ></Route>
 
             <Route path="/" element={<App />}>
-              <Route path="admin" element={<Admin />}>
-              <Route index element={<DashBoard/>}></Route>
-               <Route path="add" element={<ShowProducts/>}></Route> 
-              </Route>
               <Route path="product" element={<Product />}></Route>
               <Route path="product/:id" element={<DetailProduct />}></Route>
               <Route path="product/cart" element={<Cart />}></Route>
+            </Route>
+            <Route path="admin" element={<Admin />}>
+              <Route index element={<DashBoard />}></Route>
+              <Route path="products" element={<ShowProducts />}></Route>
+              <Route path="users" element={<ManageUser />}></Route>
             </Route>
           </Routes>
         </PersistGate>

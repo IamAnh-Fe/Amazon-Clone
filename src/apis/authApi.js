@@ -1,4 +1,5 @@
 // api/userApi.js
+import axiosClient from "./axiosClient";
 import { 
   loginFailed,
   loginStart,
@@ -6,7 +7,6 @@ import {
   registerFailed,
   registerStart,
   registerSuccess, } from "~/features/Auth/authSlice";
-  import axiosClient from "./axiosClient";
 
 export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginStart())

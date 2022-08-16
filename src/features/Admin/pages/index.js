@@ -1,7 +1,6 @@
 import React from 'react'
 import SideBar from '../components/SideBar'
-import Dashboard from '../components/DashBoard'
-// import AddNewProduct from '../components/AdminProduct/AddNewProduct'
+import TopNav from '../components/TopNav'
 import {  Outlet } from "react-router-dom";
 
 const Admin = () => {
@@ -12,9 +11,11 @@ const Admin = () => {
       <SideBar />
         </div>
         <div className="admin-data col l-10 ">
+          <div>
+            <TopNav />
+          </div>
           <Outlet />
-            {/* <Dashboard />  */}
-          {/* <AddNewProduct />  */}
+
       </div>
         </div>
     </div>

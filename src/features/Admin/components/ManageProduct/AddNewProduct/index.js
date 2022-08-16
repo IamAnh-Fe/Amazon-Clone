@@ -32,11 +32,11 @@ const AddNewProduct = () => {
   };
 
   return (
-    <div className="addProduct">
+    <div className="manageProduct">
       <h3>Create Product</h3>
       <form
         onSubmit={handleSubmit(handleNewProductSubmit)}
-        className="addProduct-list"
+        className="manageProduct-list"
       >
         <input {...register("title")} type="text" placeholder="Title" />
         <p className="error">
