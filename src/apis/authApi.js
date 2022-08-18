@@ -32,6 +32,10 @@ export const registerUser = async (user, dispatch) => {
 };
 
 const authApi = {
+  getAllUsers: (params) => {
+    const url = "/auth/getAllUsers";
+    return axiosClient.get(url, {params});
+  },
   postForgotPassword: (email) => {
     const url = "/auth/forgot";
     return axiosClient.post(url, email);

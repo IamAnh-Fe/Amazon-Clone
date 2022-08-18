@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import authReducer from '~/features/Auth/authSlice'
 import cartReducer from '~/features/Cart/CartSlice'
+import themeReducer from '~/features/Admin/components/ThemeMenu/themeSlice'
 import {
   persistStore,
   persistReducer,
@@ -17,9 +18,13 @@ const persistConfig = {
   key: 'root',
   version: 1,
   storage,
-  whitelist: ['auth']
+  whitelist: ['auth, theme']
 }
-const rootReducer = combineReducers({ auth: authReducer, cart: cartReducer});
+const rootReducer = combineReducers({
+   auth: authReducer, 
+   cart: cartReducer,
+   theme: themeReducer
+  });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const store = configureStore({
   reducer: 

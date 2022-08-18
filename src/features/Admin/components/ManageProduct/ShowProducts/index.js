@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react'
+import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
+
 import productApi from '~/apis/productApi'
+
 const ShowProducts = () => {
     const [product, setProduct] = useState([])
-    console.log("alladmin", product)
   useEffect(() => {
       const  fetchProductList = async () => {
           try {
@@ -17,8 +19,8 @@ const ShowProducts = () => {
     }, [])
   return (
     <div className='grid'>
-      <div className='row'>
-         <div className='col l-1'>
+      <div className='row cardAdmin'>
+         <div className=' l-1'>
        id
         </div>
 
@@ -38,10 +40,9 @@ const ShowProducts = () => {
        Edit / Delete
         </div>
       </div>
-
+      <div className='vh cardAdmin'>
               {product.map((item) => (
-
- <div className='row' key={item._id}>
+ <div className='manageProduct-item row' key={item._id}>
          <div className='col l-1'>
        
         </div>
@@ -54,18 +55,27 @@ const ShowProducts = () => {
           {item.name}
         </div>
          <div className='l-3'>
-          <p>{item.brand}</p>
-          <p>{item.category}</p>
-          <p>{item.price}</p>
-          <p>{item.rating}</p>
-          <p>{item.discount}</p>
-        </div>
-           <div className='l-2'>
+          {item ? 
+          <>
+          <p>Brand: {item.brand}</p> 
+          <p>Sale Price: {item.salePrice}</p>
+          <p>Rating: {item.rating}</p>
+          <p>Discount: {item.discount}</p> 
+          </>
+          : ''}
+          </div>
+           
+          <div className='l-2'>
         </div>
            <div className='l-1'>
+            <span><AiOutlineEdit/>/ </span> 
+            <span> <AiOutlineDelete/></span>
+
+            
         </div>
       </div>
-                    ))}
+      ))}
+</div>
 
     </div>
   )

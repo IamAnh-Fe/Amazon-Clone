@@ -1,5 +1,4 @@
 .dashboard {
-    margin-top: 50px;
     &-list {
         display: flex;
         // gap: 50px;
@@ -13,12 +12,10 @@
     &-box {
         border-radius: 20px;
         padding: 30px 30px;
-        background-color: blanchedalmond;
         display: flex;
         align-items: center;
         gap: 50px;
     }
-    // &-chair {
-    // }
+    
 
 }

@@ -1,0 +1,19 @@
+.topNav {
+      padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--topnav-height);
+    &-avatar img {
+        width: 40px;
+        border-radius: 50%;
+    }
+    &-menu {
+        font-size: 4rem;
+    }
+    &-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+}

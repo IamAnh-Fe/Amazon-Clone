@@ -45,7 +45,7 @@ ReactDOM.render(
               <Route path="product/cart" element={<Cart />}></Route>
             </Route>
             <Route path="admin" element={<Admin />}>
-              <Route index element={<DashBoard />}></Route>
+              <Route path='dashboard' element={<DashBoard />}></Route>
               <Route path="products" element={<ShowProducts />}></Route>
               <Route path="users" element={<ManageUser />}></Route>
             </Route>

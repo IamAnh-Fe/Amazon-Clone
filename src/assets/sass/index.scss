@@ -1,5 +1,7 @@
 @import "./base";
 @import "./grid";
+@import "./theme";
+
 @import "../../components/Rating/rating";
 @import "../../components/Navbar/navbar";
 @import "../../components/Banner/banner";
@@ -25,8 +27,10 @@
 @import "../../features/Cart/components/ShoppingCart/shoppingCart.scss";
 @import "../../features/DetailProduct/components/Review/listComment/listComment.scss";
 //Admin
-@import "../../features/Admin/admin.scss";
+@import "../../features/Admin/pages/admin";
 @import "../../features/Admin/components/SideBar/sidebar.scss";
 @import "../../features/Admin/components/DashBoard/dashboard";
 @import "../../features/Admin/components/ManageProduct/manageProduct";
-@import "../../features/Admin/components/TopNav/topNav"
+@import "../../features/Admin/components/TopNav/topNav";
+@import "../../features/Admin/components/ThemeMenu/themeMenu";
+@import "../../features/Admin/components/ManageUser/manageUser"

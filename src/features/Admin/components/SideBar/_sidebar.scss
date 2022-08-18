@@ -1,58 +1,63 @@
 .sidebarAdmin {
-     min-width: var(--sidebar-width);
+    width: var(--sidebar-width);
     height: 100vh;
-    position: fixed;
+     position: fixed;
     left: 0;
     top: 0;
     background-color: var(--main-bg);
     box-shadow: var(--box-shadow);
-//    &-list {
-    //    width: 300px;
-        //  display: flex;
-        //  flex-direction: column;
-        //  justify-content: center;
-        //  align-items: center;
-        //  padding: 50px;
+          padding: 0 15px;
+
+   &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 120px;  
+   }
+//   &-logo {
+    //  display: flex;
+    // align-items: center;
+    // justify-content: center; 
+    
 //    }
- &-inner {
+   &-logo img{
+    height: 40px;
+    width: 123.54px;
+    
+   }
+ 
+   &-menu {
+font-size: 4rem;
+}
+&-inner {
+    font-size: rem;
+}
+&-inner > a {
+    color: var(--txt-color);
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
     font-weight: 600;
     transition: color 0.3s ease 0s;
     &:hover {
         color: var(--main-color);
     }
-    &:active {
-          border-radius: var(--border-radius);
-    background-image: linear-gradient(
-        to right,
-        var(--main-color),
-        var(--second-color)
-    );
-    color: var(--txt-white);
-    }
- }
-   &-logo img{
-    width: 150px;   
-   }
-   &-content{
-       margin-top: 30px;
-    }
-   
-   &-title {
-         color: #6b6b6b;
-       margin-top: 50px;
-       cursor: pointer;
-       padding: 15px 25px;
-        transition: color 0.3s ease 0s;
-        background: #1890ff;
-        border-radius: 10px;
-        color: white;
-    //    &:active {
-    
-    //    }
-    //    &:hover {
-    //         background: #1890ff;
-    // color: white;
-    // transition: .3s;
-    //    }
-   }
+}
+&-icon {
+ margin-right: 10px;
+    font-size: 2.5rem;
+}
+&-inner > span {
+    text-transform: capitalize;
+
+}
+.active {
+      border-radius: var(--border-radius);
+background-image: linear-gradient(
+    to right,
+    var(--main-color),
+    var(--second-color)
+);
+color: var(--txt-white);
+}
 }

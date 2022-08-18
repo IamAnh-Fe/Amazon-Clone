@@ -5,16 +5,17 @@ import avatar from "~/assets/logo/avatar.jpg"
 const TopNav = () => {
     return (
     <div className = 'topNav' >
+        <div className='topNav-menu'></div>
             <div className='topNav-right'>
-                <div className='topNav-avarta'>
+                <div className='topNav-avatar'>
                     <img src={avatar} alt='avatar' />
                 </div>
-                <div>
+                <div className='topNav-palette'>
                     <ThemeMenu />
                 </div>
- </div>
+            </div>
       
-  </div>;
+  </div>
         
     )
 }

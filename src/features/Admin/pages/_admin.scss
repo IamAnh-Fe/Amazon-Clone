@@ -1,0 +1,11 @@
+.admin {
+        color: var(--txt-color);
+
+ &-data {
+     padding-left: var(--sidebar-width);
+    background-color: var(--second-bg);
+    min-height: 100vh;
+    padding-left: 315px;
+    padding-right: 15px;
+ }   
+}

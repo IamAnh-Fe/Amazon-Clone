@@ -2,6 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const sendMail = require('./sendMailController')
+const asyncHandler = require("express-async-handler");
 
 const { google } = require("googleapis");
 const { OAuth2 } = google.auth;
@@ -10,7 +11,11 @@ let refreshTokens = [];
 const {CLIENT_URL} = process.env
 
 const authController = {
-   
+   //Get All Users
+   getAllUsers: asyncHandler(async (req, res) => {
+    const getAll = await User.find()
+   return res.send(getAll);
+  }),
   //Register
   registerUser: async (req, res) => {
   try {

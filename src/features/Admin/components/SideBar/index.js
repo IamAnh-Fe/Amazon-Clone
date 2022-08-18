@@ -7,53 +7,59 @@ import {
   AiOutlineDollar,
 } from "react-icons/ai";
 import { BsChatDots } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import logoWhite from "~/assets/logo/logo.png"
+import { AiOutlineMenuFold } from "react-icons/ai";
+
+import { useSelector } from 'react-redux'
+
 const SideBar = () => {
+          const themeReducer = useSelector((state) => state.theme);
+const themeBlack = themeReducer.mode === 'theme-mode-dark'
   return (
-      <div className="sidebarAdmin row">
-          <div className="sidebarAdmin-list l-6 l-o-3  ">
+      <div className="sidebarAdmin ">
+          <div className="sidebarAdmin-header">
               <div className="sidebarAdmin-logo">
-                  <img src={logo} alt="logo-amazon" />
+                  <img src={themeBlack ? logoWhite : logo} alt="logo-amazon" />
               </div>
+              <div className='sidebarAdmin-menu'><AiOutlineMenuFold/></div>
+         </div>
               <div className="sidebarAdmin-content">
                   <div className="sidebarAdmin-inner">
-                      <Link to="">
-                          {' '}
-                          <h3 className="sidebarAdmin-title">
-                              <AiOutlineHome /> Dashboard
-                          </h3>
-                      </Link>
+                      <NavLink  to="dashboard">
+                           {/* <span className='sidebarAdmin-title'> */}
+                          <i className='sidebarAdmin-icon'>
+                              <AiOutlineHome /> 
+                          </i>
+                        <span>Dashboard</span>    
+                            {/* </span>   */}
+                      </NavLink>
                   </div>
 
                   <div className="sidebarAdmin-inner">
-                      <Link to="users">
-                          <h3 className="sidebarAdmin-title">
-                              <AiOutlineCustomerService /> Manage Users
-                          </h3>
-                      </Link>
+                      <NavLink to="users">
+                           {/* <span className='sidebarAdmin-title'> */}
+                        <i className='sidebarAdmin-icon'><AiOutlineCustomerService/>
+                        </i>
+                            <span>
+                                Manage Users
+                                </span>
+                            {/* </span> */}
+                      </NavLink>
                   </div>
 
-                  <div className="sidebarAdmin-inner">
-                      <Link to="products">
-                          <h3 className="sidebarAdmin-title">
-                              <AiOutlineCodeSandbox /> Product
-                          </h3>
-                      </Link>
-                  </div>
-
-                  <div className="sidebarAdmin-inner">
-                      <h3 className="sidebarAdmin-title">
-                          <AiOutlineDollar /> Order
-                      </h3>
-                  </div>
-                  <div className="sidebarAdmin-inner">
-                      <h3 className="sidebarAdmin-title">
-                          <BsChatDots /> Chat
-                      </h3>
+                  <div className="sidebarAdmin-inner ">
+                      <NavLink to="products">
+                           {/* <span className='sidebarAdmin-title'> */}
+                           <i className='sidebarAdmin-icon'>
+                            <AiOutlineCodeSandbox /> 
+                            </i>                           
+                           <span>Product</span>
+                      </NavLink>
                   </div>
               </div>
-          </div>
-      </div>
+           </div>
+    //   </div>
   );
 }
 
