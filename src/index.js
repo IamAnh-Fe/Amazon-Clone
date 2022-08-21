@@ -19,8 +19,8 @@ import Product from "./features/Product/page";
 import DetailProduct from "./features/DetailProduct/page";
 import Cart from "./features/Cart/page";
 import DashBoard from "./features/Admin/components/DashBoard"
-import AddNewProduct from "./features/Admin/components/ManageProduct/AddNewProduct"
 import ShowProducts from "./features/Admin/components/ManageProduct/ShowProducts"
+import AddNewProduct from './features/Admin/components/ManageProduct/AddNewProduct';
 import ManageUser from "./features/Admin/components/ManageUser"
 ReactDOM.render(
   <React.StrictMode>
@@ -47,6 +47,7 @@ ReactDOM.render(
             <Route path="admin" element={<Admin />}>
               <Route path='dashboard' element={<DashBoard />}></Route>
               <Route path="products" element={<ShowProducts />}></Route>
+              <Route path="addAProduct" element={<AddNewProduct />}></Route>
               <Route path="users" element={<ManageUser />}></Route>
             </Route>
           </Routes>

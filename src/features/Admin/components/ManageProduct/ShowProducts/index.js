@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 
 import productApi from '~/apis/productApi'
+import {  Link } from "react-router-dom";
 
 const ShowProducts = () => {
     const [product, setProduct] = useState([])
@@ -20,8 +21,29 @@ const ShowProducts = () => {
   return (
     <div className='grid'>
       <div className='row cardAdmin'>
+      
+        <div className='l-2'>
+       Thumbnail
+        </div>
+         <div className='l-3'>
+       Name
+        </div>
+         <div className='l-3'>
+       Info
+        </div>
+           <div className='l-2'>
+       Inventory 
+        </div>
+           <div className='l-2 buttonAdmin'>
+        <Link to='addAProduct'>
+       ADD A PRODUCT
+        </Link>
+        </div>
+      </div>
+      <div className='vh cardAdmin'>
+        <div className='manageProduct-title center'>
          <div className=' l-1'>
-       id
+       
         </div>
 
         <div className='l-2'>
@@ -40,15 +62,15 @@ const ShowProducts = () => {
        Edit / Delete
         </div>
       </div>
-      <div className='vh cardAdmin'>
               {product.map((item) => (
- <div className='manageProduct-item row' key={item._id}>
+ <div className='manageProduct-item row center' key={item._id}>
          <div className='col l-1'>
        
         </div>
         
         <div className='l-2'>
-          {/* <img src={item.image} alt='image-product' /> */}
+          
+          <img className='manageProduct-image' src={item.image} alt='image-product' />
           
         </div>
          <div className='l-3'>

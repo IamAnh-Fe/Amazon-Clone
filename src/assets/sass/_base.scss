@@ -119,6 +119,13 @@ button {
     font-size: 13px;
     margin-right: 4px;
 }
+.buttonAdmin a {
+      border-radius: var(--border-radius);
+    background-image: linear-gradient(to right, var(--main-color), var(--second-color));
+    color: var(--txt-white);
+    text-align: center;
+    padding: 10px 20px;
+}
 progress {
   -webkit-appearance: none;
 }

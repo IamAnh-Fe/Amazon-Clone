@@ -1,8 +1,16 @@
 .manageProduct {
     margin-top: 50px;
    
-
-   &-item div {
+   &-image {
+    width: 100px;
+   }
+   &-title {
+        padding: 20px 0px;
+    margin-bottom: 30px;
+    background-color: var(--second-bg);
+    box-shadow: var(--box-shadow);
+   }
+   &-item {
     border-bottom: 1px solid grey;
     padding: 5px 0;
     font-size: 1.6rem;

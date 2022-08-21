@@ -90,30 +90,30 @@ const ThemeMenu = () => {
 
     const setMode = (mode) => {
         setcurrMode(mode.id)
-        // localStorage.setItem('themeMode',mode.class )
+        localStorage.setItem('themeMode',mode.class )
         dispatch(setThemeMode(mode.class))
 
     };
 
     const setColor = (color) => {
         setcurrColor(color.id);
-        // localStorage.setItem('colorMode',color.class)
+        localStorage.setItem('colorMode',color.class)
                 dispatch(setThemeColor(color.class))
 
     };
 
-    // useEffect(() => {
-    //     const themeClass = mode_settings.find((e) => e.class === localStorage.getItem('themeMode', 'theme-mode-light'));
-    // console.log("mode", themeClass)
+    useEffect(() => {
+        const themeClass = mode_settings.find((e) => e.class === localStorage.getItem('themeMode', 'theme-mode-light'));
+    console.log("mode", themeClass)
 
-    //     const colorClass = color_settings.find(
-    //         (e) => e.class === localStorage.getItem('colorMode', 'theme-mode-light'),
-    //     );
+        const colorClass = color_settings.find(
+            (e) => e.class === localStorage.getItem('colorMode', 'theme-mode-light'),
+        );
 
-    //     if (themeClass !== undefined) setcurrMode(themeClass.id);
+        if (themeClass !== undefined) setcurrMode(themeClass.id);
 
-    //     if (colorClass !== undefined) setcurrColor(colorClass.id);
-    // }, []);
+        if (colorClass !== undefined) setcurrColor(colorClass.id);
+    }, []);
 
     return (
         <div className='themeMenu'>
