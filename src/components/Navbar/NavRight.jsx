@@ -28,10 +28,8 @@ console.log("user",user)
         <span className="navbar-optionTwo">Account & Lists</span>
       </div>
       <div className="navbar-option hover">
-        <Link to="product">
 
         <span className="navbar-optionOne">Returns</span>
-        </Link>
         <span className="navbar-optionTwo">& Order</span>
       </div>
       <Link to="product/Cart" >

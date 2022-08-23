@@ -3,12 +3,17 @@ import Rating from '~/components/Rating';
 import { Link } from "react-router-dom";
 
 const Item = ({ product }) => {
+  
   return (
     <div className="item">
-      {product.map((product) => (
+      { product.map((product) => (
+        <div key={product._id}>
+
+        
+          { product.listProduct.map((product) => (
         <div className="item-list" key={product._id}>
-         
-      <Link to={ `/product/${product._id}`}>
+            
+            <Link to={ `${product._id}`}>
          <div className="item-content">
          
             <div className="item-thumb">
@@ -47,6 +52,9 @@ const Item = ({ product }) => {
           </div>
             </Link> 
         </div>
+              ))}
+        </div>
+
       ))}
     </div>
   );

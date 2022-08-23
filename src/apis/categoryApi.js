@@ -7,6 +7,11 @@ const categoryApi = {
  getListKeyboard : () => {
    const url = "/category/getListKeyboard";
     return axiosClient.get(url);
- }
+ },
+ getCategory: (Category) => {
+    const url = `/category/${Category}`;
+    return axiosClient.get(url)
+},
+
 };
 export default categoryApi;

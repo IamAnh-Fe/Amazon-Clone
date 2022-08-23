@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
 import categoryApi from '~/apis/categoryApi';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -31,11 +32,11 @@ console.log("keyboard", listKeyboard)
     <div className="sliderProduct-content">
        <h2 className="sliderProduct-title">Top Sellers in Books for you</h2>
 <Slider {...settings}>
-        { listKeyboard && listKeyboard.length >0 && listKeyboard.map((item) => (
+        { listKeyboard && listKeyboard.length > 0 && listKeyboard.map((item) => (
       <div className="sliderProduct-customize" key={item._id}>
-        <div className="sliderProduct-img" style={{backgroundImage: `url(${item.image})`}}>
-          
-        </div>
+         <Link to={ `/product/${item._id}`}>
+        <div className="sliderProduct-img" style={{backgroundImage: `url(${item.image})`}}></div>
+         </Link>
       </div>
           ))}
       {/* <div className="sliderProduct-customize">

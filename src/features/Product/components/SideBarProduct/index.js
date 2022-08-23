@@ -35,18 +35,18 @@ const SideBar = ({filters, onChange}) => {
      }
    };
   return (
-    <div className="sidebar">
-      <div className="sidebar-list">
-        <div className="sidebar-rating">
+    <div className="sbProduct">
+      <div className="sbProduct-list">
+        <div className="sbProduct-rating">
           <h3>Customer Review</h3>
         </div>
-        <div className="sidebar-brand">
+        <div className="sbProduct-brand">
           <FilterByBrand onChange={handleBrandChange} data={categoryList} />
         </div>
-        <div className="sidebar-price">
+        <div className="sbProduct-price">
           <FilterByPrice onChange={handlePriceChange}/>
         </div>
-        <div className="sidebar-searchprice"></div>
+        <div className="sbProduct-searchprice"></div>
       </div>
     </div>
   );

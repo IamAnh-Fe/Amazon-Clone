@@ -9,11 +9,9 @@ getProductId: (id) => {
     const url = `/products/${id}`;
     return axiosClient.get(url)
 },
-
 postReviewRating: (id, review) => {
   const url = `/products/rate/${id}`;
   return axiosClient.post(url, review)
-
 }
 };
 export default productApi;

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import SideBar from "~/features/Product/components/SideBar";
-import productApi from '~/apis/productApi'
+import SideBar from "~/features/Product/components/SideBarProduct";
+// import productApi from '~/apis/productApi'
 import ItemSort from "../components/ItemSort";
 import Item from "../components/Item";
+import { useParams } from "react-router-dom";
+import categoryApi from '~/apis/categoryApi';
 const ProductList = () => {
+  const category = useParams()
     const [productList, setProductList] = useState([])
-    const [count, setCount] = useState(0)
-
     const [filters, setFilters] = useState({
       sort: 'sort= -rating',
       
@@ -14,9 +15,8 @@ const ProductList = () => {
     useEffect(() => {
       const  fetchProductList = async () => {
           try {
-                const res = await productApi.getAllProduct(filters)
-                setProductList(res.product)
-                setCount(res.count)
+                const res = await categoryApi.getCategory(category.slug,filters)
+                setProductList(res)
                 console.log("all", res)
             } catch (error) {
                 console.log('Failed to fetch category list: ',error)

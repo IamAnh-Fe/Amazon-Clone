@@ -22,6 +22,8 @@ import DashBoard from "./features/Admin/components/DashBoard"
 import ShowProducts from "./features/Admin/components/ManageProduct/ShowProducts"
 import AddNewProduct from './features/Admin/components/ManageProduct/AddNewProduct';
 import ManageUser from "./features/Admin/components/ManageUser"
+import HomePage from './features/HomePage/pages';
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
@@ -40,8 +42,10 @@ ReactDOM.render(
             ></Route>
 
             <Route path="/" element={<App />}>
-              <Route path="product" element={<Product />}></Route>
-              <Route path="product/:id" element={<DetailProduct />}></Route>
+              <Route index element={<HomePage />}></Route>
+              <Route path="product/:slug" element={<Product />}>
+              </Route>
+              <Route path="product/:slug/:id" element={<DetailProduct />}></Route>
               <Route path="product/cart" element={<Cart />}></Route>
             </Route>
             <Route path="admin" element={<Admin />}>

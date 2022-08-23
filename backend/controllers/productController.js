@@ -7,7 +7,7 @@ const PinComment = require("../utils/pinComment")
 const productController = {
   //get all product
   getAllProduct: asyncHandler(async (req, res) => {
-    const features = new APIfeatures(Product.find(), req.query)
+    const features = new APIfeatures(Product.find({ "category.category": req.params.category}).populate("category"), req.query)
       .paginating()
       .sorting()
       .searching()
@@ -21,7 +21,7 @@ const productController = {
     const product = result[0].status === "fulfilled" ? result[0].value : [];
     const count = result[1].status === "fulfilled" ? result[1].value : 0;
 
-    return res.status(200).json({ product, count });
+    return res.status(200).json(product);
   }),
   //GET ID PRODUCT
   findProductId: asyncHandler(async (req, res) => {
@@ -32,6 +32,16 @@ const productController = {
       res.send("error get ID product");
     }
   }),
+  //Find Category
+     findCategory: asyncHandler(async (req, res) => {
+    const getCategory = await Product.find({  "category.category": req.params.category}).populate("category");
+    if (getCategory) {
+      return res.status(200).send(getCategory);
+    } else {
+      res.send("error get ID product");
+    }
+  }),
+
 
   //CREATE PRODUCT - ADMIN
   postProduct: asyncHandler(async (req, res) => {

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 const ThumbFeedFour = ({data}) => {
   const thumbnail = data.items
@@ -9,8 +10,8 @@ const ThumbFeedFour = ({data}) => {
         <div className="productfeed-box">
             <h3 className="productfeed-title">{data.title}</h3>
             <div className="productfeed-products">
-              {thumbnail.map((thumb) => (
-
+              {thumbnail && thumbnail.length > 0 && thumbnail.map((thumb) => (
+         <Link to={ `/product/${thumb.slug}`}>
               <div className="productfeed-product">
                 <img
                   className="productfeed-image"
@@ -19,6 +20,7 @@ const ThumbFeedFour = ({data}) => {
                 />
                 <span className='center'>{thumb.name}</span>
               </div>
+              </Link>
               ))}
 
              

@@ -5,6 +5,7 @@ const upload = require("../utils/multer")
 // router.get("/getAllProducts", productController.getAllProduct);
 router.get("/getAllProduct", productController.getAllProduct);
 router.get("/:id", productController.findProductId)
+
 router.post("/", upload.single("image"), productController.postProduct);
 
 router.post("/rate/:id", productController.RatingProduct)
