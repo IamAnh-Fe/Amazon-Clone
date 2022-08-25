@@ -45,9 +45,24 @@ const productController = {
 
   //CREATE PRODUCT - ADMIN
   postProduct: asyncHandler(async (req, res) => {
-    const result = await cloudinary.uploader.upload(req.file.path, {
+    let files = req.files
+    
+    const images = []
+    await Promise.all(
+      files.map(async(file) => {
+  const result1 = await cloudinary.uploader.upload(file.path, {
       folder: "amazon",
-    });
+    })
+    images.push({
+      url: result1.secure_url,
+    })
+    images[0] = {image : result1.secure_url}
+
+    })
+    )
+    // const result = await cloudinary.uploader.upload(req.file, {
+    //   folder: "amazon",
+    // });
     const newProduct = new Product({
       name: req.body.name,
       category: req.body.category,
@@ -57,10 +72,13 @@ const productController = {
       subPrice: req.body.subPrice,
       discount: req.body.discount,
       brand: req.body.brand,
-      image: result.secure_url,
-      cloudinary_id: result.public_id,
+            // image : result.secure_url,
+
+      images: images ,
+      // cloudinary_id: result.public_id,
       rating: req.body.rating,
     });
+    console.log('new',newProduct)
     const saveProduct = await newProduct.save();
     if (req.body.category) {
       const category = Category.find({_id: req.body.category})

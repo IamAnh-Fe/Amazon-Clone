@@ -21,6 +21,7 @@ const productSchema = new mongoose.Schema({
     numReviews: { type: Number },
     rating: { type: Number },
     image: { type: String, require: true },
+    images : {type: Array},
     cloudinary_id: { type: String },
     reviews: [reviewSchema],
   },
