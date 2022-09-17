@@ -4,8 +4,7 @@ const router = require("express").Router();
 const { verifyToken } = require("../controllers/verifyToken");
 const CLIENT_URL = "http://localhost:3000/";
 
-//GETALLUSERS
-router.get("/getAllUsers", authController.getAllUsers);
+
 
 //REGISTER
 router.post("/register", authController.registerUser);
@@ -23,6 +22,7 @@ router.post('/reset', authController.resetPassword)
 router.post("/logout", verifyToken, authController.logOut);
 
 // Social Login
+
 
 
 

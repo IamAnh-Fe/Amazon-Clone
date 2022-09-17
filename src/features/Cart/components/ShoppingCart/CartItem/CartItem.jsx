@@ -31,7 +31,7 @@ const CartItem = ({product}) => {
       <div className='cartItem'>
         <div className='cartItem-box'>
                                 
-                                <div className='cartItem-content'>
+          <div className='cartItem-content'>
                 <img className='cartItem-image' src={product.product.image} alt='cart Item'/>
                 <div>
                    <div className='cartItem-title'>

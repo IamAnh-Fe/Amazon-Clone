@@ -3,7 +3,7 @@ import React from 'react'
 const SubFooter = () => {
   return (
     <div className='amazonFooter'>
-      <div className='amazonFooter-subBackground'>
+      <div className='amazonFooter-subBackground l-12 m-0 c-0'>
         <div className='amazonFooter-content'>
           <div className='amazonFooter-subcol'>
            <div className='amazonFooter-gutters'>

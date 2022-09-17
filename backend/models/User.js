@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    avatar: {
+      type: String,
+      default: "https://res.cloudinary.com/dxk9kfxk1/image/upload/v1662368154/amazon/default._CR0_0_1024_1024_SX460__kxjqwa.jpg"
+    }
   },
   { timestamps: true }
 );

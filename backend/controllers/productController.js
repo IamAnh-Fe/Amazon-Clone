@@ -1,13 +1,13 @@
 const Product = require("../models/Product")
-const Category = require("../models/Category")
 const cloudinary = require('../config/cloudinary/cloudinary')
 const asyncHandler = require("express-async-handler");
 const APIfeatures = require("../lib/features")
 const PinComment = require("../utils/pinComment")
+
 const productController = {
-  //get all product
+  //  //get all product
   getAllProduct: asyncHandler(async (req, res) => {
-    const features = new APIfeatures(Product.find({ "category.category": req.params.category}).populate("category"), req.query)
+    const features = new APIfeatures(Product.find(), req.query)
       .paginating()
       .sorting()
       .searching()
@@ -21,8 +21,25 @@ const productController = {
     const product = result[0].status === "fulfilled" ? result[0].value : [];
     const count = result[1].status === "fulfilled" ? result[1].value : 0;
 
-    return res.status(200).json(product);
+    return res.status(200).json({product, count});
   }),
+  //get product
+  getProduct: asyncHandler(async (req, res) => {
+    const features = new APIfeatures(Product.find({ "category": req.params.category}), req.query)
+      .paginating()
+      .sorting()
+      .searching()
+      .filtering();
+      
+      const result = await Promise.allSettled([
+          features.query,
+          Product.countDocuments(), //count number of product.
+        ]);
+        const product = result[0].status === "fulfilled" ? result[0].value : [];
+        const count = result[1].status === "fulfilled" ? result[1].value : 0;
+        return res.status(200).json({product, count});
+      }),
+ 
   //GET ID PRODUCT
   findProductId: asyncHandler(async (req, res) => {
     const getProductId = await Product.findById(req.params.id);
@@ -34,11 +51,11 @@ const productController = {
   }),
   //Find Category
      findCategory: asyncHandler(async (req, res) => {
-    const getCategory = await Product.find({  "category.category": req.params.category}).populate("category");
+    const getCategory = await Product.find({ "category": "keyboards"});
     if (getCategory) {
       return res.status(200).send(getCategory);
     } else {
-      res.send("error get ID product");
+      res.send("error get category product");
     }
   }),
 
@@ -46,7 +63,7 @@ const productController = {
   //CREATE PRODUCT - ADMIN
   postProduct: asyncHandler(async (req, res) => {
     let files = req.files
-    
+    console.log(files)
     const images = []
     await Promise.all(
       files.map(async(file) => {
@@ -56,8 +73,7 @@ const productController = {
     images.push({
       url: result1.secure_url,
     })
-    images[0] = {image : result1.secure_url}
-
+    // images[0] = {url : result1.secure_url}
     })
     )
     // const result = await cloudinary.uploader.upload(req.file, {
@@ -72,18 +88,15 @@ const productController = {
       subPrice: req.body.subPrice,
       discount: req.body.discount,
       brand: req.body.brand,
-            // image : result.secure_url,
-
       images: images ,
       // cloudinary_id: result.public_id,
       rating: req.body.rating,
     });
-    console.log('new',newProduct)
     const saveProduct = await newProduct.save();
-    if (req.body.category) {
-      const category = Category.find({_id: req.body.category})
-      await category.updateOne({$push: {listProduct: saveProduct._id}})
-    }
+    // if (req.body.reviews) {
+    //   const reviews = reviews.find({_id: req.body.reviews})
+    //   await reviews.updateOne({$push: {listProduct: saveProduct._id}})
+    // }
     if(saveProduct){
       return res
         .status(200)
@@ -92,8 +105,20 @@ const productController = {
       res.send("error add product");
     }
   }),
+  //Update Product
+updateProduct: asyncHandler(async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    await product.updateOne({ $set: req.body});
+         
+        res.status(200).json("updated successfully!")
+  } catch(err){
+    res.status(500).json(err);
 
-  //DELETE PRODUCT
+  }
+  
+  }),
+  //Delete Product
   deleteProduct: async (req, res) => {
     try {
       await Product.findByIdAndDelete(req.params.id);
@@ -102,29 +127,5 @@ const productController = {
       res.status(500).json(err);
     }
   },
-
-  //Rating
-  RatingProduct: asyncHandler(async (req, res) => {
-    const product = await Product.findById(req.params.id);
-    console.log(req.params.id)
-   if (product) {
-     const existsUser = product.reviews.find((x) => x.name === req.body.name);
-     console.log(existsUser);
-     if (existsUser) {
-       res.send({ message: "ban da danh gia san pham nay" });
-     } else {
-       product.reviews.push(req.body);
-    console.log(req.body);
-
-       const updateProduct = await product.save();
-       res.send(updateProduct);
-     }
-   } else {
-     res.status(400).send({ message: "product not found" });
-   }
-  }),
-
 };
-
-
 module.exports = productController;

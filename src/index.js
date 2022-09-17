@@ -10,6 +10,7 @@ import {
 import { PersistGate } from 'redux-persist/integration/react'
 import { store, persistor } from './redux/store';
 import { Provider } from 'react-redux';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import SignIn from './features/Auth/pages/SignIn';
 import ForgotPassword from './features/Auth/pages/ForgotPassword';
 import SignUp from './features/Auth/pages/SignUp';
@@ -21,11 +22,15 @@ import Cart from "./features/Cart/page";
 import DashBoard from "./features/Admin/components/DashBoard"
 import ShowProducts from "./features/Admin/components/ManageProduct/ShowProducts"
 import AddNewProduct from './features/Admin/components/ManageProduct/AddNewProduct';
+import EditProduct from './features/Admin/components/ManageProduct/EditProduct';
 import ManageUser from "./features/Admin/components/ManageUser"
 import HomePage from './features/HomePage/pages';
 
 ReactDOM.render(
   <React.StrictMode>
+    <GoogleOAuthProvider 
+    clientId="86586470178-ng16g3jm7ncpo2tvq6m3bdojmnetns84.apps.googleusercontent.com">
+
     <BrowserRouter>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
@@ -50,14 +55,18 @@ ReactDOM.render(
             </Route>
             <Route path="admin" element={<Admin />}>
               <Route path='dashboard' element={<DashBoard />}></Route>
-              <Route path="products" element={<ShowProducts />}></Route>
-              <Route path="addAProduct" element={<AddNewProduct />}></Route>
+              <Route path="products" element={<ShowProducts />}>
+              <Route path=":id" element={<EditProduct />}></Route>
+
+              </Route>
               <Route path="users" element={<ManageUser />}></Route>
             </Route>
           </Routes>
         </PersistGate>
       </Provider>
     </BrowserRouter>
+    </GoogleOAuthProvider>;
+
   </React.StrictMode>,
   document.getElementById("root")
 );

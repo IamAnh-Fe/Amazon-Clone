@@ -1,12 +1,51 @@
 .manageProduct {
     margin-top: 50px;
-   
+   &-card {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    opacity: 1;
+    transition: opacity linear 0.2s;
+   background: rgba(0, 0,0, 0.5);
+}
+&-hideCard {
+    display: none;
+    transition: all 3s linear;
+}
+&-text {
+    text-align: center;
+    font-size: 2rem;
+}
+&-close {
+    font-size: 2rem;
+}
+&-heading {
+    display: flex;
+    justify-content: space-between;
+}
+&-input input {
+margin-bottom: 10px;
+outline: none;
+}
+&-content {
+text-align: center;
+    background-color: #fff;
+    padding: 30px;
+}
+&-list {
+    // width: 500px;
+    // height: 300px;
+    display: flex;
+   }
    &-image {
     width: 100px;
    }
    &-title {
         padding: 20px 0px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     background-color: var(--second-bg);
     box-shadow: var(--box-shadow);
    }
@@ -18,5 +57,47 @@
     &-submit {
         margin-top: 30px;
         width: 200px;
+    }
+    &-edit,
+    &-delete {
+        font-size: 24px;
+        color: var(--txt-color);;
+    }
+    //search
+   
+    &-search {
+        width: 100%;
+        background: rgba(255, 255, 255,0.2);
+        display: flex;
+        align-items: center;
+        border-radius: 60px;
+        padding: 0px 20px;
+        border: 1px solid black;
+    }
+    &-search input {
+        background: transparent;
+        flex: 1;
+        border: 0;
+        outline: none;
+        padding: 10px 20px;
+        font-size: 2rem;
+--txt-color: var(--txt-color-dark) !important;    
+}
+    ::placeholder {
+--txt-color: var(--txt-color-dark) !important;    
+}
+    &-search button i {
+        width: 25px;
+    }
+    &-search button {
+        border: 0;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+  background: linear-gradient(
+  to right,
+  var(--main-color),
+  var(--second-color)
+);
     }
 }

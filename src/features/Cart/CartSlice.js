@@ -3,7 +3,7 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState :{
     showMiniCart: false,
-        cartItems: [],
+    cartItems: [],
        
 },
     reducers: {

@@ -10,7 +10,14 @@ function APIfeatures(query, queryString){
     this.query = this.query.limit(limit).skip(skip)
     return this;
   }
-
+   
+   this.paginating15 = () => {
+    const page = this.queryString.page * 1 || 1;
+    const limit = this.queryString.limit * 1 || 15;
+    const skip = limit * (page - 1)
+    this.query = this.query.limit(limit).skip(skip)
+    return this;
+  }
   //this.query = Products.find().limit(limit).skip(skip)
 
   this.sorting = () => {

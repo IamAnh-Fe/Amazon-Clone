@@ -3,8 +3,8 @@ import logo from "~/assets/logo/adminlogo.png"
 import {
   AiOutlineHome,
   AiOutlineUser,
-  AiOutlineDown,
-  AiOutlineUp,
+  // AiOutlineDown,
+  // AiOutlineUp,
 AiOutlineAmazon,
 AiOutlineMenuFold, AiOutlineMenuUnfold  
 } from "react-icons/ai";
@@ -16,15 +16,15 @@ import { useSelector } from 'react-redux'
 const SideBar = (props) => {
 const [hide, setHide] = useState(false)
 const {showSidebar, show} = props;
-  const handleToggle  = () => setHide(!hide);
+const handleToggle  = () => setHide(!hide);
 
-          const themeReducer = useSelector((state) => state.theme);
+const themeReducer = useSelector((state) => state.theme);
 const themeBlack = themeReducer.mode === 'theme-mode-dark'
   return (
      <div className={show ? 'sidebar open' : 'sidebar'}>
     <div className="logo-details">
       <i className='bx bxl-c-plus-plus icon'></i>
-        <div className="logo_name">CodingLab</div>
+        <div className="logo_name">Amazon</div>
         <i className='bx bx-menu' id="btn" onClick={showSidebar} >
           {show === false ? <AiOutlineMenuUnfold/> :<AiOutlineMenuFold/>  } 
         </i>
@@ -48,16 +48,16 @@ const themeBlack = themeReducer.mode === 'theme-mode-dark'
 < AiOutlineAmazon/>
          </i>
          <span className="links_name">Manage Products</span>
-       <i className='hide'>{hide ? <AiOutlineDown/> : <AiOutlineUp />}</i> 
+       {/* <i className='hide'>{hide ? <AiOutlineDown/> : <AiOutlineUp />}</i>  */}
       </NavLink>
-       <span className="tooltip">Manage Products</span>
+       <span  className="tooltip">Manage Products</span>
      </li>
-       <ul className={show == false || hide == true  ? 'sub-menu' : 'sub-menu showMenu'}>
+       {/* <ul className={show == false || hide == true  ? 'sub-menu' : 'sub-menu showMenu'}>
           <li><NavLink to="products">All Products</NavLink></li>
           <li><NavLink to="addAProduct">Add to Product</NavLink></li>
           <li><a className="link_name" href="#">Login Form</a></li>
           <li><a className="link_name" href="#">Card Design</a></li>
-        </ul>
+        </ul> */}
       <li>
         <NavLink to="users">
          <i className='bx bx-user' >

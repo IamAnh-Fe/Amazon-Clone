@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 
-const FilterByPrice = ({ onChange }) => {
+const FilterByPrice = ({ onChange, filterList }) => {
    const [values, setValues] = useState({
      salePrice_gte: "",
-         salePrice_lte: '',
+         salePrice_lte: "",
    });
      const handleChange = (e) => {
        const { name, value } = e.target;
@@ -13,12 +13,20 @@ const FilterByPrice = ({ onChange }) => {
        }));
      };
      const handleSubmit = () => {
-       console.log(values);
        if (onChange) onChange(values);
      };
   return (
     <div className="filterPrice">
       <h3>Price</h3>
+ <ul>
+        {filterList && filterList.price.length > 0 &&
+        filterList.price.map((category) => (
+          <li>
+            
+            <label>{category}</label>
+          </li>
+        ))}
+      </ul>
       <div>
         <form>
           <span className="filterPrice-dollar">$</span>

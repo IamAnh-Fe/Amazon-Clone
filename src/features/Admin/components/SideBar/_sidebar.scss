@@ -112,7 +112,7 @@
 
 .sidebar li a.active {
   border-radius: var(--border-radius);
-  background-image: linear-gradient(
+  background: linear-gradient(
   to right,
   var(--main-color),
   var(--second-color)
@@ -145,8 +145,6 @@
   font-size: 18px;
   border-radius: 12px;
 }
-
-
 .home-section{
   position: relative;
   min-height: 100vh;
@@ -178,13 +176,13 @@
 .sub-menu.showMenu {
  display: block;
 }
-// .link_name {
-//   font-size: 15px;
-//   padding: 5px 0;
-//   white-space: nowrap;
-//   opacity: 0.6;
-//   transition: all 0.3s ease;
-// }
+.link_name {
+  font-size: 15px;
+  padding: 5px 0;
+  white-space: nowrap;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
 @media (max-width: 420px) {
   .sidebar li .tooltip{
     display: none;

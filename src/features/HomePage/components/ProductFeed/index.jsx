@@ -36,7 +36,7 @@ const ProductFeed = () => {
     }, [])
 
     return (
-      <div className='container'>
+      <div className='col container'>
       <div className='productfeed'>
         <div className='productfeed-list'>
                   {collection.map((item) => (

@@ -1,9 +1,14 @@
 const Filter = require("../models/filter")
 const asyncHandler = require("express-async-handler");
 const filterController = {
-      getAllFilter: asyncHandler(async (req, res) => {
-    const getFilter = await Filter.find({"Product.category" : "keyboard"} )
-    res.send(getFilter);
+      getFilter: asyncHandler(async (req, res) => {
+    const getFilter = await Filter.find({  "category": req.params.category} )
+     if (getFilter) {
+      return res.status(200).send(getFilter);
+    } else {
+      res.send("error getFilter");
+    }
+   
   }),
 
     postFilter: asyncHandler(async (req, res) => {

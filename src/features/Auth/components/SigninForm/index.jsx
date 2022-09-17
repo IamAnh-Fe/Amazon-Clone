@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import logo from "~/assets/logo/adminlogo.png";
 import { Link } from "react-router-dom";
@@ -8,9 +8,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ErrorMessage } from "@hookform/error-message";
 import Loading from "~/components/Loading";
-
+import { GoogleLogin } from '@react-oauth/google';
+import jwt_decode from "jwt-decode"
 const SigninForm = (props) => {
-  
+
   const schema = yup.object({
     username: yup
       .string()
@@ -87,17 +88,24 @@ const SigninForm = (props) => {
             </div>
             <div className="auth-dif">
               <div className="auth-gg"  >
-                <span>
-                <AiFillGoogleSquare />
-              </span>
-              <p>Log in with Google</p>         
+             <GoogleLogin
+  onSuccess={credentialResponse => {
+    console.log('y',credentialResponse);
+    const decoded = jwt_decode(credentialResponse.credential)
+        console.log("decoded",decoded);
+
+  }}
+  onError={() => {
+    console.log('Login Failed');
+  }}
+/>;
               </div>
-              <div className="auth-fb" >
+              {/* <div className="auth-fb" >
                 <span>
                   <AiFillFacebook />
                 </span>
                 <p>Log in with Facebook</p>
-              </div>
+              </div> */}
               <div className="auth-forgot">
                 <Link to="forgot-password">Forgot password?</Link>
               </div>

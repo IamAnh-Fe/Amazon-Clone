@@ -1,11 +1,14 @@
 const Category = require("../models/Category")
 const asyncHandler = require("express-async-handler");
+const APIfeatures = require("../lib/features")
+
+
 const categoryController = {
-      getListKeyboard: asyncHandler(async (req, res) => {
-    const getKeyboard = await Category.find({  "category": "keyboards"}).populate("listProduct")
-    console.log(getKeyboard)
-    res.json(getKeyboard);
-  }),
+  //     getListKeyboard: asyncHandler(async (req, res) => {
+  //   const getKeyboard = await Category.find({  "category": "keyboards"}).populate("listProduct")
+  //   console.log(getKeyboard)
+  //   res.json(getKeyboard);
+  // }),
   getAllCategory: asyncHandler(async (req, res) => {
     const getCategory = await Category.find().populate("listProduct")
     res.send(getCategory);

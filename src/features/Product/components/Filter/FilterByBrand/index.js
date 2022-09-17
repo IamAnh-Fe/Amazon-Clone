@@ -1,24 +1,24 @@
 import React from 'react'
 import PropTypes from "prop-types";
 
-const FilterByBrand = ({data, onChange}) => {
+const FilterByBrand = ({filterList, onChange}) => {
     const handleBrandClick = (category) => {
-      if (onChange) {
-        onChange(category.brand);
-      }
+        onChange(category);
     };
+ 
   return (
     <div>
       <h3>Brand</h3>
       <ul>
-        {data.map((category) => (
-          <li key={category._id} >
+        {filterList && filterList.brand.length > 0 && 
+        filterList.brand.map((category) => (
+          <li>
             <input
               type="radio"
               name="checkbox1"
               onClick={() => handleBrandClick(category)}
             />
-            <label>{category.brand}</label>
+            <label>{category}</label>
           </li>
         ))}
       </ul>

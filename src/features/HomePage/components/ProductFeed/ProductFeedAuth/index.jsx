@@ -2,7 +2,7 @@ import React from 'react'
 
 const ProductFeedAuth = () => {
   return (
-      <div className="container">
+      <div className="col container">
       
       <div className="productfeed">
         <div className="productfeed-boxauth">

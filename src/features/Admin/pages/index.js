@@ -13,10 +13,8 @@ const Admin = () => {
       const themeReducer = useSelector((state) => state.theme);
   useEffect(() => {
         const themeClass = localStorage.getItem('themeMode', 'theme-mode-light')
-        console.log('get',themeClass)
 
         const colorClass = localStorage.getItem('colorMode', 'theme-mode-light')
-        console.log('get',colorClass)
 
         dispatch(setThemeMode(themeClass))
         dispatch(setThemeColor(colorClass))

@@ -1,13 +1,9 @@
 import React, { useState } from 'react'
 import PropTypes from "prop-types";
 const ItemSort = ({ currentSort, onChange }) => {
-
-  console.log(
-     currentSort)
   const handleSortChange = (e) => {
     const newSortValue = e.target.value;
     if (onChange) onChange(newSortValue);
-
   };
   return (
     <div className="itemsort">

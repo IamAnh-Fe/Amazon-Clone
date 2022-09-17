@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
-import categoryApi from '~/apis/categoryApi';
+import filterApi from '~/apis/filterApi';
 import FilterByBrand from '../Filter/FilterByBrand';
 import FilterByPrice from '../Filter/FilterByPrice';
+
 const SideBar = ({filters, onChange}) => {
-    const [categoryList, setCategoryList] = useState([])
+    const [filterList, setFilterList] = useState()
+    const category = useParams()
     useEffect(() => {
-      const  fetchCategoryList = async () => {
+      const  fetchFilterCategory = async () => {
           try {
-                const data = await categoryApi.getAllCategory()
-                setCategoryList(data)
-                console.log(data)
+                const res = await  filterApi.getFilter(category.slug)
+                
+                setFilterList(res[0])
             } catch (error) {
-                console.log('Failed to fetch category list: ',error)
+                console.log('Failed to fetch filter list: ',error)
             }
 
         }
-        fetchCategoryList()
-    }, [])
+       fetchFilterCategory()
+    }, [filters])
   
    const handleBrandChange = (newbrand) => {
      const newFilters = {
@@ -29,7 +32,6 @@ const SideBar = ({filters, onChange}) => {
 
   
    const handlePriceChange = (values) => {
-     console.log(values);
      if (onChange) {
        onChange(values);
      }
@@ -41,12 +43,14 @@ const SideBar = ({filters, onChange}) => {
           <h3>Customer Review</h3>
         </div>
         <div className="sbProduct-brand">
-          <FilterByBrand onChange={handleBrandChange} data={categoryList} />
+          <FilterByBrand onChange={handleBrandChange} filterList={filterList} />
         </div>
         <div className="sbProduct-price">
-          <FilterByPrice onChange={handlePriceChange}/>
+          <FilterByPrice onChange={handlePriceChange} filterList={filterList}/>
         </div>
-        <div className="sbProduct-searchprice"></div>
+
+        <div className="sbProduct-searchprice">
+        </div>
       </div>
     </div>
   );

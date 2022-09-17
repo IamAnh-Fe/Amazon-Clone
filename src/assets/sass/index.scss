@@ -1,9 +1,11 @@
 @import "./base";
 @import "./grid";
 @import "./theme";
+@import "./mixin";
 
 @import "../../components/Rating/rating";
 @import "../../components/Navbar/navbar";
+@import "../../components/Pagination/pagination";
 @import "../../features/HomePage/components/Banner/banner";
 @import "../../components/Loading/loading";
 @import "../../components/Subnav/subnav";
@@ -16,7 +18,6 @@
 @import "../../features/DetailProduct/components/CartProduct/cartProduct.scss";
 @import "../../features/DetailProduct/components/InfoProduct/infoProduct.scss";
 @import "../../features/DetailProduct/page/detailProduct";
-@import "../../features/DetailProduct/components/ThumbProduct/thumbProduct.scss";
 @import "../../features/Product/page/product.scss";
 @import "../../features/Product/components/Filter/FilterByPrice/filterPrice.scss";
 @import "../../features/Product/components/ItemSort/itemsort";

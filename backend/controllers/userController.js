@@ -1,15 +1,23 @@
 const User = require("../models/User");
+const APIfeatures = require("../lib/features")
+const asyncHandler = require("express-async-handler");
 
 const userController = {
   //GET ALL USER
-  getAllUsers: async (req, res) => {
-    try {
-      const user = await User.find();
-      res.status(200).json(user);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  },
+  getAllUsers: asyncHandler(async (req, res) => {
+ const features = new APIfeatures(User.find(), req.query)
+      .paginating15()
+      .sorting()
+      .searching()
+      .filtering();
+    const result = await Promise.allSettled([
+      features.query,
+      User.countDocuments(), //count number of product.
+    ]);
+    const user = result[0].status === "fulfilled" ? result[0].value : [];
+    const count = result[1].status === "fulfilled" ? result[1].value : 0;    
+    return res.status(200).json({user, count});
+  }),
 
   //DELETE A USER
   deleteUser: async (req, res) => {

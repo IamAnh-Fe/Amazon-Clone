@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const filterSchema = new mongoose.Schema(
   {
     category: { type: String, required: true, },
-    rating:  { type: String },
-    price: { type: String},
-    brand: { type: String}
+    rating:  [String],
+    price:  [ String],
+    brand:  [ String]
   },
   { timestamps: true }
 );

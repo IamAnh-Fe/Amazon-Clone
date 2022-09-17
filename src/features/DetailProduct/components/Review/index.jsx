@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useRef} from 'react';
 import StarRatings from "react-star-ratings";
 import Loading from '~/components/Loading';
+
 import { useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import io from "socket.io-client";
-import ListComment from './listComment';
 import commentApi from '~/apis/commentApi';
 import RepComment from './repComment';
+import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 const socket = io.connect("http://localhost:5001");
 
-
-const Review = ({ product }) => {
+const Review = () => {
+  const navigate = useNavigate();
   const [star, setStar] = useState(0);
   const [showRate, setShowRate] = useState(false);
   const [showEvaluate, setShowEvalute] = useState(false);
@@ -19,7 +21,6 @@ const Review = ({ product }) => {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const pageEnd = useRef();
-
   const { id } = useParams();
 
   useEffect(() => {
@@ -27,10 +28,10 @@ const Review = ({ product }) => {
     const fetchReview = async () => {
       try {
         const res = await commentApi.getComment(id, page);
-        console.log("Fetch products successfully: ", res);
+        console.log("Fetch comment successfully: ", res);
         setComment(res.comments);
       } catch (error) {
-        console.log("Failed to fetch product list: ", error);
+        console.log("Failed to fetch comment list: ", error);
       }
       setLoading(false);
     };
@@ -42,7 +43,7 @@ const Review = ({ product }) => {
     if (socket) {
       socket.emit("joinRoom", id);
     }
-  }, [socket, id]);
+  }, [ id]);
 
   useEffect(() => {
     if (socket) {
@@ -52,7 +53,7 @@ const Review = ({ product }) => {
 
       return () => socket.off("sendCommentToClient");
     }
-  }, [socket, comment]);
+  }, [ comment]);
 
   // infiniti scroll
   useEffect(() => {
@@ -87,12 +88,12 @@ const Review = ({ product }) => {
 
             return () => socket.off('sendReplyCommentToClient')
         } 
-    },[socket, comment])
-
-  const reviews = product.reviews || [];
+    },[ comment])
+    const reviews = comment || [];
   const countReview = reviews.length;
   let average = reviews.reduce((a, c) => a + c.star, 0) / countReview;
   let averageRate = average.toFixed(1);
+
   const fiveStar = Math.round(
     (reviews.filter((x) => x.star === 5).length / countReview) * 100
   );
@@ -109,19 +110,18 @@ const Review = ({ product }) => {
     (reviews.filter((x) => x.star === 1).length / countReview) * 100
   );
 
-  const user = useSelector((state) => state.auth.login.currentUser);
-  const username = user.username;
+  const user = useSelector((state) => state.auth.login?.currentUser);
+  const username = user?.username;
   const onSubmit = async (e) => {
     const review = {
       id,
       name: username,
       star: star,
-      comment: evaluate,
+      comment: evaluate
     };
 
     // reviewDetail( id, review )
     socket.emit("createReview", review);
-
     setEvaluate("");
     setShowEvalute(false);
     setShowRate(false);
@@ -131,13 +131,20 @@ const Review = ({ product }) => {
     setStar(value);
     setShowEvalute(true);
   };
+  const handleShowRate = () => {
+      if(!username) {
+        toast.error("You need to login to rate");
+      } else if(username) {
+        setShowRate(!showRate);
+      }
+  }
   return (
-    <div className="review">
-      <h3>Customer reviews</h3>
+    <div className=" review">
+      <div className="review-list row">
+        <div className="review-histogram col l-4 m-5 c-12">
+      <h3 className='review-title'>Customer reviews</h3>
       <h4>{averageRate} out of 5</h4>
       <p>{countReview} global ratings</p>
-      <div className="review-list">
-        <div className="review-histogram">
           <div className="review-progress">
             <span>5 star </span>
             <progress
@@ -183,11 +190,13 @@ const Review = ({ product }) => {
             ></progress>
             <span>{oneStar}%</span>
           </div>
-          <span className="review-write">Write a review</span>
+          <span className="review-write" onClick={handleShowRate}>Write a review</span>
         </div>
-        <div className="review-rate">
+        <div className="review-rate col l-8 m-7 c-12">
+            { showRate &&
           <div>
-            <h3>Vui lòng chọn đánh giá </h3>
+
+            <h3>Please choose star rating</h3>
             <StarRatings
               changeRating={setRate}
               rating={star}
@@ -196,8 +205,9 @@ const Review = ({ product }) => {
               starSpacing="3"
               numberOfStars={5}
               name="rating"
-            />
+              />
           </div>
+            }
           {showEvaluate ? (
             <div>
               <textarea
@@ -219,7 +229,7 @@ const Review = ({ product }) => {
         </div>
       </div>
       {comment.map((comment) => (
-        <div className="review-comment">
+        <div className="col review-comment">
           <RepComment key={comment.id} comment={comment} socket={socket} />
         </div>
       ))}

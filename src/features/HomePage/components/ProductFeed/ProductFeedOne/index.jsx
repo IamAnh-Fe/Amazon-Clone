@@ -5,7 +5,7 @@ const ThumbFeedOne = ({item, listData}) => {
 
 console.log("itemư",item)
   return (
-      <div className="container">
+      <div className="col container">
       
       <div className="productfeed">
         <div className="productfeed-box">

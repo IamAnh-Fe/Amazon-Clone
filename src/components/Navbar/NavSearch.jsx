@@ -1,18 +1,18 @@
-import React from 'react'
+import React, {useState } from 'react';
+import useSearch from '~/hooks/useSearch'
 import { BiSearchAlt2 } from "react-icons/bi";
-export const NavSearch = () => {
+  const NavSearch = () => {
+ const {search, handleSearching, handleSubmitSearch} = useSearch()
   return (
-    <>
       <div className="navbar-search">
         <select>
           <option>All</option>
         </select>
-
-        <input className="navbar-searchInput" type="text" />
-          <i className="navbar-iconsearch">
+        <input className="navbar-searchInput" type="text" value={search} onChange={handleSearching} />
+         <button className="navbar-iconsearch"  onClick={handleSubmitSearch}>
             <BiSearchAlt2 />
-          </i>
+          </button> 
       </div>
-    </>
   );
 }
+export default NavSearch;

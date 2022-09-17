@@ -17,6 +17,7 @@ const categoryRouter = require("./routers/category")
 const commentRouter = require("./routers/comment")
 const collectionRouter = require("./routers/collection")
 const categoryThumbRouter = require("./routers/categorythumb")
+const filterRouter = require("./routers/filter")
 const Comment = require("./models/comment");
 
 //conect database
@@ -105,6 +106,7 @@ app.use(cors());
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/products", productRouter);
+app.use("/api/filters", filterRouter);
 app.use("/api/category",  categoryRouter);
 app.use("/api/collection",  collectionRouter);
 app.use("/api/categoryThumb",  categoryThumbRouter);

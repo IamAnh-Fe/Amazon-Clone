@@ -29,11 +29,11 @@
   width: 100%;
   text-overflow: ellipsis;
     }
-    input {
+   &-field input {
   padding: 9px 0px 7px 9px;
   font-size: 12px;
   width: 268px;
-  height: 2.2rem;
+  // height: 2.2rem;
   outline: none;
   background: #fafafa;
   border-radius: 3px;
@@ -43,7 +43,7 @@
 
 /* label intial position*/
 
-label {
+ &-field label {
   position: absolute;
   pointer-events: none;
   left: 10px;
@@ -54,6 +54,7 @@ label {
   font-size: 14px;
   color: #999;
   padding-top: 6px;
+  top: -2px;
 }
 
 /* hiding placeholder in all browsers */

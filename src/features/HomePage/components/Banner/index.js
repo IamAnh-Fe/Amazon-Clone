@@ -13,7 +13,7 @@ const Banner = () => {
   };
   return (
     <div className="banner">
-      <div className="container">
+      <div className="col container">
         <Slider {...settings}>
       <div>
                 <img loading='lazy' src='https://m.media-amazon.com/images/I/61jovjd+f9L._SX3000_.jpg' alt='banner' />

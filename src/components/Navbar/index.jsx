@@ -1,7 +1,7 @@
 import React from 'react'
 import NavLeft from './NavLeft'
 import { NavRight } from './NavRight'
-import { NavSearch } from './NavSearch'
+import  NavSearch  from './NavSearch'
 
 const NavBar = () => {
   return (

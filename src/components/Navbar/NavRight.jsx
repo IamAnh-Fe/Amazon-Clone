@@ -1,15 +1,24 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import cart from "~/assets/logo/cart.png";
 import america from "~/assets/logo/america.png";
 import { Link } from "react-router-dom";
 import { BiChevronDown } from "react-icons/bi";
 import { useSelector } from 'react-redux';
 import { cartItemsCountSelector } from "~/redux/selectors";
+import { useNavigate } from "react-router-dom";
 
 export const NavRight = () => {
+  const navigate = useNavigate();
+
     const badge = useSelector(cartItemsCountSelector)
-const user = useSelector((state) => state.auth.login.currentUser)
+const user = useSelector((state) => state.auth.login?.currentUser)
 console.log("user",user)
+ useEffect(() => {
+     if(user?.isAdmin === true) {
+              navigate("/admin")
+     }
+
+    }, [])
   return (
     <div className="navbar-right">
         
@@ -23,6 +32,7 @@ console.log("user",user)
       <div className="navbar-option hover">
           <Link to="auth/sign-in">
         <span className="navbar-optionOne" >
+          
             Hello, <span>{user ? (user.username) : "Sign in"}</span></span>
             </Link>
         <span className="navbar-optionTwo">Account & Lists</span>

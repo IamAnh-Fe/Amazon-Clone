@@ -14,7 +14,7 @@ export const loginUser = async (user, dispatch, navigate) => {
       const url = "/auth/login";
       const res = await axiosClient.post(url, user)
       dispatch(loginSuccess(res));
-      navigate("/")
+        navigate("/")
 
     } catch (err){
       console.log(loginFailed())
@@ -32,10 +32,7 @@ export const registerUser = async (user, dispatch) => {
 };
 
 const authApi = {
-  getAllUsers: (params) => {
-    const url = "/auth/getAllUsers";
-    return axiosClient.get(url, {params});
-  },
+
   postForgotPassword: (email) => {
     const url = "/auth/forgot";
     return axiosClient.post(url, email);
@@ -55,7 +52,7 @@ const authApi = {
   loginSocial: () => {
         const url = "auth/login/success";
     return axiosClient.get(url);
+  },
 
-  }
 };
 export default authApi;

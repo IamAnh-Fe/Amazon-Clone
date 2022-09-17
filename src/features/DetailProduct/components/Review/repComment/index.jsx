@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef }  from "react";
 import ListComment from '../listComment'
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 let showComments = [];
 
@@ -14,17 +15,17 @@ const RepComment = ({comment, socket}) => {
         const contentRef = useRef()
        const send = "replyComment"
        const user = useSelector((state) => state.auth.login.currentUser);
-  const username = user.username;
+  const username = user?.username;
     const loadMore = () => {
       setNext(next + 3);
     };
-
+    // name reply
         useEffect(() => {
         if(name){
          contentRef.current.textContent = `${name}:`
         }
     },[name])
-    console.log("rep", replyComment)
+// Load more reply comment
        useEffect(() => {
          const loopWithSlice = () => {
            let start =
@@ -39,34 +40,40 @@ const RepComment = ({comment, socket}) => {
          loopWithSlice(next);
        }, [comment.reply, next]);
 
+
        const handleReply = (username) => {
-         setReply(true);
-         setName(username);
+        if(!username){
+          toast.error("You need to login to reply");
+        } else {
+          setReply(true);
+          setName(username);
+        }
        };
 
        const hideReply = () => {
          setReply(false);
          setNext(3);
        };
-        const onSubmit = async (e) => {
+
+    const onSubmit = async (e) => {
+
+    const createdAt = new Date().toISOString()
     const review = {
       id: comment._id,
-      name: name,
+      name: username,
       comment: evaluate,
-      send
+      send,
+       createdAt :  createdAt
     };
-
     socket.emit("createReview", review);
-
     setEvaluate("");
     if(setReply) setReply(false)
   };
   return (
-                <ListComment comment={comment} >
-
+      <ListComment comment={comment} name={name} >
     <div>
       <div>
-         <span onClick={() => handleReply(comment.name)}>Reply</span>
+         <span className="review-reply" onClick={() => handleReply(comment.name)}>Reply</span>
                     {
                         hideReplyComment > 0 && 
                         <span onClick={loadMore}>Load more {hideReplyComment} comments</span>
@@ -77,15 +84,13 @@ const RepComment = ({comment, socket}) => {
         <div>
                     {
                         replyComment.map(rep => (
-                            <ListComment comment={rep} key={rep._id}>
+                          <ListComment comment={rep} key={rep._id}>
                                 <div>
-                                    <p onClick={() => handleReply(username)}>Reply</p>
+                                    <p onClick={() => handleReply(rep.name)}>Reply</p>
                                 </div>
                             </ListComment>
                         ))
                     }
-                 
-
                 </div>
                    {
                     reply && 

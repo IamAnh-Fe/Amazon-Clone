@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const ThumbFeedFour = ({data}) => {
   const thumbnail = data.items
   return (
-      <div className="container">
+      <div className="col container">
       
       <div className="productfeed">
         <div className="productfeed-box">

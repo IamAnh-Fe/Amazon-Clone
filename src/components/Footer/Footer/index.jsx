@@ -12,7 +12,7 @@ const Footer = () => {
   <div className='amazonFooter-footerbox'>
 <div className='grid'>
   <div className='row no-gutters '>
-    <div className=' l-3  m-6  c-12 '>
+    <div className='col15 l-3  m-6  c-12 '>
       <h3 className='amazonFooter-titleFooter'>Get to Know Us</h3>
       <ul className='amazonFooter-textFooter'>
         <li>Careers</li>
@@ -23,7 +23,7 @@ const Footer = () => {
         <li>Amazon Science</li>
       </ul>
     </div>
-     <div className=' l-3 m-6 c-12 '>
+     <div className='col15 l-3 m-6 c-12 '>
       <h3 className='amazonFooter-titleFooter'>Make Monney with Us</h3>
       <ul className='amazonFooter-textFooter'>
         <li>Sell products on Amazon</li>
@@ -35,7 +35,7 @@ const Footer = () => {
         <li>See More Make Money with Us</li>
       </ul>
     </div>
-     <div className=' l-3 m-6 c-12 '>
+     <div className='col15 l-3 m-6 c-12 '>
       <h3 className='amazonFooter-titleFooter'>Amazon Payment Products</h3>
       <ul className='amazonFooter-textFooter'>
         <li>Amazon Business Card</li>
@@ -44,7 +44,7 @@ const Footer = () => {
         <li>Amazon Currency Converter</li>
       </ul>
     </div>
-     <div className=' l-3  m-6  c-12'>
+     <div className='col15 l-3  m-6  c-12'>
       <h3 className='amazonFooter-titleFooter'>Let Us Help You</h3>
       <ul className='amazonFooter-textFooter'>
         <li>Amazon and COVID-19</li>
@@ -65,7 +65,7 @@ const Footer = () => {
 </div>
 <div className='amazonFooter-line'/>
 <div className='amazonFooter-content'>
-  <div className='amazonFooter-footerline'>
+  <div className='amazonFooter-footerline l-12 m-12 c-0'>
     <div className='center'>
       <div className='amazonFooter-logo'>
         <img src={logo} className="navbar-logo " alt="logo amazon" />
