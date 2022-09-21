@@ -21,10 +21,10 @@ import DetailProduct from "./features/DetailProduct/page";
 import Cart from "./features/Cart/page";
 import DashBoard from "./features/Admin/components/DashBoard"
 import ShowProducts from "./features/Admin/components/ManageProduct/ShowProducts"
-import AddNewProduct from './features/Admin/components/ManageProduct/AddNewProduct';
 import EditProduct from './features/Admin/components/ManageProduct/EditProduct';
 import ManageUser from "./features/Admin/components/ManageUser"
 import HomePage from './features/HomePage/pages';
+import Profile from './features/Profile'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -47,6 +47,7 @@ ReactDOM.render(
             ></Route>
 
             <Route path="/" element={<App />}>
+            <Route path="profile" element={<Profile />}></Route>
               <Route index element={<HomePage />}></Route>
               <Route path="product/:slug" element={<Product />}>
               </Route>
@@ -57,7 +58,6 @@ ReactDOM.render(
               <Route path='dashboard' element={<DashBoard />}></Route>
               <Route path="products" element={<ShowProducts />}>
               <Route path=":id" element={<EditProduct />}></Route>
-
               </Route>
               <Route path="users" element={<ManageUser />}></Route>
             </Route>

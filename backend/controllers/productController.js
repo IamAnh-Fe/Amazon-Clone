@@ -12,7 +12,6 @@ const productController = {
       .sorting()
       .searching()
       .filtering();
-
     const result = await Promise.allSettled([
       features.query,
       Product.countDocuments(), //count number of product.
@@ -109,23 +108,20 @@ const productController = {
 updateProduct: asyncHandler(async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
-    await product.updateOne({ $set: req.body});
-         
+    await product.updateOne({ $set: req.body});    
         res.status(200).json("updated successfully!")
   } catch(err){
     res.status(500).json(err);
-
   }
-  
   }),
   //Delete Product
-  deleteProduct: async (req, res) => {
+  deleteProduct: asyncHandler(async (req, res) => {
     try {
       await Product.findByIdAndDelete(req.params.id);
       res.status(200).json("Product deleted");
     } catch (err) {
       res.status(500).json(err);
     }
-  },
+  }),
 };
 module.exports = productController;

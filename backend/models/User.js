@@ -8,6 +8,12 @@ const userSchema = new mongoose.Schema(
       max: 20,
       unique: true,
     },
+    phone: {
+      type: Number,
+    },
+    address:{
+      type: String
+    },
     email: {
       type: String,
       require: true,
@@ -25,7 +31,7 @@ const userSchema = new mongoose.Schema(
     },
     avatar: {
       type: String,
-      default: "https://res.cloudinary.com/dxk9kfxk1/image/upload/v1662368154/amazon/default._CR0_0_1024_1024_SX460__kxjqwa.jpg"
+      default: "https://images-na.ssl-images-amazon.com/images/S/amazon-avatars-global/default._CR0,0,1024,1024_SR50,50_.png"
     }
   },
   { timestamps: true }

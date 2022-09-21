@@ -56,7 +56,6 @@ const CartItem = ({product}) => {
             </div>
                     <h3>
                         <span className='shoppingCart-delete' onClick={() => handleRemoveItem()}>Delete</span>
-                        <span>Save for later</span>
                     </h3>
                 </div>
             </div>

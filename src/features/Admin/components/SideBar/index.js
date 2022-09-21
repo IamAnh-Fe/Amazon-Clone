@@ -5,21 +5,39 @@ import {
   AiOutlineUser,
   // AiOutlineDown,
   // AiOutlineUp,
-AiOutlineAmazon,
-AiOutlineMenuFold, AiOutlineMenuUnfold  
+  AiOutlineLogout,
+  AiOutlineAmazon,
+  AiOutlineMenuFold, AiOutlineMenuUnfold  
 } from "react-icons/ai";
 import { NavLink} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logoWhite from "~/assets/logo/logo.png"
-
-import { useSelector } from 'react-redux'
+import authApi from '~/apis/authApi';
+import { useDispatch, useSelector } from "react-redux";
+import {createAxios} from "~/apis/axiosClient"
+import {logOutSuccess} from "~/features/Auth/authSlice"
+import { logOut } from "~/apis/authApi"
 
 const SideBar = (props) => {
-const [hide, setHide] = useState(false)
-const {showSidebar, show} = props;
-const handleToggle  = () => setHide(!hide);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [hide, setHide] = useState(false)
+  const {showSidebar, show} = props;
+  const handleToggle  = () => setHide(!hide);
 
-const themeReducer = useSelector((state) => state.theme);
-const themeBlack = themeReducer.mode === 'theme-mode-dark'
+  const themeReducer = useSelector((state) => state.theme);
+  const themeBlack = themeReducer.mode === 'theme-mode-dark'
+
+  const user = useSelector((state) => state.auth.login?.currentUser);
+  const accessToken = user?.accessToken;
+  const id = user?._id;
+  let axiosJWT = createAxios(user, dispatch,logOutSuccess);
+  console.log('res',accessToken)
+
+  const handleLogOut = async () => {
+    await authApi.logOut(dispatch, navigate, accessToken,axiosJWT);
+  
+  }
   return (
      <div className={show ? 'sidebar open' : 'sidebar'}>
     <div className="logo-details">
@@ -45,7 +63,7 @@ const themeBlack = themeReducer.mode === 'theme-mode-dark'
      <li onClick={handleToggle} >
       <NavLink to="products">
          <i>
-< AiOutlineAmazon/>
+      < AiOutlineAmazon/>
          </i>
          <span className="links_name">Manage Products</span>
        {/* <i className='hide'>{hide ? <AiOutlineDown/> : <AiOutlineUp />}</i>  */}
@@ -66,6 +84,16 @@ const themeBlack = themeReducer.mode === 'theme-mode-dark'
          <span className="links_name">Manage Users</span>
        </NavLink>
        <span className="tooltip">Manage Users</span>
+     </li>
+
+         <li>
+        <a onClick={handleLogOut}>
+         <i >
+          <AiOutlineLogout/>
+         </i>
+         <span className="links_name">Log Out</span>
+       </a>
+       <span className="tooltip">Log Out</span>
      </li>
     </ul>
   </div>

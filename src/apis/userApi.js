@@ -1,12 +1,21 @@
 import axiosClient from "./axiosClient";
+
 const userApi = {
-    getAllUsers: (currentPage) => {
+  getAllUsers: (accessToken, currentPage, axiosJWT) => {
     const url = `/user?page=${currentPage}`;
-    return axiosClient.get(url);
+    return axiosJWT.get(url,{
+      headers: { token: `Bearer ${accessToken}` },
+    });
   },
-  deleteAUser: (id) => {
+  updateUser: (id, values) => {
+  const url = `/user/${id}`;
+  return axiosClient.put(url, values)
+  },
+  deleteAUser: (accessToken,id,axiosJWT) => {
       const url = `/user/${id}`;
-  return axiosClient.delete(url)
+  return axiosJWT.delete(url,{
+      headers: { token: `Bearer ${accessToken}`},
+    })
   }
 
 };

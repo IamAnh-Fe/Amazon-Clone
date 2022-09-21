@@ -29,8 +29,13 @@ const io = new Server(server, {
   cors: {
     origin: "http://localhost:3000",
     methods: ["GET", "POST"],
+    // credentials: true, //access-control-allow-credentials:true
   },
 });
+const corsConfig = {
+  origin: true,
+  credentials: true,
+};
 
 // Soketio
 let users = [];
@@ -88,8 +93,6 @@ io.on('connection', socket => {
         }
 
   })
-
-
   socket.on('disconnect', () => {
     console.log(socket.id + ' disconnected.')
   })
@@ -100,8 +103,8 @@ io.on('connection', socket => {
 app.use(cookieParser());
 app.use(express.json());
 app.use(bodyparser.urlencoded({extended: true}))
-app.use(cors());
-
+app.use(cors(corsConfig));
+app.options('*', cors(corsConfig));
 //ROUTES
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
@@ -112,19 +115,6 @@ app.use("/api/collection",  collectionRouter);
 app.use("/api/categoryThumb",  categoryThumbRouter);
 app.use("/api", commentRouter)
 
-// app.post("/api/upload", async (req, res) => {
-//   try {
-//     const fileStr = req.body.data;
-//     const uploadResponse = await cloudinary.uploader.upload(fileStr, {
-//       upload_preset: "amazon",
-//     });
-//     console.log(uploadResponse);
-//     res.json({ msg: "yaya" });
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ err: "Something went wrong" });
-//   }
-// });
 
 
 app.get('/', (req, res) => {

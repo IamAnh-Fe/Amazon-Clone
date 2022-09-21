@@ -1,0 +1,33 @@
+.profile {
+    &-content {
+        margin: 0 15px;
+    }
+    &-box {
+        height: 800px;
+        background-color: rgb(234, 237, 237);
+    }
+    &-field {
+        margin-top: 20px;
+        margin-bottom: 23px;
+    }
+    &-image {
+    border-radius: 50%;
+    width: 200px;    
+    }
+    &-avatar {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    &-uploadAvatar {
+        display: flex;
+    justify-content: center;
+    gap: 5px;
+    } 
+    @include maxw(350px) {
+    &-image {
+    border-radius: 50%;
+    width: 100px;    
+    }
+    }
+}

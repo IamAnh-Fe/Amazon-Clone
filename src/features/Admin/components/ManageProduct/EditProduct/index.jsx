@@ -6,10 +6,15 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ErrorMessage } from "@hookform/error-message";
+import { useSelector } from 'react-redux';
+import { toast } from "react-toastify";
+
 const EditProduct  = ({ handleOpenModalEdit, editProduct, handleOnchangeEdit}) => {
 
-      let productId = useParams();
-    const id = productId.id
+  let productId = useParams();
+  const id = productId.id
+  const user = useSelector((state) => state.auth.login?.currentUser);
+  const accessToken = user.accessToken;
 
   const schema = yup.object({
     name: yup.string(),
@@ -32,10 +37,9 @@ const EditProduct  = ({ handleOpenModalEdit, editProduct, handleOnchangeEdit}) =
   });
 
   const handleNewProductSubmit = async (values) => {
-
-        console.log(values)
-     await productApi.updateProduct(id, values)
+     await productApi.updateProduct(accessToken,id, values)
     reset();
+    toast.success("Updated a product")
   };
   
   return (
@@ -48,7 +52,7 @@ const EditProduct  = ({ handleOpenModalEdit, editProduct, handleOnchangeEdit}) =
 <span className="manageProduct-close"   onClick={handleOpenModalEdit} ><AiOutlineClose/></span>
 </div>
   
-      <form    onSubmit={handleSubmit(handleNewProductSubmit)}>
+      <form onSubmit={handleSubmit(handleNewProductSubmit)}>
     <div className="row">
         <div className="manageProduct-input col l-6">
          <div className='form-field'>

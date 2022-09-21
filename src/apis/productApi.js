@@ -1,14 +1,15 @@
 // api/productApi.js
 import axiosClient from "./axiosClient";
 const productApi = {
-  getAllProduct: (params,searchValue ,currentPage) => {
-    console.log(params,searchValue, currentPage)
+  getAllProduct: (accessToken,params,searchValue , currentPage, axiosJWT) => {
     const url = `/products/getAllProducts?page=${currentPage}&search=${searchValue}&sort=${params.sort}`;
-    return axiosClient.get(url);
+    return axiosJWT.get(url, {
+      headers: { token: `Bearer ${accessToken}` },
+    });
   },
-  getProduct: (Category, params, currentPage) => {    
-    const url = `/products/list/${Category}?price[gte]=${params.salePrice_gte}&price[lte]=${params.salePrice_lte}&page=${currentPage}&search=${params.searchValue}&sort=${params.sort}`;
-    return axiosClient.get(url);
+  getProduct: (Category, filters,params, currentPage) => {    
+    const url = `/products/list/${Category}?price[gte]=${filters.salePrice_gte}&price[lte]=${filters.salePrice_lte}&page=${currentPage}&search=${filters.searchValue}&sort=${filters.sort}`;
+    return axiosClient.get(url, {params});
   },
   getKeyboards: () => {
     const url = `/products/list-keyboards`;
@@ -28,13 +29,17 @@ const productApi = {
   const url = `/products/rate/${id}`;
   return axiosClient.post(url, review)
   },
-  updateProduct: (id, values) => {
+  updateProduct: (accessToken,id, values) => {
   const url = `/products/${id}`;
-  return axiosClient.put(url, values)
+  return axiosClient.put(url, values,{
+      headers: { token: `Bearer ${accessToken}` },
+    })
   },
-  deleteAProduct: (id) => {
+  deleteAProduct: (accessToken, id) => {
       const url = `/products/${id}`;
-  return axiosClient.delete(url)
+  return axiosClient.delete(url,{
+      headers: { token: `Bearer ${accessToken}` },
+    })
   }
   };
 export default productApi;

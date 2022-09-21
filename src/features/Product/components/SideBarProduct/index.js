@@ -5,7 +5,7 @@ import filterApi from '~/apis/filterApi';
 import FilterByBrand from '../Filter/FilterByBrand';
 import FilterByPrice from '../Filter/FilterByPrice';
 
-const SideBar = ({filters, onChange}) => {
+const SideBar = ({filters, filterBrand, onChange, handleFilterBrand}) => {
     const [filterList, setFilterList] = useState()
     const category = useParams()
     useEffect(() => {
@@ -24,10 +24,10 @@ const SideBar = ({filters, onChange}) => {
   
    const handleBrandChange = (newbrand) => {
      const newFilters = {
-       ...filters,
+       ...filterBrand,
        "brand": newbrand,
      };
-     onChange(newFilters);
+     handleFilterBrand(newFilters);
    };
 
   

@@ -15,9 +15,10 @@ const ProductList = () => {
   const [filters, setFilters] = useState({
       sort: '-rating',
       salePrice_gte: 1,
-      salePrice_lte: 10000000000000,
-      searchValue: ''
+      salePrice_lte: 1000000000,
+      searchValue: '',
   });
+  const [filterBrand, setFilterBrand] = useState()
   const searchValue = useSelector((state) => state.search.search)
    useEffect(() => {
  setFilters((prevFilters)=> ({
@@ -28,7 +29,7 @@ searchValue
     useEffect(() => {
       const  fetchProductList = async () => {
           try {
-                const res = await productApi.getProduct(category.slug,filters,currentPage)
+                const res = await productApi.getProduct(category.slug,filters,filterBrand,currentPage)
                 setProductList(res.product)
                 setNumberProduct(res.count)
             } catch (error) {
@@ -36,7 +37,7 @@ searchValue
             }
         }
         fetchProductList()
-    }, [filters])
+    }, [filters, currentPage,filterBrand])
   
     const handleSortChange = (newSortValue) => {
       setFilters((prevFilters) => ({
@@ -51,7 +52,12 @@ searchValue
     ...newFilters
   }))
 }
-
+ const handleFilterBrand = (newFilters) => {
+  setFilterBrand((prevFilters)=> ({
+    ...prevFilters,
+    ...newFilters
+  }))
+}
 //pagination
 const limitPage = 5
  const pages = Math.ceil(numberProduct/limitPage)
@@ -62,7 +68,7 @@ const limitPage = 5
       <div className="product">
         <div className="product-list">
           <div className="product-sidebar">
-            <SideBar filters={filters}  onChange={handleFiltersChange} />
+            <SideBar filters={filters} filterBrand={filterBrand} handleFilterBrand={handleFilterBrand}  onChange={handleFiltersChange} />
           </div>
           <div className="product-showproduct">
             <h2>RESULTS</h2>

@@ -8,18 +8,20 @@ const {
 } = require("../controllers/verifyToken");
 
 
-router.get("/getAllProducts", productController.getAllProduct);
+router.get("/getAllProducts", verifyTokenAndAdmin,productController.getAllProduct);
+
 router.get("/list/:category", productController.getProduct);
+
 router.get("/list-keyboards", productController.findCategory);
 
 router.get("/:id", productController.findProductId);
 
 router.post("/", upload.array('url'),productController.postProduct);
 
-router.put("/:id", productController.updateProduct);
+router.put("/:id", verifyTokenAndAdmin, productController.updateProduct);
 
 
-router.delete(":id", productController.deleteProduct)
+router.delete("/:id", verifyTokenAndAdmin, productController.deleteProduct)
 
 
 module.exports = router;

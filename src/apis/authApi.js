@@ -4,9 +4,12 @@ import {
   loginFailed,
   loginStart,
   loginSuccess,
+  logOutFailed,
+  logOutStart,
+  logOutSuccess,
   registerFailed,
   registerStart,
-  registerSuccess, } from "~/features/Auth/authSlice";
+  registerSuccess } from "~/features/Auth/authSlice";
 
 export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginStart())
@@ -30,6 +33,21 @@ export const registerUser = async (user, dispatch) => {
     dispatch(registerFailed());
   }
 };
+// export const logOut = async (dispatch, navigate, accessToken, axiosJWT) => {
+//   dispatch(logOutStart());
+//   try {
+//     const url = "/auth/logout";
+//     await axiosJWT.post(url, 'h', {
+//       headers: { token: `Bearer ${accessToken}` },
+//     })
+//     dispatch(logOutSuccess());
+//     localStorage.clear();
+//     navigate("/auth/sign-in");
+//   } catch (err) {
+//     dispatch(logOutFailed());
+//   }
+// };
+
 
 const authApi = {
 
@@ -45,13 +63,20 @@ const authApi = {
     const url = "/auth/activation";
     return axiosClient.post(url, params);
   },
-  loginWithGoogle: (params) => {
-       const url = "/auth/google_login";
-       return axiosClient.post(url, params);
-  },
-  loginSocial: () => {
-        const url = "auth/login/success";
-    return axiosClient.get(url);
+  logOut: (dispatch, navigate, accessToken, axiosJWT) => {
+     dispatch(logOutStart());
+  try {
+    const url = "/auth/logout";
+     axiosJWT.post(url, {
+      headers: { token: `Bearer ${accessToken}` },
+    })
+    dispatch(logOutSuccess());
+    localStorage.clear();
+    navigate("/auth/sign-in");
+  } catch (err) {
+    dispatch(logOutFailed());
+  }
+
   },
 
 };

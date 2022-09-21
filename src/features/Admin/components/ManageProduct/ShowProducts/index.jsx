@@ -6,27 +6,35 @@ import EditProduct from '../EditProduct';
 import Pagination from "~/components/Pagination";
 import { Link} from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
+import {createAxios} from "~/apis/axiosClient"
+import {loginSuccess} from "~/features/Auth/authSlice"
 import { AiOutlineEdit, AiOutlineDelete, AiOutlineSearch } from "react-icons/ai";
+import { toast } from "react-toastify";
 
 const ShowProducts = () => {
-    const {search, handleSearching, handleSubmitSearch} = useSearch()
-    const [hidden, setHidden] = useState(false);
-    const [openModalEdit, setOpenModalEdit] = useState(false);
-    const [product, setProduct] = useState([])
-    const [editProduct, setEditProduct] = useState({})
-    const [currentPage, setCurrentPage] = useState(1)
-    const [numberProduct, setNumberProduct] = useState()
-    const [filters, setFilters] = useState({
-      sort: '',
-      searchValue: ''
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [hidden, setHidden] = useState(false);
+  const [openModalEdit, setOpenModalEdit] = useState(false);
+  const [product, setProduct] = useState([])
+  const [editProduct, setEditProduct] = useState({})
+  const [currentPage, setCurrentPage] = useState(1)
+  const [numberProduct, setNumberProduct] = useState()
+  const [filters, setFilters] = useState({
+    sort: '',
   });
-    const searchValue = useSelector((state) => state.search.search)
+  const {search, handleSearching, handleSubmitSearch} = useSearch()
+  const user = useSelector((state) => state.auth.login?.currentUser);
+  const accessToken = user?.accessToken;
+  const searchValue = useSelector((state) => state.search.search)
+
+  let axiosJWT = createAxios(user, dispatch, loginSuccess);
 
     useEffect(() => {
       const  fetchProductList = async () => {
           try {
-                const res = await productApi.getAllProduct(filters,searchValue,currentPage)
+                const res = await productApi.getAllProduct(accessToken,filters,searchValue,currentPage,axiosJWT)
                 setProduct(res.product)
                 setNumberProduct(res.count)
             } catch (error) {
@@ -45,16 +53,18 @@ const ShowProducts = () => {
   };
 //CRUD
   const handleToggle  = () => setHidden(!hidden);
-  const navigate = useNavigate();
+
   const handleOpenModalEdit  = () => {
   setOpenModalEdit(!openModalEdit);
-  navigate(-1)}
+  navigate(-1)
+}
 
 const handleDeleteProduct = async (item) => {
 const id = item._id;
-await productApi.deleteAProduct(id)
+await productApi.deleteAProduct(accessToken,id)
 const currentProduct = product.filter(product => product._id !== item._id)
 setProduct(currentProduct)
+toast.success("Deleted a product")
 }
 
 const handleEditProduct = async (item) => {
@@ -64,7 +74,7 @@ setEditProduct(item)
   const handleOnchangeEdit = (event) => {
         let editCopy = { ...editProduct };
         editCopy = event.target.value;
-       setEditProduct(editCopy)
+        setEditProduct(editCopy)
     }
     //pagination
 const limitPage = 5

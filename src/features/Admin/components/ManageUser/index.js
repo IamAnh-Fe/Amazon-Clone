@@ -1,49 +1,49 @@
 import React, {useEffect, useState} from 'react'
-import useSearch from '~/hooks/useSearch'
+// import useSearch from '~/hooks/useSearch'
 import Pagination from "~/components/Pagination";
 import { AiOutlineEdit, AiOutlineDelete, AiOutlineSearch } from "react-icons/ai";
 import userApi from "~/apis/userApi"
-
+import { useDispatch, useSelector } from "react-redux";
+import {createAxios} from "~/apis/axiosClient"
+import {loginSuccess} from "~/features/Auth/authSlice"
+import { toast } from "react-toastify";
 const ManageUser = () => {
   
-      const {search, handleSearching, handleSubmitSearch} = useSearch()
-      const [users, setUsers] = useState([])
-      const [currentPage, setCurrentPage] = useState(1)
-      const [numberProduct, setNumberProduct] = useState()
-      const [filters, setFilters] = useState();
-      useEffect(() => {
+  // const {search, handleSearching, handleSubmitSearch} = useSearch();
+  const dispatch = useDispatch();
+  const [users, setUsers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [numberProduct, setNumberProduct] = useState();
+  const user = useSelector((state) => state.auth.login?.currentUser);
+  const accessToken = user?.accessToken;
+  let axiosJWT = createAxios(user, dispatch, loginSuccess);
+  useEffect(() => {
       const  fetchUserList = async () => {
           try {
-                const res = await userApi.getAllUsers(currentPage)
+                const res = await userApi.getAllUsers(accessToken, currentPage, axiosJWT)
                 setUsers(res.user)
                 setNumberProduct(res.count)
             } catch (error) {
-                console.log('Failed to fetch category list: ',error)
+                console.log('Failed to fetch user list: ',error)
             }
-
         }
         fetchUserList()
-    }, [currentPage])
+  }, [currentPage])
 
-    const handleDeleteUser = async (user) => {
-      console.log(user)
-const id = user._id;
-await userApi.deleteAUser(id)
-const currentUser = users.filter(users => users._id !== user._id)
-setUsers(currentUser)
-}
- //pagination
-const limitPage = 15
- const pages = Math.ceil(numberProduct/limitPage)
-//  const handlePaginationChange = (newFilters) => {
-//   setFilters((prevFilters)=> ({
-//     ...prevFilters,
-//     ...newFilters
-//   }))
-// }
+  const handleDeleteUser = async (user) => {
+  const id = user._id;
+  await userApi.deleteAUser(accessToken,id,axiosJWT)
+  const currentUser = users.filter(users => users._id !== user._id)
+  setUsers(currentUser)
+  toast.success("Deleted a user")
+  }
+//pagination
+  const limitPage = 15
+  const pages = Math.ceil(numberProduct/limitPage)
+
   return (
     <>
-       <div className="row cardAdmin">
+       {/* <div className="row cardAdmin">
         <div className="col l-2"></div>
         <div className="l-2"></div>
         <div className="l-2"></div>
@@ -51,7 +51,7 @@ const limitPage = 15
         <input type='text' placeholder='Search...' value={search} onChange={handleSearching} />
         <button onClick={handleSubmitSearch}><AiOutlineSearch/></button>
         </div>
-      </div>
+      </div> */}
 
       <div className="cardAdmin ">
         <div className="manageProduct-title center">
@@ -62,8 +62,8 @@ const limitPage = 15
         <div className="l-2">Address</div>
         <div className="l-1">Edit / Delete</div>
       </div>
-        {users.map((user) => (
-        <div className='manageUser-list row '>
+        {users && users.length && users.map((user) => (
+        <div key={user._id} className='manageUser-list row '>
         <div className="l-1"></div>
         <div className="l-3">{user.username}</div>
         <div className="l-3">{user.email}</div>

@@ -2,14 +2,14 @@ import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import logo from "~/assets/logo/adminlogo.png";
 import { Link } from "react-router-dom";
-import { AiFillFacebook, AiFillGoogleSquare } from "react-icons/ai";
+// import { AiFillFacebook, AiFillGoogleSquare } from "react-icons/ai";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ErrorMessage } from "@hookform/error-message";
 import Loading from "~/components/Loading";
-import { GoogleLogin } from '@react-oauth/google';
-import jwt_decode from "jwt-decode"
+// import { GoogleLogin } from '@react-oauth/google';
+// import jwt_decode from "jwt-decode"
 const SigninForm = (props) => {
 
   const schema = yup.object({
@@ -45,11 +45,11 @@ const SigninForm = (props) => {
       <div className="auth">
         <div className="auth-box">
           <div className="auth-info">
-            <div>
+            <div className="auth-logo">
               {isSubmitting ? <Loading /> : ""}
 
               <Link to="/">
-                <img className="auth-logo" src={logo} alt="" />
+                <img  src={logo} alt="" />
               </Link>
             </div>
             <form onSubmit={handleSubmit(handleSignInSubmit)}>
@@ -81,7 +81,7 @@ const SigninForm = (props) => {
                 </button>
               </div>
             </form>
-            <div className="auth-or">
+            {/* <div className="auth-or">
               <div className="auth-line"></div>
               <p>OR</p>
               <div className="auth-line"></div>
@@ -100,16 +100,16 @@ const SigninForm = (props) => {
   }}
 />;
               </div>
-              {/* <div className="auth-fb" >
+              <div className="auth-fb" >
                 <span>
                   <AiFillFacebook />
                 </span>
                 <p>Log in with Facebook</p>
-              </div> */}
+              </div>
               <div className="auth-forgot">
                 <Link to="forgot-password">Forgot password?</Link>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="auth-signup">
             <p>

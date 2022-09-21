@@ -11,9 +11,9 @@ export const NavRight = () => {
   const navigate = useNavigate();
 
     const badge = useSelector(cartItemsCountSelector)
-const user = useSelector((state) => state.auth.login?.currentUser)
-console.log("user",user)
- useEffect(() => {
+    const user = useSelector((state) => state.auth.login?.currentUser)
+    console.log("user",user)
+    useEffect(() => {
      if(user?.isAdmin === true) {
               navigate("/admin")
      }
@@ -32,10 +32,11 @@ console.log("user",user)
       <div className="navbar-option hover">
           <Link to="auth/sign-in">
         <span className="navbar-optionOne" >
-          
             Hello, <span>{user ? (user.username) : "Sign in"}</span></span>
             </Link>
+            <Link to="profile">
         <span className="navbar-optionTwo">Account & Lists</span>
+            </Link>
       </div>
       <div className="navbar-option hover">
 

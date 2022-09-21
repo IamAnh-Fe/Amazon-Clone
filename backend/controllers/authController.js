@@ -60,7 +60,7 @@ const authController = {
         isAdmin: user.isAdmin,
       },
       process.env.JWT_ACCESS_KEY,
-      { expiresIn: "1d" }
+      { expiresIn: "30s" }    
     );
   },
 
@@ -78,17 +78,16 @@ const authController = {
   //LOGIN
   loginUser: async (req, res) => {
     try {
-      
       const user = await User.findOne({ username: req.body.username });
       if (!user) {
-     return   res.status(404).json("Incorrect username or password");
+        res.status(404).json("Incorrect username");
       }
       const validPassword = await bcrypt.compare(
         req.body.password,
         user.password
       );
       if (!validPassword) {
-       return   res.status(404).json("Incorrect username or password");
+        res.status(404).json("Incorrect password");
       }
       if (user && validPassword) {
         //Generate access token
@@ -99,7 +98,7 @@ const authController = {
         //STORE REFRESH TOKEN IN COOKIE
         res.cookie("refreshToken", refreshToken, {
           httpOnly: true,
-          secure: false,
+          secure:false,
           path: "/",
           sameSite: "strict",
         });
@@ -107,11 +106,11 @@ const authController = {
         res.status(200).json({ ...others, accessToken});
       }
     } catch (err) {
-      return res.status(500).json({msg: err.message})
+      res.status(500).json(err);
     }
   },
 
-  requestRefreshToken: async (req, res) => {
+   requestRefreshToken: async (req, res) => {
     //Take refresh token from user
     const refreshToken = req.cookies.refreshToken;
     //Send error if token is not valid
@@ -128,9 +127,9 @@ const authController = {
       const newAccessToken = authController.generateAccessToken(user);
       const newRefreshToken = authController.generateRefreshToken(user);
       refreshTokens.push(newRefreshToken);
-      res.cookie("refreshToken", refreshToken, {
+      res.cookie("refreshToken", newRefreshToken, {
         httpOnly: true,
-        secure: false,
+        secure:false,
         path: "/",
         sameSite: "strict",
       });
@@ -172,12 +171,12 @@ const authController = {
     },
 
   //LOG OUT
-  logOut: async (req, res) => {
+  logOut: asyncHandler (async (req, res) => {
     //Clear cookies when user logs out
     refreshTokens = refreshTokens.filter((token) => token !== req.body.token);
     res.clearCookie("refreshToken");
     res.status(200).json("Logged out successfully!");
-  },
+  }),
 
 
 };

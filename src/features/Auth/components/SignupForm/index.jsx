@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import logo from "~/assets/logo/adminlogo.png";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { AiFillFacebook, AiFillGoogleSquare } from "react-icons/ai";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -58,30 +57,11 @@ const SignupForm = (props) => {
     <div className="auth">
       <div className="auth-box">
         <div className="auth-info">
-          <div>
+          <div className="auth-logo">
             {isSubmitting ? <Loading /> : ""}
             <Link to="/">
-              <img className="auth-logo" src={logo} alt="" />
+              <img  src={logo} alt="logo-Amazon" />
             </Link>
-          </div>
-          <div className="auth-dif">
-            <div className="auth-gg">
-              <span>
-                <AiFillGoogleSquare />
-              </span>
-              <p>Log in with Google</p>
-            </div>
-            <div className="auth-fb">
-              <span>
-                <AiFillFacebook />
-              </span>
-              <p>Log in with Facebook</p>
-            </div>
-          </div>
-          <div className="auth-or">
-            <div className="auth-line"></div>
-            <p>OR</p>
-            <div className="auth-line"></div>
           </div>
           <form onSubmit={handleSubmit(handleSubmitValues)}>
             <div className="auth-form">
