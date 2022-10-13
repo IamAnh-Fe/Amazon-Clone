@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import authApi from "~/apis/authApi";
-import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -42,12 +41,10 @@ const ForgotPassword = () => {
     const res = await authApi.postForgotPassword(email);
 
     return setData({ ...data, err: "", success: res.data.msg });
-     toast.success("Added to cart");
 
   } catch (err) {
     err.response.data.msg &&
     setData({ ...data, err: err.response.data.msg, success: "" });
-    toast.error("error"); 
   }
       };
 return (

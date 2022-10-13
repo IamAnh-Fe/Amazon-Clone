@@ -37,18 +37,18 @@
     --topnav-height: 110px;
     --transition-cubic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-    --title: 2rem
+    --title: 2rem;
 }
 
 * {
-    font-family: "Amazon Ember",Arial,sans-serif;
+    font-family: 'Amazon Ember', Arial, sans-serif;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 html {
-  height: 100%;
-  font-size: 62.5%;
+    height: 100%;
+    font-size: 62.5%;
 }
 // .background {
 //   background-color: rgb(234, 237, 237);
@@ -62,66 +62,73 @@ ul {
     display: inline;
 }
 li {
-  cursor: pointer;
+    cursor: pointer;
 }
 .none {
-  display: none;
+    display: none;
 }
 a {
     text-decoration: none !important;
     cursor: pointer;
+    color: #0F1111;
+}
+.text-b {
+    padding-bottom: 5px;
 }
 .wrapper {
-  max-width: 1920px;
-  margin: 0 auto;
+    max-width: 1920px;
+    margin: 0 auto;
 }
 .container {
-  max-width: 1530px;
-  margin: 0 auto;
-  // padding: 0 15px;
+    max-width: 1530px;
+    margin: 0 auto;
+    // padding: 0 15px;
 }
 .hover {
-  &:hover{
-    border: 1px solid white;
-     transition: ease 0.3s;
-     border-radius: 3px;
-
-  }
+    &:hover {
+        border: 1px solid white;
+        transition: ease 0.3s;
+        border-radius: 3px;
+    }
 }
-
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
 .cardAdmin {
     padding: 30px;
     margin-bottom: 30px;
     background-color: var(--main-bg);
     box-shadow: var(--box-shadow);
     border-radius: var(--border-radius);
-   
 }
 .error {
-  color: red;
+    color: red;
 }
 .center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .background {
-    background-color: #fafafa; 
-    background-color: rgba(var(--b3f,250,250,250),1); 
-
+    background-color: #fafafa;
+    background-color: rgba(var(--b3f, 250, 250, 250), 1);
 }
 .link {
     color: #0095f6;
-    color: rgba(var(--d69,0,149,246),1);
-  }
+    color: rgba(var(--d69, 0, 149, 246), 1);
+}
 button {
-  cursor: pointer;
+    cursor: pointer;
 }
 .vh {
-  height: 100vh;
+    height: 100vh;
 }
 .button {
-    display: inline-block!important;
+    display: inline-block !important;
     border: 1px solid #848688;
     border-radius: 3px;
     padding: 6px 10px 6px 8px;
@@ -129,56 +136,59 @@ button {
     margin-right: 4px;
 }
 .buttonAdmin a {
-      border-radius: var(--border-radius);
+    border-radius: var(--border-radius);
     background-image: linear-gradient(to right, var(--main-color), var(--second-color));
     color: var(--txt-white);
     text-align: center;
     padding: 10px 20px;
 }
+.h100 {
+    max-height: 100px;
+}
 progress {
-  -webkit-appearance: none;
+    --webkit-appearance: none;
 }
 
 ::-webkit-progress-value {
-  background-color: #FFA41C;
-  box-shadow: inset -2px 0 0 -1px #f5961d, inset 0 0 0 1px #de7921;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+    background-color: #ffa41c;
+    box-shadow: inset -2px 0 0 -1px #f5961d, inset 0 0 0 1px #de7921;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 ::-webkit-progress-bar {
-  background-color: #F0F2F2;
+    background-color: #f0f2f2;
 }
-//input 
+//input
 .form-input {
-  border: 1px solid #eee;
-  border-radius: 4px;
-  width: 100%;
-  height: 3rem;
-  padding: 0 20px;
-  transition: 0.25s ease;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    width: 100%;
+    height: 3rem;
+    padding: 0 20px;
+    transition: 0.25s ease;
 }
 .form-input:focus {
-  border-color: #6a5af9;
+    border-color: #6a5af9;
 }
 .form-field {
-  position: relative;
+    position: relative;
 }
 .form-label {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 21px;
-  user-select: none;
-  color: #999;
-  pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 21px;
+    user-select: none;
+    color: #999;
+    pointer-events: none;
 }
 
 .form-input:not(:placeholder-shown) + .form-label,
 .form-input:focus + .form-label {
-  top: 0;
-  padding: 0 10px;
-  display: inline-block;
-  background-color: white;
-  color: #6a5af9;
+    top: 0;
+    padding: 0 10px;
+    display: inline-block;
+    background-color: white;
+    color: #6a5af9;
 }

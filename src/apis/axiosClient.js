@@ -17,7 +17,6 @@ const refreshToken = async () => {
   try {
     const res = await axiosClient.post("/auth/refresh", {
       withCredentials: true,
-      
     });
     return res;
   } catch (err) {
@@ -32,7 +31,7 @@ const refreshToken = async () => {
     "content-type": "application/json",
   },
   paramsSerializer: params => queryString.stringify(params),
-});;
+});
 export const createAxios = (user, dispatch, stateSuccess) => {
  
   newInstance.interceptors.request.use(

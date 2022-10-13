@@ -1,66 +1,64 @@
 .amazonFooter {
     &-content {
-        max-width: 1000px;   
+        max-width: 1000px;
         margin: 0 auto;
-        color: #FFFFFF;
-        
-    }  
+        color: #ffffff;
+    }
     &-background {
-     background-color: #232f3e;
-   }
-&-footerbox {
-    padding-top: 50px;
-    padding-bottom: 50px;
-}
-&-footerline {
-    padding-top: 20px;
-    padding-bottom: 40px;
-}
-&-logo {
-    margin-right: 10rem;
-}
-&-subcol {
-    display: grid;
-  grid-row-gap: 20px;
-}
-&-iconAmerica {
-  bottom: 1px;
-}
-&-subBackground {
-    padding-top: 30px;
-    padding-bottom: 40px;
-    background-color: #131A22;
-}
-&-gutters {
-    display: grid;
-     grid-template-columns: repeat(7,110px);
-  grid-column-gap: 38px;
-}
-&-itemLine {
-    display: flex;
-}
-&-titleFooter {
-    font-size: 1.6rem;
-    margin-bottom: 20px;
-}
-&-textFooter {
-      font-size: 1.4rem;
-  color: #DDDDDD;
-  margin-bottom: 10rem;
-}
-&-textFooter li {
-  margin-bottom: 1.5rem;
-}
-   &-line {
-    border: 1px solid #2e3a48 ;
-   }
-      &-textSubFooter {
+        background-color: #232f3e;
+    }
+    &-footerbox {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    &-footerline {
+        padding-top: 20px;
+        padding-bottom: 40px;
+    }
+    &-logo {
+        margin-right: 10rem;
+    }
+    &-subcol {
+        display: grid;
+        grid-row-gap: 20px;
+    }
+    &-iconAmerica {
+        bottom: 1px;
+    }
+    &-subBackground {
+        padding-top: 30px;
+        padding-bottom: 40px;
+        background-color: #131a22;
+    }
+    &-gutters {
+        display: grid;
+        grid-template-columns: repeat(7, 110px);
+        grid-column-gap: 38px;
+    }
+    &-itemLine {
+        display: flex;
+    }
+    &-titleFooter {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+    &-textFooter {
+        font-size: 1.4rem;
+        color: #dddddd;
+        margin-bottom: 10rem;
+    }
+    &-textFooter li {
+        margin-bottom: 1.5rem;
+    }
+    &-line {
+        border: 1px solid #2e3a48;
+    }
+    &-textSubFooter {
         font-size: 11px;
-        color: #DDDDDD;
-   }
+        color: #dddddd;
+    }
     &-textmini {
         color: #999999;
-    font-size: 10px;
-   }
-  
+        font-size: 10px;
+    }
 }

@@ -1,3 +1,46 @@
 .banner {
-    height: 600px;
+   &-image {
+      max-width: 100%;
+      overflow: hidden;
+   }
+   //reset slick slider css
+   .slick-prev:before, .slick-next:before { font-family: "slick"; font-size: 40px; line-height: 1; color: red; opacity: 0.75; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }   
+
+.slick-prev:before { content: "‹"; }
+[dir="rtl"] .slick-prev:before { content: "›"; }
+
+[dir="rtl"] .slick-next { left: -10px; top: 70px; right: auto; }
+.slick-next:before { content: "›"; }
+[dir="rtl"] .slick-next:before { content: "‹"; }
+
+   // .slick-prev:before,
+   // .slick-next:before {
+   //     font-family: 'Glyphicons Halflings' !important;
+   //     color: red !important;
+   // }
+    .slick-prev {
+        left: 0px !important;
+        z-index: 1000;
+        height: 100px !important;
+        width: 44px !important;
+        &:hover {
+            background: #eceaea !important;
+        }
+    }
+
+    .slick-next {
+        //   border: 2px solid #d7d7d7 !important;
+        //   background: white !important;
+        right: 0px !important;
+        height: 100px !important;
+        width: 44px !important;
+        &:hover {
+            background: #eceaea !important;
+        }
+    }
+    @include maxw(1200px) {
+        &-image {
+            max-width: 100%;
+        }
+    }
 }

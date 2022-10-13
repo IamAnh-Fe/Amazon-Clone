@@ -49,7 +49,7 @@ const SignupForm = (props) => {
       await onSubmit(values);
     }
     reset()
-    toast.success("please check email");
+    // toast.success("please check email");
   };
   return (
         <main className="background">

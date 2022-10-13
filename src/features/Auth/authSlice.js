@@ -1,33 +1,33 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const authSlice = createSlice({
-    name: "auth",
-    initialState:{
-        login:{
-            currentUser:null,
+    name: 'auth',
+    initialState: {
+        login: {
+            currentUser: null,
             isFetching: false,
-            error:false
+            error: false,
         },
-        register:{
+        register: {
             isFetching: false,
-            error:false,
-            success:false
+            error: false,
+            success: false,
         },
     },
-    reducers:{
-        loginStart: (state) =>{
+    reducers: {
+        loginStart: (state) => {
             state.login.isFetching = true;
         },
-        loginSuccess: (state,action) => {
+        loginSuccess: (state, action) => {
             state.login.isFetching = false;
             state.login.currentUser = action.payload;
             state.login.error = false;
         },
-        loginFailed: (state) =>{
+        loginFailed: (state) => {
             state.login.isFetching = false;
             state.login.error = true;
         },
-        registerStart: (state) =>{
+        registerStart: (state) => {
             state.register.isFetching = true;
         },
         registerSuccess: (state) => {
@@ -35,7 +35,7 @@ const authSlice = createSlice({
             state.register.error = false;
             state.register.success = true;
         },
-        registerFailed: (state) =>{
+        registerFailed: (state) => {
             state.register.isFetching = false;
             state.register.error = true;
             state.register.success = false;
@@ -45,15 +45,14 @@ const authSlice = createSlice({
             state.login.currentUser = null;
             state.login.error = false;
         },
-        logOutFailed: (state) =>{
+        logOutFailed: (state) => {
             state.login.isFetching = false;
             state.login.error = true;
         },
-        logOutStart: (state) =>{
+        logOutStart: (state) => {
             state.login.isFetching = true;
         },
-     
-    }
+    },
 });
 
 export const {
@@ -65,7 +64,7 @@ export const {
     registerFailed,
     logOutStart,
     logOutSuccess,
-    logOutFailed
+    logOutFailed,
 } = authSlice.actions;
 
 export default authSlice.reducer;

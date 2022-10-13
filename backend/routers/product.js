@@ -12,7 +12,7 @@ router.get("/getAllProducts", verifyTokenAndAdmin,productController.getAllProduc
 
 router.get("/list/:category", productController.getProduct);
 
-router.get("/list-keyboards", productController.findCategory);
+router.get('/list-headsets', productController.findCategory);
 
 router.get("/:id", productController.findProductId);
 

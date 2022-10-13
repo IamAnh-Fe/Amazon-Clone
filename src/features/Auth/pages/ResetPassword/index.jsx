@@ -38,6 +38,7 @@ const ResetPassword = () => {
 
         return setData({ ...data, err: "", success: res.data.msg });
         toast.success("success");
+        
       } catch (err) {
         err.response.data.msg &&
           setData({ ...data, err: err.response.data.msg, success: "" });

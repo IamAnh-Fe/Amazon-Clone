@@ -1,12 +1,10 @@
 import React from 'react'
-import Rating from '~/components/Rating'
-
 
 const InfoProduct = ({product}) => {
   return (
     <div className='infoProduct'>
         <div className='infoProduct-content'>
-            <h1 className='infoProduct-title'>{product.name}</h1>
+            <h1 className='infoProduct-title '>{product.name}</h1>
             <span className='infoProduct-star'>
               </span>
             {/* <p>

@@ -8,11 +8,11 @@ const productApi = {
     });
   },
   getProduct: (Category, filters,params, currentPage) => {    
-    const url = `/products/list/${Category}?price[gte]=${filters.salePrice_gte}&price[lte]=${filters.salePrice_lte}&page=${currentPage}&search=${filters.searchValue}&sort=${filters.sort}`;
+    const url = `/products/list/${Category}?price[gte]=${filters.salePrice_gte}&price[lte]=${filters.salePrice_lte}&page=${currentPage}&search=${filters.searchValue}&sort=${filters.sort}&limit=5`;
     return axiosClient.get(url, {params});
   },
-  getKeyboards: () => {
-    const url = `/products/list-keyboards`;
+  getHeadsets: () => {
+    const url = `/products/list-headsets`;
     return axiosClient.get(url);
   },
   getProductId: (id) => {

@@ -1,8 +1,8 @@
 .shoppingCart {
     &-list {
          background-color: rgb(255, 255, 255);
-        padding: 20px 20px 15px 20px;
-        margin-right: 20px; 
+        // padding: 20px 20px 15px 20px;
+        // margin-right: 20px; 
     }
     &-top {
         border-bottom: 1px solid #DDD;
@@ -36,5 +36,6 @@
     }
     &-delete {
         cursor: pointer;
+        color: red;
     }
 }

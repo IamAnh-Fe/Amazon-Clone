@@ -1,69 +1,63 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 const FilterByPrice = ({ onChange, filterList }) => {
-   const [values, setValues] = useState({
-     salePrice_gte: "",
-         salePrice_lte: "",
-   });
-     const handleChange = (e) => {
-       const { name, value } = e.target;
-       setValues((prevValues) => ({
-         ...prevValues,
-         [name]: value,
-       }));
-     };
-     const handleSubmit = () => {
-       if (onChange) onChange(values);
-     };
-  return (
-    <div className="filterPrice">
-      <h3>Price</h3>
- <ul>
-        {filterList && filterList.price.length > 0 &&
-        filterList.price.map((category) => (
-          <li>
-            
-            <label>{category}</label>
-          </li>
-        ))}
-      </ul>
-      <div>
-        <form>
-          <span className="filterPrice-dollar">$</span>
-          <input
-            type="text"
-            placeholder="Min"
-            className="filterPrice-input"
-            name="salePrice_gte"
-            value={values.salePrice_gte}
-            onChange={handleChange}
-          />
+    const [values, setValues] = useState({
+        salePrice_gte: '',
+        salePrice_lte: '',
+    });
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setValues((prevValues) => ({
+            ...prevValues,
+            [name]: value,
+        }));
+    };
+    const handleSubmit = () => {
+        if (onChange) onChange(values);
+    };
+    return (
+        <div className="filterPrice">
+            <h3>Price</h3>
+            <ul>
+                {filterList &&
+                    filterList?.price?.length > 0 &&
+                    filterList.price.map((category) => (
+                        <li>
+                            <label>{category}</label>
+                        </li>
+                    ))}
+            </ul>
+            <div>
+                <form>
+                    <span className="filterPrice-dollar">$</span>
+                    <input
+                        type="text"
+                        placeholder="Min"
+                        className="filterPrice-input"
+                        name="salePrice_gte"
+                        value={values.salePrice_gte}
+                        onChange={handleChange}
+                    />
 
-          <span className="filterPrice-dollar">$</span>
-          <input
-            type="text"
-            placeholder="Max"
-            className="filterPrice-input"
-            name="salePrice_lte"
-            value={values.salePrice_lte}
-            onChange={handleChange}
-          />
-          <button
-            type="button"
-            className="filterPrice-submit"
-            onClick={handleSubmit}
-          >
-            Go
-          </button>
-        </form>
-      </div>
-    </div>
-  );
-}
+                    <span className="filterPrice-dollar">$</span>
+                    <input
+                        type="text"
+                        placeholder="Max"
+                        className="filterPrice-input"
+                        name="salePrice_lte"
+                        value={values.salePrice_lte}
+                        onChange={handleChange}
+                    />
+                    <button type="button" className="filterPrice-submit" onClick={handleSubmit}>
+                        Go
+                    </button>
+                </form>
+            </div>
+        </div>
+    );
+};
 
-export default FilterByPrice
-
-
+export default FilterByPrice;
 
 // import React, { useState } from "react";
 
